@@ -1,0 +1,12 @@
+servidor:
+  nome: '&aBasicPvP'
+  prefixo: '&f[{nome}&f]'
+informacoes:
+  website: 'www.basicpvp.com.br'
+  loja: '{website}/loja'
+  discord: '{website}/discord'
+aplicacoes:
+  trialmod: '{website}/trialmod'
+mensagens:
+  motd: '{prefixo} &aEstamos esperando por você!'
+  whitelist-motd: '{prefixo} &cServidor em manutenção.'

@@ -9,6 +9,7 @@ import com.github.caaarlowsz.basicpvp.commands.BuildCommand;
 import com.github.caaarlowsz.basicpvp.commands.ChatCommand;
 import com.github.caaarlowsz.basicpvp.commands.TellCommand;
 import com.github.caaarlowsz.basicpvp.files.StatusFile;
+import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
 import com.github.caaarlowsz.basicpvp.listeners.ChatListeners;
 import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
@@ -36,6 +37,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		StatusFile.createNewFile(this.getDataFolder().getPath());
 
 		PluginManager pm = Bukkit.getPluginManager();
+		pm.registerEvents(new MenuGUI(), this);
 
 		pm.registerEvents(new ChatListeners(), this);
 		pm.registerEvents(new JumpBlockListeners(), this);

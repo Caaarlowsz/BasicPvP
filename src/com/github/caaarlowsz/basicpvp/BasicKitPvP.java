@@ -5,6 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.github.caaarlowsz.basicpvp.commands.AdminCommand;
 import com.github.caaarlowsz.basicpvp.commands.BuildCommand;
 import com.github.caaarlowsz.basicpvp.commands.ChatCommand;
 import com.github.caaarlowsz.basicpvp.commands.SpawnCommand;
@@ -49,6 +50,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		pm.registerEvents(new SignListeners(), this);
 		pm.registerEvents(new WorldListeners(), this);
 
+		this.getCommand("admin").setExecutor(new AdminCommand());
 		this.getCommand("build").setExecutor(new BuildCommand());
 		this.getCommand("chat").setExecutor(new ChatCommand());
 		this.getCommand("spawn").setExecutor(new SpawnCommand());

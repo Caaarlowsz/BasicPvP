@@ -5,6 +5,10 @@ description: Minecraft Bukkit Basic PvP Plugin.
 author: Carlos Henrique#0240
 depend: [NametagEdit]
 commands:
+  admin:
+    description: Use este comando para entrar no/sair do Modo Admin.
+    usage: /<command>
+    aliases: [admmode, adminmode, staffmode]
   build:
     description: Use este comando para poder construir.
     usage: /<command> (ON, OFF)

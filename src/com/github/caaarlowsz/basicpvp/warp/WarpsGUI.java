@@ -73,6 +73,7 @@ public final class WarpsGUI implements Listener {
 			lore.add("§eClique para teleportar");
 			mIcon.setLore(lore);
 			icon.setItemMeta(mIcon);
+			inv.addItem(icon);
 		});
 
 		inv.remove(glass);

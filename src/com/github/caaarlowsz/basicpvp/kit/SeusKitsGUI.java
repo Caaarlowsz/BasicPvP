@@ -77,6 +77,7 @@ public final class SeusKitsGUI implements Listener {
 					lore.add("§eClique para selecionar");
 					mIcon.setLore(lore);
 					icon.setItemMeta(mIcon);
+					inv.addItem(icon);
 				});
 
 		inv.remove(glass);

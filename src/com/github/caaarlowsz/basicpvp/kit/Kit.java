@@ -1,7 +1,9 @@
 package com.github.caaarlowsz.basicpvp.kit;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 public class Kit {
 
@@ -22,5 +24,15 @@ public class Kit {
 	}
 
 	public void giveItems(Player player) {
+		player.setGameMode(GameMode.SURVIVAL);
+		player.setAllowFlight(false);
+		player.setFlying(false);
+		player.setHealthScale(20D);
+		player.setMaxHealth(20D);
+		player.setHealth(20D);
+
+		PlayerInventory inv = player.getInventory();
+		inv.setArmorContents(null);
+		inv.clear();
 	}
 }

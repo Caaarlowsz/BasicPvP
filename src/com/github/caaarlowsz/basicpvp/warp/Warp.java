@@ -2,18 +2,25 @@ package com.github.caaarlowsz.basicpvp.warp;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 public class Warp {
 
 	private final String name;
+	private final ItemStack icon;
 
-	public Warp(String name) {
+	public Warp(String name, ItemStack icon) {
 		this.name = name;
+		this.icon = icon;
 	}
 
 	public String getName() {
 		return this.name;
+	}
+
+	public ItemStack getIcon() {
+		return this.icon;
 	}
 
 	public void giveItems(Player player) {

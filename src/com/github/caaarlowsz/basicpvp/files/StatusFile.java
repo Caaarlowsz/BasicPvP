@@ -129,4 +129,78 @@ public final class StatusFile {
 			ex.printStackTrace();
 		}
 	}
+
+	public static String getMaxGroup(Player player) {
+		if (player.hasPermission("kitpvp.tag.dono"))
+			return "§4Dono";
+		if (player.hasPermission("kitpvp.tag.admin"))
+			return "§cAdmin";
+		if (player.hasPermission("kitpvp.tag.mod"))
+			return "§5Mod";
+		if (player.hasPermission("kitpvp.tag.trialmod"))
+			return "§5TrialMod";
+		if (player.hasPermission("kitpvp.tag.builder"))
+			return "§2Builder";
+		if (player.hasPermission("kitpvp.tag.youtuber"))
+			return "§bYouTuber";
+		if (player.hasPermission("kitpvp.tag.beta"))
+			return "§1Beta";
+		if (player.hasPermission("kitpvp.tag.pro"))
+			return "§6Pro";
+		if (player.hasPermission("kitpvp.tag.mvp"))
+			return "§9MvP";
+		if (player.hasPermission("kitpvp.tag.vip"))
+			return "§aVIP";
+		return "§7Membro";
+	}
+
+	public static String getRankIconName(Player player) {
+		int xp = getXP(player);
+		if (xp >= 3000)
+			return "§4✪ LEGENDARY";
+		if (xp >= 2700)
+			return "§3\u2737 SAPPHIRE";
+		if (xp >= 2400)
+			return "§c\u2739 RUBY";
+		if (xp >= 2100)
+			return "§2\u2738 EMERALD";
+		if (xp >= 1800)
+			return "§b\u2748 DIAMOND";
+		if (xp >= 1500)
+			return "§6\u272a GOLD";
+		if (xp >= 1200)
+			return "§7\u272f SILVER";
+		if (xp >= 900)
+			return "§1\u2725 EXPERT";
+		if (xp >= 600)
+			return "§e\u2630 ADVANCED";
+		if (xp >= 300)
+			return "§a\u268c PRIMARY";
+		return "§f- UNRANKED";
+	}
+
+	public static String getRankIcon(Player player) {
+		int xp = getXP(player);
+		if (xp >= 3000)
+			return "§4✪";
+		if (xp >= 2700)
+			return "§3\u2737";
+		if (xp >= 2400)
+			return "§c\u2739";
+		if (xp >= 2100)
+			return "§2\u2738";
+		if (xp >= 1800)
+			return "§b\u2748";
+		if (xp >= 1500)
+			return "§6\u272a";
+		if (xp >= 1200)
+			return "§7\u272f";
+		if (xp >= 900)
+			return "§1\u2725";
+		if (xp >= 600)
+			return "§e\u2630";
+		if (xp >= 300)
+			return "§a\u268c";
+		return "§f-";
+	}
 }

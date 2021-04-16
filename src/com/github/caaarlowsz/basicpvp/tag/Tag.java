@@ -51,7 +51,7 @@ public enum Tag {
 	public String getPrefix() {
 		return this.prefix;
 	}
-	
+
 	public int getPriority() {
 		return this.ordinal();
 	}

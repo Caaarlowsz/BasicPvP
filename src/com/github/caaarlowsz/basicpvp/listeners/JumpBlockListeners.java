@@ -14,6 +14,11 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.kit.Kits;
+import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
+import com.github.caaarlowsz.basicpvp.warp.warps.SpawnWarp;
+
 public final class JumpBlockListeners implements Listener {
 
 	private static final ArrayList<UUID> noFallDamage = new ArrayList<>();
@@ -26,6 +31,9 @@ public final class JumpBlockListeners implements Listener {
 
 		if (block.getType().equals(Material.CARPET)) {
 			if (type.equals(Material.COAL_BLOCK)) {
+				if (WarpAPI.getWarp(player) instanceof SpawnWarp)
+					KitAPI.setKit(player, Kits.getDefaultKit());
+
 				player.setVelocity(event.getTo().getDirection().multiply(15D).setY(0.8D));
 				player.playSound(player.getLocation(), Sound.ARROW_HIT, 6F, 1F);
 				if (!noFallDamage.contains(player.getUniqueId()))

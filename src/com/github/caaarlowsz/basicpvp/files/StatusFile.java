@@ -24,11 +24,7 @@ public final class StatusFile {
 	}
 
 	public static String getFormattedMoedas(Player player) {
-		int moedas = getMoedas(player);
-		if (moedas > 0)
-			return new DecimalFormat().format(moedas).replace(",", ".");
-		else
-			return "Nenhuma";
+		return new DecimalFormat().format(getMoedas(player)).replace(",", ".");
 	}
 
 	private static void setMoedas(Player player, int value) {
@@ -54,11 +50,7 @@ public final class StatusFile {
 	}
 
 	public static String getFormattedXP(Player player) {
-		int xp = getXP(player);
-		if (xp > 0)
-			return new DecimalFormat().format(xp).replace(",", ".");
-		else
-			return "Nenhum";
+		return new DecimalFormat().format(getXP(player)).replace(",", ".");
 	}
 
 	private static void setXP(Player player, int value) {
@@ -109,11 +101,7 @@ public final class StatusFile {
 	}
 
 	public static String getFormattedAbates(Player player) {
-		int abates = getAbates(player);
-		if (abates > 0)
-			return new DecimalFormat().format(abates).replace(",", ".");
-		else
-			return "Nenhum";
+		return new DecimalFormat().format(getAbates(player)).replace(",", ".");
 	}
 
 	public static void addAbate(Player player) {
@@ -130,11 +118,7 @@ public final class StatusFile {
 	}
 
 	public static String getFormattedMortes(Player player) {
-		int mortes = getMortes(player);
-		if (mortes > 0)
-			return new DecimalFormat().format(mortes).replace(",", ".");
-		else
-			return "Nenhuma";
+		return new DecimalFormat().format(getMortes(player)).replace(",", ".");
 	}
 
 	public static void addMorte(Player player) {

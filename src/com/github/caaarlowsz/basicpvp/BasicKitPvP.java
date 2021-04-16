@@ -23,7 +23,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		super.onEnable();
 		this.saveDefaultConfig();
 
-		new Warps();
+		new Warps(this);
 
 		Bukkit.getConsoleSender().sendMessage(Strings.getPrefixo() + " §aPlugin habilitado com sucesso.");
 	}

@@ -2,6 +2,7 @@ package com.github.caaarlowsz.basicpvp.files;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -20,6 +21,14 @@ public final class StatusFile {
 
 	public static int getMoedas(Player player) {
 		return config.getInt("status." + player.getName() + ".moedas", 0);
+	}
+
+	public static String getFormattedMoedas(Player player) {
+		int moedas = getMoedas(player);
+		if (moedas > 0)
+			return new DecimalFormat().format(moedas).replace(",", ".");
+		else
+			return "Nenhuma";
 	}
 
 	private static void setMoedas(Player player, int value) {
@@ -44,6 +53,14 @@ public final class StatusFile {
 		return config.getInt("status." + player.getName() + ".xp", 0);
 	}
 
+	public static String getFormattedXP(Player player) {
+		int xp = getXP(player);
+		if (xp > 0)
+			return new DecimalFormat().format(xp).replace(",", ".");
+		else
+			return "Nenhum";
+	}
+
 	private static void setXP(Player player, int value) {
 		try {
 			config.set("status." + player.getName() + ".xp", value);
@@ -64,6 +81,10 @@ public final class StatusFile {
 
 	public static int getKillStreak(Player player) {
 		return config.getInt("status." + player.getName() + ".abatestreak", 0);
+	}
+
+	public static String getFormattedKillStreak(Player player) {
+		return new DecimalFormat().format(getKillStreak(player)).replace(",", ".");
 	}
 
 	public static void setKillStreak(Player player, int value) {
@@ -87,6 +108,14 @@ public final class StatusFile {
 		return config.getInt("status." + player.getName() + ".abates", 0);
 	}
 
+	public static String getFormattedAbates(Player player) {
+		int abates = getAbates(player);
+		if (abates > 0)
+			return new DecimalFormat().format(abates).replace(",", ".");
+		else
+			return "Nenhum";
+	}
+
 	public static void addAbate(Player player) {
 		try {
 			config.set("status." + player.getName() + ".abates", getAbates(player) + 1);
@@ -98,6 +127,14 @@ public final class StatusFile {
 
 	public static int getMortes(Player player) {
 		return config.getInt("status." + player.getName() + ".mortes", 0);
+	}
+
+	public static String getFormattedMortes(Player player) {
+		int mortes = getMortes(player);
+		if (mortes > 0)
+			return new DecimalFormat().format(mortes).replace(",", ".");
+		else
+			return "Nenhuma";
 	}
 
 	public static void addMorte(Player player) {

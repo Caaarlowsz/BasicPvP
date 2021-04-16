@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.github.caaarlowsz.basicpvp.listeners.ChatListeners;
 import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
 import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
+import com.github.caaarlowsz.basicpvp.listeners.WorldListeners;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
 
@@ -31,6 +32,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		pm.registerEvents(new ChatListeners(), this);
 		pm.registerEvents(new PlayerListeners(), this);
 		pm.registerEvents(new SignListeners(), this);
+		pm.registerEvents(new WorldListeners(), this);
 
 		new Warps(this);
 

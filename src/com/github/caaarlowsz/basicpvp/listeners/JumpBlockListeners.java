@@ -14,8 +14,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import com.github.caaarlowsz.basicpvp.kit.Kit;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
+import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 import com.github.caaarlowsz.basicpvp.warp.warps.SpawnWarp;
 
@@ -31,8 +33,11 @@ public final class JumpBlockListeners implements Listener {
 
 		if (block.getType().equals(Material.CARPET)) {
 			if (type.equals(Material.COAL_BLOCK)) {
-				if (WarpAPI.getWarp(player) instanceof SpawnWarp)
-					KitAPI.setKit(player, Kits.getDefaultKit());
+				if (WarpAPI.getWarp(player) instanceof SpawnWarp) {
+					Kit kit = Kits.getDefaultKit();
+					KitAPI.setKit(player, kit);
+					player.sendMessage(Strings.getPrefixo() + " §aVocê recebeu o Kit " + kit.getName() + ".");
+				}
 
 				player.setVelocity(event.getTo().getDirection().multiply(15D).setY(0.8D));
 				player.playSound(player.getLocation(), Sound.ARROW_HIT, 6F, 1F);

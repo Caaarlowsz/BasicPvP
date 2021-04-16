@@ -3,17 +3,10 @@ package com.github.caaarlowsz.basicpvp.tag;
 import org.bukkit.ChatColor;
 
 public enum Tag {
-	DONO(ChatColor.DARK_RED),
-	ADMIN(ChatColor.RED),
-	MOD(ChatColor.DARK_PURPLE),
-	TRIALMOD("TrialMod", ChatColor.DARK_PURPLE),
-	BUILDER(ChatColor.DARK_GREEN),
-	YOUTUBER("YouTuber", ChatColor.AQUA),
-	BETA(ChatColor.DARK_BLUE),
-	PRO(ChatColor.GOLD),
-	MVP("MvP", ChatColor.BLUE),
-	VIP("VIP", ChatColor.GREEN),
-	MEMBRO(ChatColor.GRAY, "§7");
+	DONO(ChatColor.DARK_RED), ADMIN(ChatColor.RED), MOD(ChatColor.DARK_PURPLE), TRIALMOD("TrialMod",
+			ChatColor.DARK_PURPLE), BUILDER(ChatColor.DARK_GREEN), YOUTUBER("YouTuber",
+					ChatColor.AQUA), BETA(ChatColor.DARK_BLUE), PRO(ChatColor.GOLD), MVP("MvP",
+							ChatColor.BLUE), VIP("VIP", ChatColor.GREEN), MEMBRO(ChatColor.GRAY, "§7");
 
 	private final String name, prefix;
 	private final ChatColor color;
@@ -55,8 +48,12 @@ public enum Tag {
 	public int getPriority() {
 		return this.ordinal();
 	}
-	
+
 	public boolean isDefaultTag() {
-		return this == MEMBRO;
+		return this == getDefaultTag();
+	}
+
+	public static Tag getDefaultTag() {
+		return MEMBRO;
 	}
 }

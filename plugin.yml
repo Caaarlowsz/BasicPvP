@@ -4,3 +4,7 @@ version: 0.4.0
 description: Minecraft Bukkit Basic PvP Plugin.
 author: Carlos Henrique#0240
 depend: [NametagEdit]
+commands:
+  build:
+    description: Use este comando para poder construir.
+    usage: /<command> (ON, OFF)

@@ -3,10 +3,13 @@ package com.github.caaarlowsz.basicpvp.listeners;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -21,6 +24,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class WorldListeners implements Listener {
@@ -69,6 +73,22 @@ public final class WorldListeners implements Listener {
 		if (item.getType().equals(Material.BOWL) || item.getType().equals(Material.MUSHROOM_SOUP)
 				|| item.getType().equals(Material.RED_MUSHROOM) || item.getType().equals(Material.BROWN_MUSHROOM))
 			event.setCancelled(true);
+	}
+
+	@EventHandler
+	private void onBlockPlace(BlockPlaceEvent event) {
+		Player player = event.getPlayer();
+		if (StaffAPI.hasBuild(player) && player.getGameMode().equals(GameMode.CREATIVE))
+			return;
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	private void onBlockBreak(BlockBreakEvent event) {
+		Player player = event.getPlayer();
+		if (StaffAPI.hasBuild(player) && player.getGameMode().equals(GameMode.CREATIVE))
+			return;
+		event.setCancelled(true);
 	}
 
 	@EventHandler

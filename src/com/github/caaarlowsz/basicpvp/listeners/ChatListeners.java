@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
+import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class ChatListeners implements Listener {
@@ -20,6 +21,12 @@ public final class ChatListeners implements Listener {
 			format += "§f";
 		if (player.hasPermission("kitpvp.vip.chatcolor"))
 			message = ChatColor.translateAlternateColorCodes('&', message);
+
+		if (ChatAPI.hasAntiFlood(player) && ChatAPI.getAntiFlood(player) > 0) {
+			event.setCancelled(true);
+			player.sendMessage(Strings.getPrefixo() + " §cAguarde para digitar novamente.");
+		} else if (!player.hasPermission("kitpvp.permission.flood"))
+			ChatAPI.addAntiFlood(player, player.hasPermission("kitpvp.vip.reducedflood") ? 3 : 5);
 
 		event.setFormat(format + message);
 	}

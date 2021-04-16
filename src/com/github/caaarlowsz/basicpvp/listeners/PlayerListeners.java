@@ -9,12 +9,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
@@ -41,6 +42,8 @@ public final class PlayerListeners implements Listener {
 	private void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
+
+		ChatAPI.removeAntiFlood(player);
 
 		TabAPI.sendTab(player, "\n     " + Strings.getNome() + "     \n     §fServidor de KitPvP 1.7x & 1.8x     \n",
 				"\n     §aWebsite: §f" + Strings.getWebsite() + "     \n     §aLoja: §f" + Strings.getLoja()
@@ -89,6 +92,9 @@ public final class PlayerListeners implements Listener {
 
 	@EventHandler
 	private void onPlayerQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
 		event.setQuitMessage(null);
+
+		ChatAPI.removeAntiFlood(player);
 	}
 }

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
@@ -13,10 +14,12 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
@@ -28,6 +31,23 @@ public final class WorldListeners implements Listener {
 			event.setMotd(Strings.getWhitelistMOTD());
 		else
 			event.setMotd(Strings.getMOTD());
+	}
+
+	@EventHandler
+	private void onPlayerInteract(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
+
+		if (event.getMaterial() == Material.MUSHROOM_SOUP && event.getAction().name().contains("RIGHT")) {
+			if (player.getHealth() != player.getMaxHealth()) {
+				player.setHealth(player.getHealth() < (player.getMaxHealth() - 7D) ? (player.getHealth() + 7D)
+						: player.getMaxHealth());
+
+				event.getItem().setType(Material.BOWL);
+				ItemMeta mItem = event.getItem().getItemMeta();
+				mItem.setDisplayName("§aPote");
+				event.getItem().setItemMeta(mItem);
+			}
+		}
 	}
 
 	@EventHandler

@@ -20,6 +20,8 @@ import com.github.caaarlowsz.basicpvp.apis.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.tag.Tag;
+import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
@@ -48,6 +50,12 @@ public final class PlayerListeners implements Listener {
 
 		ChatAPI.removeAntiFlood(player);
 		WarpAPI.setWarp(player, Warps.getDefaultWarp());
+
+		for (Tag tag : Tag.values())
+			if (tag.isDefaultTag() || player.hasPermission("kitpvp.tag." + tag.getName())) {
+				TagAPI.setTag(player, tag);
+				break;
+			}
 
 		TabAPI.sendTab(player, "\n     " + Strings.getNome() + "     \n     §fServidor de KitPvP 1.7x & 1.8x     \n",
 				"\n     §aWebsite: §f" + Strings.getWebsite() + "     \n     §aLoja: §f" + Strings.getLoja()
@@ -103,6 +111,7 @@ public final class PlayerListeners implements Listener {
 		PlayerAPI.removeTellOff(player);
 		StaffAPI.removeBuild(player);
 		KitAPI.removeKit(player);
+		TagAPI.removeTag(player);
 		WarpAPI.removeWarp(player);
 	}
 }

@@ -55,4 +55,8 @@ public enum Tag {
 	public int getPriority() {
 		return this.ordinal();
 	}
+	
+	public boolean isDefaultTag() {
+		return this == MEMBRO;
+	}
 }

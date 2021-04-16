@@ -7,6 +7,8 @@ import org.bukkit.Material;
 import org.bukkit.plugin.PluginManager;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
+import com.github.caaarlowsz.basicpvp.kit.guis.SeusKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
@@ -36,6 +38,7 @@ public final class Kits {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new KitListeners(), plugin);
 
+		pm.registerEvents(new LojaDeKitsGUI(), plugin);
 		pm.registerEvents(new SeusKitsGUI(), plugin);
 
 		getKits().clear();

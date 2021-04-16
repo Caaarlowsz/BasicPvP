@@ -20,8 +20,8 @@ public final class SpawnWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setItem(4, SeusKitsGUI.ICON);
-		inv.setItem(6, WarpsGUI.ICON);
+		inv.setItem(3, SeusKitsGUI.ICON);
+		inv.setItem(5, WarpsGUI.ICON);
 
 		player.updateInventory();
 	}

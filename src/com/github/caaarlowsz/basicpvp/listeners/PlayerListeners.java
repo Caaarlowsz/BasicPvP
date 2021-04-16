@@ -16,6 +16,8 @@ import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
+import com.github.caaarlowsz.basicpvp.apis.PlayerAPI;
+import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
@@ -98,6 +100,8 @@ public final class PlayerListeners implements Listener {
 		event.setQuitMessage(null);
 
 		ChatAPI.removeAntiFlood(player);
+		PlayerAPI.removeTellOff(player);
+		StaffAPI.removeBuild(player);
 		KitAPI.removeKit(player);
 		WarpAPI.removeWarp(player);
 	}

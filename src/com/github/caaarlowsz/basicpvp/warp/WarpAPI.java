@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 
 public final class WarpAPI {
@@ -17,6 +18,7 @@ public final class WarpAPI {
 
 	public static void setWarp(Player player, Warp warp) {
 		KitAPI.removeKit(player);
+		StaffAPI.removeBuild(player);
 		removeWarp(player);
 		warpMap.put(player.getUniqueId(), warp);
 

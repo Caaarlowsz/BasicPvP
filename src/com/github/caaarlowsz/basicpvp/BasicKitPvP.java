@@ -5,6 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
 import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
@@ -26,6 +27,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.saveDefaultConfig();
 
 		PluginManager pm = Bukkit.getPluginManager();
+		pm.registerEvents(new PlayerListeners(), this);
 		pm.registerEvents(new SignListeners(), this);
 
 		new Warps(this);

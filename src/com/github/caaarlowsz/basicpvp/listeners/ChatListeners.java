@@ -22,6 +22,12 @@ public final class ChatListeners implements Listener {
 		if (player.hasPermission("kitpvp.vip.chatcolor"))
 			message = ChatColor.translateAlternateColorCodes('&', message);
 
+		if (!ChatAPI.getChat() && !player.hasPermission("kitpvp.vip.speakchatoff")) {
+			event.setCancelled(true);
+			player.sendMessage(Strings.getPrefixo() + " §cO Chat do Servidor está desligado.");
+			return;
+		}
+
 		if (ChatAPI.hasAntiFlood(player) && ChatAPI.getAntiFlood(player) > 0) {
 			event.setCancelled(true);
 			player.sendMessage(Strings.getPrefixo() + " §cAguarde para digitar novamente.");

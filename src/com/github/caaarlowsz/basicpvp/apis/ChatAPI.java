@@ -11,7 +11,16 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 public final class ChatAPI {
 
+	private static boolean chat = false;
 	private static final HashMap<UUID, Long> antiFloodMap = new HashMap<>();
+
+	public static boolean getChat() {
+		return chat;
+	}
+
+	public static void setChat(boolean value) {
+		chat = value;
+	}
 
 	public static boolean hasAntiFlood(Player player) {
 		return antiFloodMap.containsKey(player.getUniqueId());

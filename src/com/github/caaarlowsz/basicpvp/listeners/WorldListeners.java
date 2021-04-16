@@ -72,7 +72,7 @@ public final class WorldListeners implements Listener {
 			event.setCancelled(true);
 		if (item.getType().equals(Material.BOWL) || item.getType().equals(Material.MUSHROOM_SOUP)
 				|| item.getType().equals(Material.RED_MUSHROOM) || item.getType().equals(Material.BROWN_MUSHROOM))
-			event.setCancelled(true);
+			event.setCancelled(false);
 	}
 
 	@EventHandler

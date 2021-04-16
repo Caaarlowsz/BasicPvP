@@ -8,3 +8,7 @@ commands:
   build:
     description: Use este comando para poder construir.
     usage: /<command> (ON, OFF)
+  tell:
+    description: Use este comando para enviar mensagens privadas.
+    usage: /<command> (ON, OFF) ou /<command> (Nickname) (Mensagem)
+    aliases: [whispers, whisper, w, msg]

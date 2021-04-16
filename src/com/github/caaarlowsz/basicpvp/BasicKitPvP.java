@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.caaarlowsz.basicpvp.commands.BuildCommand;
+import com.github.caaarlowsz.basicpvp.commands.TellCommand;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
 import com.github.caaarlowsz.basicpvp.listeners.ChatListeners;
 import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
@@ -39,6 +40,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		pm.registerEvents(new WorldListeners(), this);
 
 		this.getCommand("build").setExecutor(new BuildCommand());
+		this.getCommand("tell").setExecutor(new TellCommand());
 
 		new Kits(this);
 		new Warps(this);

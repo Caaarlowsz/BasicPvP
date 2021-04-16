@@ -1,9 +1,12 @@
 package com.github.caaarlowsz.basicpvp.kit;
 
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+
+import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
 public class Kit {
 
@@ -34,5 +37,16 @@ public class Kit {
 		PlayerInventory inv = player.getInventory();
 		inv.setArmorContents(null);
 		inv.clear();
+
+		inv.setChestplate(Stacks.item(Material.LEATHER_CHESTPLATE, true, "§aPeitoral"));
+		inv.setItem(0, Stacks.item(Material.STONE_SWORD, true, "§aEspada"));
+		inv.setItem(8, Stacks.item(Material.COMPASS, "§aBússola"));
+
+		inv.setItem(13, Stacks.item(Material.BOWL, 64, "§aPote"));
+		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, "§aCogumelo"));
+		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, "§aCogumelo"));
+
+		for (int i = 0; i < 32; i++)
+			inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));
 	}
 }

@@ -19,7 +19,7 @@ public final class SignListeners implements Listener {
 		if (event.getLine(0).equalsIgnoreCase("Recraft")) {
 			event.setLine(0, " ");
 			event.setLine(1, "§a§lRECRAFT");
-			event.setLine(2, "(§7Clique)");
+			event.setLine(2, "§7(Clique)");
 			event.setLine(3, " ");
 		} else if (event.getLine(0).equalsIgnoreCase("Sopas")) {
 			event.setLine(0, " ");

@@ -22,6 +22,7 @@ public final class KitAPI {
 
 	public static void setKit(Player player, Kit kit) {
 		kitMap.put(player.getUniqueId(), kit);
+		StaffAPI.removeAdmin(player);
 		StaffAPI.removeBuild(player);
 		WarpAPI.removeWarp(player);
 

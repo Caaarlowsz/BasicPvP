@@ -18,6 +18,7 @@ public final class WarpAPI {
 
 	public static void setWarp(Player player, Warp warp) {
 		KitAPI.removeKit(player);
+		StaffAPI.removeAdmin(player);
 		StaffAPI.removeBuild(player);
 		removeWarp(player);
 		warpMap.put(player.getUniqueId(), warp);

@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.apis.TabAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
@@ -40,6 +41,10 @@ public final class PlayerListeners implements Listener {
 	private void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
+
+		TabAPI.sendTab(player, "\n     " + Strings.getNome() + "     \n     §fServidor de KitPvP 1.7x & 1.8x     \n",
+				"\n     §aWebsite: §f" + Strings.getWebsite() + "     \n     §aLoja: §f" + Strings.getLoja()
+						+ "     \n     §aDiscord: §f" + Strings.getDiscord() + "      \n");
 
 		player.playSound(player.getLocation(), Sound.LEVEL_UP, 10F, 0F);
 		for (int i = 0; i < 100; i++)

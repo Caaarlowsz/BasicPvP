@@ -16,6 +16,10 @@ public final class WarpAPI {
 	public static void setWarp(Player player, Warp warp) {
 		removeWarp(player);
 		warpMap.put(player.getUniqueId(), warp);
+
+		if (WarpsFile.hasLocation(warp.getName()))
+			player.teleport(WarpsFile.getLocation(warp.getName()));
+
 		warp.giveItems(player);
 	}
 

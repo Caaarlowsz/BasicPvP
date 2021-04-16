@@ -1,4 +1,4 @@
-package com.github.caaarlowsz.basicpvp.kit;
+package com.github.caaarlowsz.basicpvp.kit.guis;
 
 import java.util.List;
 
@@ -15,6 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.github.paperspigot.Title;
 
+import com.github.caaarlowsz.basicpvp.kit.Kit;
+import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.kit.Kits;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 

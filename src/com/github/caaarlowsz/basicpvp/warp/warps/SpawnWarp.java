@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
 
 import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
-import com.github.caaarlowsz.basicpvp.kit.SeusKitsGUI;
+import com.github.caaarlowsz.basicpvp.kit.guis.SeusKitsGUI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
 import com.github.caaarlowsz.basicpvp.warp.WarpsGUI;

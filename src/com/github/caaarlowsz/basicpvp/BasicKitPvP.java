@@ -11,6 +11,7 @@ import com.github.caaarlowsz.basicpvp.commands.SpawnCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportHereCommand;
 import com.github.caaarlowsz.basicpvp.commands.TellCommand;
+import com.github.caaarlowsz.basicpvp.commands.WarpCommand;
 import com.github.caaarlowsz.basicpvp.files.StatusFile;
 import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
@@ -54,6 +55,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.getCommand("teleport").setExecutor(new TeleportCommand());
 		this.getCommand("teleporthere").setExecutor(new TeleportHereCommand());
 		this.getCommand("tell").setExecutor(new TellCommand());
+		this.getCommand("warp").setExecutor(new WarpCommand());
 
 		new Kits(this);
 		new Warps(this);

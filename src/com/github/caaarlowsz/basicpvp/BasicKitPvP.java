@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.caaarlowsz.basicpvp.listeners.ChatListeners;
+import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
 import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
 import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
 import com.github.caaarlowsz.basicpvp.listeners.WorldListeners;
@@ -30,6 +31,7 @@ public final class BasicKitPvP extends JavaPlugin {
 
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new ChatListeners(), this);
+		pm.registerEvents(new JumpBlockListeners(), this);
 		pm.registerEvents(new PlayerListeners(), this);
 		pm.registerEvents(new SignListeners(), this);
 		pm.registerEvents(new WorldListeners(), this);

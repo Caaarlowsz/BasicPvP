@@ -1,7 +1,10 @@
 package com.github.caaarlowsz.basicpvp.kit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.plugin.PluginManager;
 
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
 public final class Kits {
@@ -13,6 +16,8 @@ public final class Kits {
 		return NONE_KIT;
 	}
 
-	public Kits() {
+	public Kits(BasicKitPvP plugin) {
+		PluginManager pm = Bukkit.getPluginManager();
+		pm.registerEvents(new KitListeners(), plugin);
 	}
 }

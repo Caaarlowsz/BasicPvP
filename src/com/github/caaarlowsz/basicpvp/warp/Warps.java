@@ -8,7 +8,10 @@ import org.bukkit.plugin.PluginManager;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
+import com.github.caaarlowsz.basicpvp.warp.warps.FPSWarp;
+import com.github.caaarlowsz.basicpvp.warp.warps.LavaChallengeWarp;
 import com.github.caaarlowsz.basicpvp.warp.warps.SpawnWarp;
+import com.github.caaarlowsz.basicpvp.warp.warps.UMvUMWarp;
 
 public final class Warps {
 
@@ -37,6 +40,9 @@ public final class Warps {
 		WarpsFile.createNewFile(plugin.getDataFolder().getPath());
 
 		getWarps().clear();
+		getWarps().add(new UMvUMWarp());
+		getWarps().add(new FPSWarp());
+		getWarps().add(new LavaChallengeWarp());
 
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new WarpsGUI(), plugin);

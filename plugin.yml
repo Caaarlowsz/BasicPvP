@@ -11,6 +11,10 @@ commands:
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)
+  spawn:
+    description: Use este comando para ir até o Spawn.
+    usage: /<command>
+    aliases: [respawn, kill]
   teleport:
     description: Use este comando para se teleportar jogadores ou até locais.
     usage: /<command> (Nickname) [Nickname] ou /<command> (X) (Y) (Z)

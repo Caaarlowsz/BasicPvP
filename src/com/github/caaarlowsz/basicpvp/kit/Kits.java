@@ -36,6 +36,8 @@ public final class Kits {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new KitListeners(), plugin);
 
+		pm.registerEvents(new SeusKitsGUI(), plugin);
+
 		getKits().clear();
 		getKits().add(DEFAULT_KIT);
 	}

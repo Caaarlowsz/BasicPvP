@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
 
+import com.github.caaarlowsz.basicpvp.kit.SeusKitsGUI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
 import com.github.caaarlowsz.basicpvp.warp.WarpsGUI;
@@ -19,6 +20,7 @@ public final class SpawnWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
+		inv.setItem(4, SeusKitsGUI.ICON);
 		inv.setItem(6, WarpsGUI.ICON);
 
 		player.updateInventory();

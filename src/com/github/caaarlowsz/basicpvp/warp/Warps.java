@@ -2,6 +2,7 @@ package com.github.caaarlowsz.basicpvp.warp;
 
 import java.util.ArrayList;
 
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.warp.warps.SpawnWarp;
 
 public final class Warps {
@@ -25,7 +26,9 @@ public final class Warps {
 		return getWarps().stream().filter(warp -> warp.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
 	}
 
-	public Warps() {
+	public Warps(BasicKitPvP plugin) {
+		WarpsFile.createNewFile(plugin.getDataFolder().getPath());
+
 		getWarps().clear();
 	}
 }

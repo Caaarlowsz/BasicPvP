@@ -17,6 +17,7 @@ import org.github.paperspigot.Title;
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
+import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
@@ -44,6 +45,7 @@ public final class PlayerListeners implements Listener {
 		event.setJoinMessage(null);
 
 		ChatAPI.removeAntiFlood(player);
+		WarpAPI.setWarp(player, Warps.getDefaultWarp());
 
 		TabAPI.sendTab(player, "\n     " + Strings.getNome() + "     \n     §fServidor de KitPvP 1.7x & 1.8x     \n",
 				"\n     §aWebsite: §f" + Strings.getWebsite() + "     \n     §aLoja: §f" + Strings.getLoja()
@@ -96,5 +98,7 @@ public final class PlayerListeners implements Listener {
 		event.setQuitMessage(null);
 
 		ChatAPI.removeAntiFlood(player);
+		KitAPI.removeKit(player);
+		WarpAPI.removeWarp(player);
 	}
 }

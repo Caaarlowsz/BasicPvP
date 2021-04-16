@@ -1,8 +1,11 @@
 package com.github.caaarlowsz.basicpvp.kit;
 
+import java.util.Arrays;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
@@ -38,8 +41,10 @@ public class Kit {
 		inv.setArmorContents(null);
 		inv.clear();
 
-		inv.setChestplate(Stacks.item(Material.LEATHER_CHESTPLATE, true, "§aPeitoral"));
-		inv.setItem(0, Stacks.item(Material.STONE_SWORD, true, "§aEspada"));
+		inv.setChestplate(
+				Stacks.item(Material.LEATHER_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE), "§aPeitoral"));
+		inv.setItem(0, Stacks.item(Material.STONE_SWORD, true,
+				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), "§aEspada"));
 		inv.setItem(8, Stacks.item(Material.COMPASS, "§aBússola"));
 
 		inv.setItem(13, Stacks.item(Material.BOWL, 64, "§aPote"));

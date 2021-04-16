@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.caaarlowsz.basicpvp.commands.BuildCommand;
 import com.github.caaarlowsz.basicpvp.commands.ChatCommand;
+import com.github.caaarlowsz.basicpvp.commands.TeleportCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportHereCommand;
 import com.github.caaarlowsz.basicpvp.commands.TellCommand;
 import com.github.caaarlowsz.basicpvp.files.StatusFile;
@@ -48,6 +49,7 @@ public final class BasicKitPvP extends JavaPlugin {
 
 		this.getCommand("build").setExecutor(new BuildCommand());
 		this.getCommand("chat").setExecutor(new ChatCommand());
+		this.getCommand("teleport").setExecutor(new TeleportCommand());
 		this.getCommand("teleporthere").setExecutor(new TeleportHereCommand());
 		this.getCommand("tell").setExecutor(new TellCommand());
 

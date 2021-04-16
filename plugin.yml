@@ -11,8 +11,12 @@ commands:
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)
+  teleport:
+    description: Use este comando para se teleportar jogadores ou até locais.
+    usage: /<command> (Nickname) [Nickname] ou /<command> (X) (Y) (Z)
+    aliases: [tp]
   teleporthere:
-    description: Use este comando para puxar jogadores até você.
+    description: Use este comando para teleportar jogadores até você.
     usage: /<command> (Nickname)
     aliases: [teleporth, tphere, tph]
   tell:

@@ -25,6 +25,7 @@ public final class TagAPI {
 
 	public static void removeTag(Player player) {
 		NametagEdit.getApi().clearNametag(player.getName());
+		player.setDisplayName(player.getName());
 		tagMap.remove(player.getUniqueId());
 	}
 }

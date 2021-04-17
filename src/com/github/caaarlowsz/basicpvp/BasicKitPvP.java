@@ -16,6 +16,7 @@ import com.github.caaarlowsz.basicpvp.commands.WarpCommand;
 import com.github.caaarlowsz.basicpvp.files.StatusFile;
 import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
+import com.github.caaarlowsz.basicpvp.listeners.AdminListeners;
 import com.github.caaarlowsz.basicpvp.listeners.ChatListeners;
 import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
 import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
@@ -44,6 +45,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new MenuGUI(), this);
 
+		pm.registerEvents(new AdminListeners(), this);
 		pm.registerEvents(new ChatListeners(), this);
 		pm.registerEvents(new JumpBlockListeners(), this);
 		pm.registerEvents(new PlayerListeners(), this);

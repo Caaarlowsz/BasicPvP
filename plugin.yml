@@ -9,6 +9,10 @@ commands:
     description: Use este comando para entrar no/sair do Modo Admin.
     usage: /<command>
     aliases: [admmode, adminmode, staffmode]
+  apply:
+    description: Use este comando para ver as aplicações.
+    usage: /<command>
+    aliases: [applications, aplicar, aplicacoes]
   build:
     description: Use este comando para poder construir.
     usage: /<command> (ON, OFF)

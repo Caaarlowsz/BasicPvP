@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.caaarlowsz.basicpvp.commands.AdminCommand;
+import com.github.caaarlowsz.basicpvp.commands.ApplyCommand;
 import com.github.caaarlowsz.basicpvp.commands.BuildCommand;
 import com.github.caaarlowsz.basicpvp.commands.ChatCommand;
 import com.github.caaarlowsz.basicpvp.commands.GameModeCommand;
@@ -55,6 +56,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		pm.registerEvents(new WorldListeners(), this);
 
 		this.getCommand("admin").setExecutor(new AdminCommand());
+		this.getCommand("apply").setExecutor(new ApplyCommand());
 		this.getCommand("build").setExecutor(new BuildCommand());
 		this.getCommand("chat").setExecutor(new ChatCommand());
 		this.getCommand("gamemode").setExecutor(new GameModeCommand());

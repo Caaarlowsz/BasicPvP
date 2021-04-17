@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
@@ -58,6 +59,8 @@ public final class StaffAPI {
 		inv.setItem(3, Stacks.item(Material.MAGMA_CREAM, "§aTroca-Rápida"));
 		inv.setItem(5, Stacks.item(Material.IRON_FENCE, "§aPrisão"));
 		player.updateInventory();
+
+		CabecaAPI.updateCabeca(player);
 	}
 
 	public static void removeAdmin(Player player) {

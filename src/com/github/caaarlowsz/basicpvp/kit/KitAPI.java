@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
+import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 
 public final class KitAPI {
@@ -27,6 +28,8 @@ public final class KitAPI {
 		WarpAPI.removeWarp(player);
 
 		kit.giveItems(player);
+
+		CabecaAPI.updateCabeca(player);
 	}
 
 	public static void removeKit(Player player) {

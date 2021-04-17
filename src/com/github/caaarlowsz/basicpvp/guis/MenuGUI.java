@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
 import com.github.caaarlowsz.basicpvp.files.StatusFile;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;

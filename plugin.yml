@@ -15,6 +15,10 @@ commands:
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)
+  gamemode:
+    description: Use este comando para alterar o modo de jogo.
+    usage: /<command> (Modo de Jogo)
+    aliases: [gmode, gm]
   ping:
     description: Use este comando para ver o ping de um jogador.
     usage: /<command> [Nickname]

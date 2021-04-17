@@ -51,6 +51,10 @@ public final class PlayerListeners implements Listener {
 		ChatAPI.removeAntiFlood(player);
 		WarpAPI.setWarp(player, Warps.getDefaultWarp());
 
+		if (!player.hasPermission("kitpvp.permission.viewadmins"))
+			Bukkit.getOnlinePlayers().stream().filter(players -> StaffAPI.hasAdmin(players))
+					.forEach(players -> player.hidePlayer(players));
+
 		for (Tag tag : Tag.values())
 			if (tag.isDefaultTag() || player.hasPermission("kitpvp.tag." + tag.getName())) {
 				TagAPI.setTag(player, tag);

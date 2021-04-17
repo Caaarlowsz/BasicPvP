@@ -21,6 +21,7 @@ import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
 import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
 import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
 import com.github.caaarlowsz.basicpvp.listeners.WorldListeners;
+import com.github.caaarlowsz.basicpvp.tag.Tags;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
 
@@ -59,6 +60,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.getCommand("teleporthere").setExecutor(new TeleportHereCommand());
 		this.getCommand("tell").setExecutor(new TellCommand());
 
+		new Tags(this);
 		new Kits(this);
 		new Warps(this);
 

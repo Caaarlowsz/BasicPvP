@@ -56,4 +56,12 @@ public enum Tag {
 	public static Tag getDefaultTag() {
 		return MEMBRO;
 	}
+
+	public static Tag getByName(String name) {
+		for (Tag tag : values()) {
+			if (tag.getName().equalsIgnoreCase(name))
+				return tag;
+		}
+		return null;
+	}
 }

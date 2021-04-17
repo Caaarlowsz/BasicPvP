@@ -23,6 +23,9 @@ commands:
     description: Use este comando para ir até o Spawn.
     usage: /<command>
     aliases: [respawn, kill]
+  tag:
+    description: Use este comando para alterar sua Tag.
+    usage: /<command> (Nome da Tag)
   teleport:
     description: Use este comando para se teleportar jogadores ou até locais.
     usage: /<command> (Nickname) [Nickname] ou /<command> (X) (Y) (Z)

@@ -15,6 +15,10 @@ commands:
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)
+  ping:
+    description: Use este comando para ver o ping de um jogador.
+    usage: /<command> [Nickname]
+    aliases: [latency, lat]
   report:
     description: Use este comando para denunciar jogadores.
     usage: /<command> (Nickname) (Motivo)

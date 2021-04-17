@@ -13,6 +13,10 @@ commands:
     description: Use este comando para ver as aplicações.
     usage: /<command>
     aliases: [applications, aplicar, aplicacoes]
+  broadcast:
+    description: Use este comando para anunciar mensagens.
+    usage: /<command> (Mensagem)
+    aliases: [bcast, bc, anuncio, anunciar, aviso]
   build:
     description: Use este comando para poder construir.
     usage: /<command> (ON, OFF)

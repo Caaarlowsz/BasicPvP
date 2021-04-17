@@ -27,6 +27,10 @@ commands:
     description: Use este comando para alterar o modo de jogo.
     usage: /<command> (Modo de Jogo)
     aliases: [gmode, gm]
+  info:
+    description: Use este comando para saber informações do Servidor.
+    usage: /<command>
+    aliases: [informations, information, informacoes, infos]
   ping:
     description: Use este comando para ver o ping de um jogador.
     usage: /<command> [Nickname]

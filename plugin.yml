@@ -31,6 +31,10 @@ commands:
     description: Use este comando para saber informações do Servidor.
     usage: /<command>
     aliases: [informations, information, informacoes, infos]
+  inventorysee:
+    description: Use este comando para ver o inventário de jogadores.
+    usage: /<command> (Nickname)
+    aliases: [invsee, inv]
   ping:
     description: Use este comando para ver o ping de um jogador.
     usage: /<command> [Nickname]

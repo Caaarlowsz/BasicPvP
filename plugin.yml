@@ -15,6 +15,10 @@ commands:
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)
+  report:
+    description: Use este comando para denunciar jogadores.
+    usage: /<command> (Nickname) (Motivo)
+    aliases: [reportar, denunciar, rep, r]
   spawn:
     description: Use este comando para ir até o Spawn.
     usage: /<command>

@@ -12,7 +12,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.github.caaarlowsz.basicpvp.account.StatusAPI;
-import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
@@ -62,12 +61,12 @@ public final class MenuGUI implements Listener {
 		inv.setItem(10,
 				Stacks.skull(1, player.getName(), "§aSeu Perfil", " ",
 						"  §fCargo: §7" + TagAPI.getMaxTag(player) + "   ",
-						"  §fMoedas: §6" + StatusFile.getFormattedMoedas(player) + "   ", " ",
+						"  §fMoedas: §6" + StatusAPI.getMoedas(player) + "   ", " ",
 						"  §fRank: " + StatusAPI.getRank(player).getColoredSymbolName() + "   ",
-						"  §fXP: §b" + StatusFile.getFormattedXP(player) + "   ", " ",
-						" §fKillStreak: §7" + StatusFile.getFormattedKillStreak(player) + "   ",
-						" §fAbates: §7" + StatusFile.getFormattedAbates(player) + "   ",
-						" §fMortes: §7" + StatusFile.getFormattedMortes(player) + "   ", " "));
+						"  §fXP: §b" + StatusAPI.getXP(player) + "   ", " ",
+						" §fKillStreak: §7" + StatusAPI.getKillStreak(player) + "   ",
+						" §fAbates: §7" + StatusAPI.getAbates(player) + "   ",
+						" §fMortes: §7" + StatusAPI.getMortes(player) + "   ", " "));
 
 		inv.setItem(12, Stacks.item(Material.EMERALD, "§aLoja de Kits", "§7Compre Kits usando as moedas",
 				"§7que adquiriu jogando."));

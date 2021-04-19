@@ -5,10 +5,12 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -22,25 +24,33 @@ public final class CabecasGUI implements Listener {
 
 	@EventHandler
 	private void onInventoryClick(InventoryClickEvent event) {
-		if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("Cabeças")
-				&& event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()
-				&& event.getCurrentItem().getItemMeta().hasDisplayName()) {
-			String display = event.getCurrentItem().getItemMeta().getDisplayName();
+		if (event.getWhoClicked() instanceof Player) {
 			Player player = (Player) event.getWhoClicked();
-			event.setCancelled(true);
-
-			if (display.equals("§7Voltar"))
-				MenuGUI.openGUI(player);
-			else if (display.equals("§cRemover cabeça")) {
+			if (event.getSlotType() == SlotType.ARMOR && event.getSlot() == 39 && CabecaAPI.hasCabeca(player)) {
+				event.setCancelled(true);
 				CabecaAPI.removeCabeca(player);
-				player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a Cabeça: " + display);
-				player.sendTitle(new Title(display, "§fCabeça removida."));
-				player.closeInventory();
-			} else if (display.startsWith("§a")) {
-				CabecaAPI.setCabeca(player, Cabeca.getByName(ChatColor.stripColor(display)));
-				player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Cabeça: " + display);
-				player.sendTitle(new Title(display, "§fCabeça selecionada."));
-				player.closeInventory();
+				player.playSound(player.getLocation(), Sound.VILLAGER_HAGGLE, 1F, 1F);
+				player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a sua Cabeça.");
+			}
+
+			if (event.getInventory().getName().equals("Cabeças") && event.getCurrentItem() != null
+					&& event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()) {
+				String display = event.getCurrentItem().getItemMeta().getDisplayName();
+				event.setCancelled(true);
+
+				if (display.equals("§7Voltar"))
+					MenuGUI.openGUI(player);
+				else if (display.equals("§cRemover cabeça")) {
+					CabecaAPI.removeCabeca(player);
+					player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a Cabeça: " + display);
+					player.sendTitle(new Title(display, "§fCabeça removida."));
+					player.closeInventory();
+				} else if (display.startsWith("§a")) {
+					CabecaAPI.setCabeca(player, Cabeca.getByName(ChatColor.stripColor(display)));
+					player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Cabeça: " + display);
+					player.sendTitle(new Title(display, "§fCabeça selecionada."));
+					player.closeInventory();
+				}
 			}
 		}
 	}

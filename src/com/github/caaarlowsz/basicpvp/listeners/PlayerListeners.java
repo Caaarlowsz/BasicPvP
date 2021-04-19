@@ -19,6 +19,7 @@ import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
 import com.github.caaarlowsz.basicpvp.apis.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
+import com.github.caaarlowsz.basicpvp.files.StatusFile;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tag;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
@@ -80,11 +81,19 @@ public final class PlayerListeners implements Listener {
 
 		Player killer = player.getKiller();
 		if (!WarpAPI.getWarp(player).equals("1v1") && killer != null && killer != player) {
+			StatusFile.drawMoedas(player, 5);
+			StatusFile.drawXP(player, 1);
+			StatusFile.resetKillStreak(player);
+			StatusFile.addMorte(player);
 			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
 			player.sendMessage("§b-1 XP");
 			player.sendMessage("§6-5 Moedas");
 			player.sendMessage(Strings.getPrefixo() + " §cVocê foi morto por " + killer.getName() + ".");
 
+			StatusFile.drawMoedas(killer, 10);
+			StatusFile.addXP(killer, 1);
+			StatusFile.addKillStreak(killer);
+			StatusFile.addAbate(killer);
 			killer.playSound(killer.getLocation(), Sound.ARROW_HIT, 10F, 1F);
 			killer.sendMessage("§b+1 XP");
 			killer.sendMessage("§6+10 Moedas");

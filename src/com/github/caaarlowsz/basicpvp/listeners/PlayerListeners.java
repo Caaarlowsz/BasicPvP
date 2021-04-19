@@ -72,8 +72,6 @@ public final class PlayerListeners implements Listener {
 		player.sendMessage(Strings.getPrefixo() + " §aSeja bem-vindo(a) " + player.getName() + ".");
 		player.sendMessage(" ");
 		player.sendTitle(new Title(Strings.getNome(), "§fConectado"));
-		
-		player.sendMessage(" §4✪ §3\u2737 §c\u2739 §2\u2738 §b\u2748 §6\u272a §7\u272f §1\u2725 §e\u2630 §a\u268c");
 	}
 
 	@EventHandler

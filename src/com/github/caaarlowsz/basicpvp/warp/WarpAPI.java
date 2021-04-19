@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 
 public final class WarpAPI {
 
@@ -23,6 +24,7 @@ public final class WarpAPI {
 		StaffAPI.removeBuild(player);
 		removeWarp(player);
 		warpMap.put(player.getUniqueId(), warp);
+		SidebarAPI.setSidebar(player, warp.getSidebar());
 
 		if (WarpsFile.hasLocation(warp.getName()))
 			player.teleport(WarpsFile.getLocation(warp.getName()));

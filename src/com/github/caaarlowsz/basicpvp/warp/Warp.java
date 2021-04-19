@@ -5,10 +5,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import com.github.caaarlowsz.basicpvp.sidebar.Sidebar;
+
 public class Warp {
 
 	private final String name;
 	private final ItemStack icon;
+	private Sidebar sidebar;
 
 	public Warp(String name, ItemStack icon) {
 		this.name = name;
@@ -21,6 +24,14 @@ public class Warp {
 
 	public ItemStack getIcon() {
 		return this.icon;
+	}
+
+	public Sidebar getSidebar() {
+		return this.sidebar;
+	}
+
+	public void setSidebar(Sidebar sidebar) {
+		this.sidebar = sidebar;
 	}
 
 	public void giveItems(Player player) {

@@ -44,7 +44,8 @@ public final class CabecasGUI implements Listener {
 					Cabeca cabeca = CabecaAPI.getCabeca(player);
 					CabecaAPI.removeCabeca(player);
 					player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a Cabeça: " + cabeca.getName());
-					player.sendTitle(new Title("§a" + cabeca.getName(), "§fCabeça removida.", 5, 10, 5));
+					player.sendTitle(
+							new Title(Strings.getCorPrincipal() + cabeca.getName(), "§fCabeça removida.", 5, 10, 5));
 					player.closeInventory();
 				} else if (display.startsWith(Strings.getCorPrincipal())) {
 					CabecaAPI.setCabeca(player, Cabeca.getByName(ChatColor.stripColor(display)));

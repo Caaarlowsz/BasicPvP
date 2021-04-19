@@ -41,9 +41,9 @@ public final class SignListeners implements Listener {
 					Inventory inv = Bukkit.createInventory(null, 36, "Recraft");
 
 					for (int i = 0; i < 12; i++) {
-						inv.addItem(Stacks.item(Material.BOWL, 64, "§aPote"));
-						inv.addItem(Stacks.item(Material.RED_MUSHROOM, 64, "§aCogumelo"));
-						inv.addItem(Stacks.item(Material.BROWN_MUSHROOM, 64, "§aCogumelo"));
+						inv.addItem(Stacks.item(Material.BOWL, 64, Strings.getCorPrincipal() + "Pote"));
+						inv.addItem(Stacks.item(Material.RED_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
+						inv.addItem(Stacks.item(Material.BROWN_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
 					}
 
 					player.openInventory(inv);

@@ -15,6 +15,7 @@ import com.github.caaarlowsz.basicpvp.account.StatusAPI;
 import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
+import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
 public final class MenuGUI implements Listener {
@@ -60,7 +61,7 @@ public final class MenuGUI implements Listener {
 
 		inv.setItem(10,
 				Stacks.skull(1, player.getName(), "§aSeu Perfil", " ",
-						"  §fCargo: §7" + StatusFile.getMaxGroup(player) + "   ",
+						"  §fCargo: §7" + TagAPI.getMaxTag(player) + "   ",
 						"  §fMoedas: §6" + StatusFile.getFormattedMoedas(player) + "   ", " ",
 						"  §fRank: " + StatusAPI.getRank(player).getColoredSymbolName() + "   ",
 						"  §fXP: §b" + StatusFile.getFormattedXP(player) + "   ", " ",

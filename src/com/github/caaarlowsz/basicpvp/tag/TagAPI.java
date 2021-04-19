@@ -11,6 +11,14 @@ import com.nametagedit.plugin.NametagEdit;
 public final class TagAPI {
 
 	private static final HashMap<UUID, Tag> tagMap = new HashMap<>();
+	
+	public static Tag getMaxTag(Player player) {
+		for (Tag tag : Tag.values()) {
+			if (player.hasPermission("kitpvp.tag." + tag.getName()))
+				return tag;
+		}
+		return Tag.MEMBRO;
+	}
 
 	public static Tag getTag(Player player, Tag tag) {
 		return tagMap.getOrDefault(player.getUniqueId(), Tag.getDefaultTag());

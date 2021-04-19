@@ -129,28 +129,4 @@ public final class StatusFile {
 			ex.printStackTrace();
 		}
 	}
-
-	public static String getMaxGroup(Player player) {
-		if (player.hasPermission("kitpvp.tag.dono"))
-			return "§4Dono";
-		if (player.hasPermission("kitpvp.tag.admin"))
-			return "§cAdmin";
-		if (player.hasPermission("kitpvp.tag.mod"))
-			return "§5Mod";
-		if (player.hasPermission("kitpvp.tag.trialmod"))
-			return "§5TrialMod";
-		if (player.hasPermission("kitpvp.tag.builder"))
-			return "§2Builder";
-		if (player.hasPermission("kitpvp.tag.youtuber"))
-			return "§bYouTuber";
-		if (player.hasPermission("kitpvp.tag.beta"))
-			return "§1Beta";
-		if (player.hasPermission("kitpvp.tag.pro"))
-			return "§6Pro";
-		if (player.hasPermission("kitpvp.tag.mvp"))
-			return "§9MvP";
-		if (player.hasPermission("kitpvp.tag.vip"))
-			return "§aVIP";
-		return "§7Membro";
-	}
 }

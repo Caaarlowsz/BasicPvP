@@ -27,6 +27,10 @@ commands:
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)
+  fly:
+    description: Use este comando para habilitar/desabilitar o vôo de jogadores.
+    usage: /<command> [Nickname]
+    aliases: [voar]
   gamemode:
     description: Use este comando para alterar o modo de jogo.
     usage: /<command> (Modo de Jogo)

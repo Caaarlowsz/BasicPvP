@@ -11,6 +11,7 @@ import com.github.caaarlowsz.basicpvp.commands.BroadcastCommand;
 import com.github.caaarlowsz.basicpvp.commands.BuildCommand;
 import com.github.caaarlowsz.basicpvp.commands.CageCommand;
 import com.github.caaarlowsz.basicpvp.commands.ChatCommand;
+import com.github.caaarlowsz.basicpvp.commands.FlyCommand;
 import com.github.caaarlowsz.basicpvp.commands.GameModeCommand;
 import com.github.caaarlowsz.basicpvp.commands.InfoCommand;
 import com.github.caaarlowsz.basicpvp.commands.InventorySeeCommand;
@@ -65,6 +66,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.getCommand("build").setExecutor(new BuildCommand());
 		this.getCommand("cage").setExecutor(new CageCommand());
 		this.getCommand("chat").setExecutor(new ChatCommand());
+		this.getCommand("fly").setExecutor(new FlyCommand());
 		this.getCommand("gamemode").setExecutor(new GameModeCommand());
 		this.getCommand("info").setExecutor(new InfoCommand());
 		this.getCommand("inventorysee").setExecutor(new InventorySeeCommand());

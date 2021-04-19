@@ -5,6 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.commands.AdminCommand;
 import com.github.caaarlowsz.basicpvp.commands.ApplyCommand;
 import com.github.caaarlowsz.basicpvp.commands.BroadcastCommand;
@@ -20,7 +21,6 @@ import com.github.caaarlowsz.basicpvp.commands.ReportCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportHereCommand;
 import com.github.caaarlowsz.basicpvp.commands.TellCommand;
-import com.github.caaarlowsz.basicpvp.files.StatusFile;
 import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
 import com.github.caaarlowsz.basicpvp.listeners.AdminListeners;

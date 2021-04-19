@@ -1,4 +1,4 @@
-package com.github.caaarlowsz.basicpvp.files;
+package com.github.caaarlowsz.basicpvp.account;
 
 import java.io.File;
 import java.io.IOException;

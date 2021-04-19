@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
-import com.github.caaarlowsz.basicpvp.files.StatusFile;
+import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.nametagedit.plugin.NametagEdit;
 
 public final class TagAPI {

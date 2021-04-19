@@ -9,6 +9,7 @@ import com.github.caaarlowsz.basicpvp.commands.AdminCommand;
 import com.github.caaarlowsz.basicpvp.commands.ApplyCommand;
 import com.github.caaarlowsz.basicpvp.commands.BroadcastCommand;
 import com.github.caaarlowsz.basicpvp.commands.BuildCommand;
+import com.github.caaarlowsz.basicpvp.commands.CageCommand;
 import com.github.caaarlowsz.basicpvp.commands.ChatCommand;
 import com.github.caaarlowsz.basicpvp.commands.GameModeCommand;
 import com.github.caaarlowsz.basicpvp.commands.InfoCommand;
@@ -62,6 +63,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.getCommand("apply").setExecutor(new ApplyCommand());
 		this.getCommand("broadcast").setExecutor(new BroadcastCommand());
 		this.getCommand("build").setExecutor(new BuildCommand());
+		this.getCommand("cage").setExecutor(new CageCommand());
 		this.getCommand("chat").setExecutor(new ChatCommand());
 		this.getCommand("gamemode").setExecutor(new GameModeCommand());
 		this.getCommand("info").setExecutor(new InfoCommand());

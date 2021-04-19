@@ -20,6 +20,10 @@ commands:
   build:
     description: Use este comando para poder construir.
     usage: /<command> (ON, OFF)
+  cage:
+    description: Use este comando para prender jogadores.
+    usage: /<command> (Nickname)
+    aliases: [jaula, prender]
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)

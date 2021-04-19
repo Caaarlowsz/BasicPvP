@@ -90,12 +90,12 @@ public final class PlayerListeners implements Listener {
 			player.sendMessage("§6-5 Moedas");
 			player.sendMessage(Strings.getPrefixo() + " §cVocê foi morto por " + killer.getName() + ".");
 
-			StatusFile.drawMoedas(killer, 10);
-			StatusFile.addXP(killer, 1);
+			StatusFile.addMoedas(killer, 10);
+			StatusFile.addXP(killer, 3);
 			StatusFile.addKillStreak(killer);
 			StatusFile.addAbate(killer);
 			killer.playSound(killer.getLocation(), Sound.ARROW_HIT, 10F, 1F);
-			killer.sendMessage("§b+1 XP");
+			killer.sendMessage("§b+3 XP");
 			killer.sendMessage("§6+10 Moedas");
 			killer.sendMessage(Strings.getPrefixo() + " §aVocê matou " + player.getName() + ".");
 		}

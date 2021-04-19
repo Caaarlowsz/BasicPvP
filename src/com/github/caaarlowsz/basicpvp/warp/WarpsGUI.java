@@ -49,7 +49,7 @@ public final class WarpsGUI implements Listener {
 					WarpAPI.setWarp(player, warp);
 					player.sendMessage(
 							Strings.getPrefixo() + " §aVocê foi teleportado para a Warp " + warp.getName() + ".");
-					player.sendTitle(new Title("§aWarp " + warp.getName(), "§fTeleportado."));
+					player.sendTitle(new Title("§aWarp " + warp.getName(), "§fTeleportado.", 5, 10, 5));
 					player.closeInventory();
 				}
 			}

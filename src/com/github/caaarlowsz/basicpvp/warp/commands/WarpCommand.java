@@ -27,7 +27,7 @@ public final class WarpCommand implements CommandExecutor {
 					WarpAPI.setWarp(player, warp);
 					player.sendMessage(
 							Strings.getPrefixo() + " §aVocê foi teleportado para a Warp " + warp.getName() + ".");
-					player.sendTitle(new Title("§aWarp " + warp.getName(), "§fTeleportado."));
+					player.sendTitle(new Title("§aWarp " + warp.getName(), "§fTeleportado.", 5, 10, 5));
 				} else
 					player.sendMessage(Strings.getPrefixo() + " §cEsta Warp não existe.");
 			} else {

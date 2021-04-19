@@ -71,7 +71,7 @@ public final class PlayerListeners implements Listener {
 			player.sendMessage(" ");
 		player.sendMessage(Strings.getPrefixo() + " §aSeja bem-vindo(a) " + player.getName() + ".");
 		player.sendMessage(" ");
-		player.sendTitle(new Title(Strings.getNome(), "§fConectado"));
+		player.sendTitle(new Title(Strings.getNome(), "§fConectado", 15, 20, 15));
 	}
 
 	@EventHandler
@@ -111,7 +111,7 @@ public final class PlayerListeners implements Listener {
 		Player player = event.getPlayer();
 		Bukkit.getScheduler().runTaskLater(BasicKitPvP.getInstance(), () -> {
 			WarpAPI.setWarp(player, Warps.getDefaultWarp());
-			player.sendTitle(new Title(Strings.getNome(), "§fVocê morreu"));
+			player.sendTitle(new Title(Strings.getNome(), "§fVocê morreu", 15, 20, 15));
 		}, 1L);
 	}
 

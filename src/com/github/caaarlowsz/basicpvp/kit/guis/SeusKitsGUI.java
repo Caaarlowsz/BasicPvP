@@ -51,7 +51,7 @@ public final class SeusKitsGUI implements Listener {
 				if (kit != null) {
 					KitAPI.setKit(player, kit);
 					player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
-					player.sendTitle(new Title("§aKit " + kit.getName(), "§fSelecionado."));
+					player.sendTitle(new Title("§aKit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
 					player.closeInventory();
 				}
 			}

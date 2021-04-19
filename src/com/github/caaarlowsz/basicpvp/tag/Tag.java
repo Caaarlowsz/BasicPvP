@@ -19,7 +19,7 @@ public enum Tag {
 	private final ChatColor color;
 
 	private Tag(ChatColor color) {
-		this.name = name().substring(0, 1).toUpperCase() + name().substring(1);
+		this.name = name().substring(0, 1) + name().substring(1).toLowerCase();
 		this.color = color;
 		this.prefix = color + "§l" + name.toUpperCase() + " " + color;
 	}

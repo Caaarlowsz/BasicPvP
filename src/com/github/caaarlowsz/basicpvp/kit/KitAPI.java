@@ -30,7 +30,7 @@ public final class KitAPI {
 		StaffAPI.removeBuild(player);
 		WarpAPI.removeWarp(player);
 
-		Sidebar sidebar = new Sidebar("§a§lARENA");
+		Sidebar sidebar = new Sidebar("   " + Strings.getCorPrincipal() + "§lARENA   ");
 		sidebar.addBlankLine(15);
 		sidebar.addLine(14, " Cargo: {player_group}");
 		sidebar.addLine(13, " Moedas: §6{player_coins}");

@@ -19,7 +19,7 @@ public final class FPSWarp extends Warp {
 	public FPSWarp() {
 		super("FPS", Stacks.item(Material.GLASS, Strings.getCorPrincipal() + "Warp FPS",
 				"§7Jogue em um local mais limpo", "§7e leve para otimizar seus FPS."));
-		Sidebar sidebar = new Sidebar("   §a§l" + this.getName().toUpperCase() + "   ");
+		Sidebar sidebar = new Sidebar("   " + Strings.getCorPrincipal() + "§l" + this.getName().toUpperCase() + "   ");
 		sidebar.addBlankLine(15);
 		sidebar.addLine(14, " Cargo: {player_group}");
 		sidebar.addLine(13, " Moedas: §6{player_coins}");

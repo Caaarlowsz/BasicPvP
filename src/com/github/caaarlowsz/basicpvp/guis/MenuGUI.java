@@ -60,7 +60,7 @@ public final class MenuGUI implements Listener {
 
 		inv.setItem(10,
 				Stacks.skull(1, player.getName(), "§aSeu Perfil", " ",
-						"  §fCargo: §7" + TagAPI.getMaxTag(player) + "   ",
+						"  §fCargo: " + TagAPI.getMaxTag(player).getColoredName() + "   ",
 						"  §fMoedas: §6" + StatusAPI.getMoedas(player) + "   ", " ",
 						"  §fRank: " + StatusAPI.getRank(player).getColoredSymbolName() + "   ",
 						"  §fXP: §b" + StatusAPI.getXP(player) + "   ", " ",

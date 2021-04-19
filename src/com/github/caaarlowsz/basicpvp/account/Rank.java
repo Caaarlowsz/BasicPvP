@@ -3,7 +3,7 @@ package com.github.caaarlowsz.basicpvp.account;
 import org.bukkit.ChatColor;
 
 public enum Rank {
-	LEGENDARY(ChatColor.DARK_RED, '✪', 300),
+	LEGENDARY(ChatColor.DARK_RED, '✪', 3000),
 	SAPPHIRE(ChatColor.DARK_AQUA, '✵', 2700),
 	RUBY(ChatColor.RED, '✸', 2400),
 	EMERALD(ChatColor.DARK_GREEN, '✶', 2100),

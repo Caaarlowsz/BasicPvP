@@ -41,9 +41,10 @@ public final class CabecasGUI implements Listener {
 				if (display.equals("§7Voltar"))
 					MenuGUI.openGUI(player);
 				else if (display.equals("§cRemover cabeça")) {
+					Cabeca cabeca = CabecaAPI.getCabeca(player);
 					CabecaAPI.removeCabeca(player);
-					player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a Cabeça: " + display);
-					player.sendTitle(new Title(display, "§fCabeça removida."));
+					player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a Cabeça: " + cabeca.getName());
+					player.sendTitle(new Title("§a" + cabeca.getName(), "§fCabeça removida."));
 					player.closeInventory();
 				} else if (display.startsWith("§a")) {
 					CabecaAPI.setCabeca(player, Cabeca.getByName(ChatColor.stripColor(display)));
@@ -65,9 +66,13 @@ public final class CabecasGUI implements Listener {
 			inv.setItem(i, glass);
 
 		inv.setItem(0, Stacks.item(Material.ARROW, "§7Voltar"));
-		inv.setItem(22, Stacks.item(Material.REDSTONE, "§cRemover cabeça", "§7Remove o cosmético aplicado."));
+		if (CabecaAPI.hasCabeca(player))
+			inv.setItem(22, Stacks.item(Material.REDSTONE, "§cRemover cabeça", "§7Remove o cosmético aplicado."));
 
 		for (Cabeca cabeca : Cabeca.values()) {
+			if (cabeca == Cabeca.NENHUMA)
+				continue;
+
 			ItemStack icon = cabeca.getIcon().clone();
 			ItemMeta mIcon = icon.getItemMeta();
 			List<String> lore = mIcon.getLore();

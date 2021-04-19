@@ -41,6 +41,10 @@ public enum Rank {
 		return this.neededXP;
 	}
 
+	public String getColoredName() {
+		return this.getColor() + this.getName();
+	}
+	
 	public String getColoredSymbol() {
 		return this.getColor() + String.valueOf(this.getSymbol());
 	}

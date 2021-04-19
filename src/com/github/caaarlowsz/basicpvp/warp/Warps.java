@@ -8,6 +8,7 @@ import org.bukkit.plugin.PluginManager;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
+import com.github.caaarlowsz.basicpvp.warp.commands.SetCommand;
 import com.github.caaarlowsz.basicpvp.warp.commands.SpawnCommand;
 import com.github.caaarlowsz.basicpvp.warp.commands.WarpCommand;
 import com.github.caaarlowsz.basicpvp.warp.warps.FPSWarp;
@@ -49,6 +50,7 @@ public final class Warps {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new WarpsGUI(), plugin);
 
+		plugin.getCommand("set").setExecutor(new SetCommand());
 		plugin.getCommand("spawn").setExecutor(new SpawnCommand());
 		plugin.getCommand("warp").setExecutor(new WarpCommand());
 	}

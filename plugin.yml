@@ -58,6 +58,9 @@ commands:
     description: Use este comando para denunciar jogadores.
     usage: /<command> (Nickname) (Motivo)
     aliases: [reportar, denunciar, rep, r]
+  set:
+    description: Use este comando para definir locais.
+    usage: /<command> (Nome do Local)
   spawn:
     description: Use este comando para ir até o Spawn.
     usage: /<command>

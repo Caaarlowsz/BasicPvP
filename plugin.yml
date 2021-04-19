@@ -47,6 +47,10 @@ commands:
     description: Use este comando para ver o ping de um jogador.
     usage: /<command> [Nickname]
     aliases: [latency, lat]
+  rank:
+    description: Use este comando para ver os ranks do servidor.
+    usage: /<command>
+    aliases: [ranks, ligas, liga]
   report:
     description: Use este comando para denunciar jogadores.
     usage: /<command> (Nickname) (Motivo)

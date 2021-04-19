@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.caaarlowsz.basicpvp.account.StatusFile;
+import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
 import com.github.caaarlowsz.basicpvp.commands.AdminCommand;
 import com.github.caaarlowsz.basicpvp.commands.ApplyCommand;
 import com.github.caaarlowsz.basicpvp.commands.BroadcastCommand;
@@ -17,6 +18,7 @@ import com.github.caaarlowsz.basicpvp.commands.GameModeCommand;
 import com.github.caaarlowsz.basicpvp.commands.InfoCommand;
 import com.github.caaarlowsz.basicpvp.commands.InventorySeeCommand;
 import com.github.caaarlowsz.basicpvp.commands.PingCommand;
+import com.github.caaarlowsz.basicpvp.commands.RankCommand;
 import com.github.caaarlowsz.basicpvp.commands.ReportCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportHereCommand;
@@ -51,6 +53,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		StatusFile.createNewFile(this.getDataFolder().getPath());
 
 		PluginManager pm = Bukkit.getPluginManager();
+		pm.registerEvents(new CabecasGUI(), this);
 		pm.registerEvents(new MenuGUI(), this);
 
 		pm.registerEvents(new AdminListeners(), this);
@@ -71,6 +74,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.getCommand("info").setExecutor(new InfoCommand());
 		this.getCommand("inventorysee").setExecutor(new InventorySeeCommand());
 		this.getCommand("ping").setExecutor(new PingCommand());
+		this.getCommand("rank").setExecutor(new RankCommand());
 		this.getCommand("report").setExecutor(new ReportCommand());
 		this.getCommand("teleport").setExecutor(new TeleportCommand());
 		this.getCommand("teleporthere").setExecutor(new TeleportHereCommand());

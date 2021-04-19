@@ -24,7 +24,8 @@ public final class KitCommand implements CommandExecutor {
 							WarpAPI.setWarp(player, Warps.getDefaultWarp());
 						KitAPI.setKit(player, kit);
 						player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
-						player.sendTitle(new Title("§a" + kit.getName(), "§fSelecionado.", 5, 10, 5));
+						player.sendTitle(new Title(Strings.getCorPrincipal() + "Kit " + kit.getName(), "§fSelecionado.",
+								5, 10, 5));
 					} else
 						player.sendMessage(Strings.getPrefixo() + " §cVocê já está usando um Kit.");
 				} else

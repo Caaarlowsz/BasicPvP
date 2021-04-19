@@ -36,7 +36,7 @@ public final class KitAPI {
 		sidebar.addLine(13, " Moedas: §6{player_coins}");
 		sidebar.addBlankLine(7);
 		sidebar.addLine(6, " KillStreak: §7{player_killstreak}");
-		sidebar.addLine(5, " Kit: §a{player_kit}");
+		sidebar.addLine(5, " Kit: " + Strings.getCorPrincipal() + "{player_kit}");
 		sidebar.addBlankLine(4);
 		sidebar.addLine(3, " Rank: {player_rank}");
 		sidebar.addLine(2, " Jogadores: §7{server_players}/{server_slots}");

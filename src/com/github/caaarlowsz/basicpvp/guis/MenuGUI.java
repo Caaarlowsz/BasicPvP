@@ -16,10 +16,11 @@ import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
+import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class MenuGUI implements Listener {
 
-	public static final ItemStack ICON = Stacks.item(Material.NETHER_STAR, "§aMenu");
+	public static final ItemStack ICON = Stacks.item(Material.NETHER_STAR, Strings.getCorPrincipal() + "Menu");
 
 	@EventHandler
 	private void onPlayerInteract(PlayerInteractEvent event) {
@@ -42,9 +43,9 @@ public final class MenuGUI implements Listener {
 			Player player = (Player) event.getWhoClicked();
 			event.setCancelled(true);
 
-			if (display.equals("§aLoja de Kits"))
+			if (display.equals(Strings.getCorPrincipal() + "Loja de Kits"))
 				LojaDeKitsGUI.openGUI(player);
-			else if (display.equals("§aCabeças"))
+			else if (display.equals(Strings.getCorPrincipal() + "Cabeças"))
 				CabecasGUI.openGUI(player);
 		}
 	}
@@ -59,7 +60,7 @@ public final class MenuGUI implements Listener {
 			inv.setItem(i, glass);
 
 		inv.setItem(10,
-				Stacks.skull(1, player.getName(), "§aSeu Perfil", " ",
+				Stacks.skull(1, player.getName(), Strings.getCorPrincipal() + "Seu Perfil", " ",
 						"  §fCargo: " + TagAPI.getMaxTag(player).getColoredName() + "   ",
 						"  §fMoedas: §6" + StatusAPI.getMoedas(player) + "   ", " ",
 						"  §fRank: " + StatusAPI.getRank(player).getColoredSymbolName() + "   ",
@@ -68,18 +69,19 @@ public final class MenuGUI implements Listener {
 						" §fAbates: §7" + StatusAPI.getAbates(player) + "   ",
 						" §fMortes: §7" + StatusAPI.getMortes(player) + "   ", " "));
 
-		inv.setItem(12, Stacks.item(Material.EMERALD, "§aLoja de Kits", "§7Compre Kits usando as moedas",
-				"§7que adquiriu jogando."));
+		inv.setItem(12, Stacks.item(Material.EMERALD, Strings.getCorPrincipal() + "Loja de Kits",
+				"§7Compre Kits usando as moedas", "§7que adquiriu jogando."));
 
-		inv.setItem(14, Stacks.item(Material.LEATHER_HELMET, "§aCabeças", "§7Escolha um bloco e deixe",
-				"§7sua cabeça customizada."));
+		inv.setItem(14, Stacks.item(Material.LEATHER_HELMET, Strings.getCorPrincipal() + "Cabeças",
+				"§7Escolha um bloco e deixe", "§7sua cabeça customizada."));
 
 		inv.setItem(16,
-				Stacks.item(Material.BOOK, "§aRequisitos para §bYouTuber§a:", " ", " §7Requisitos do canal:",
-						"  §7Mínimo de §f1.000 inscritos§7.", "  §7Necessário ser um §fcanal ativo§7.",
-						"  §7Gravar um §fvídeo no servidor§7.", " §7Requisitos do vídeo:",
-						"  §7Mínimo de §f300 visualizações§7.", "  §7Mínimo de §f50 gostei§7.",
-						"  §fIP do servidor na descrição§7."));
+				Stacks.item(Material.BOOK,
+						Strings.getCorPrincipal() + "Requisitos para §bYouTuber" + Strings.getCorPrincipal() + ":", " ",
+						" §7Requisitos do canal:", "  §7Mínimo de §f1.000 inscritos§7.",
+						"  §7Necessário ser um §fcanal ativo§7.", "  §7Gravar um §fvídeo no servidor§7.",
+						" §7Requisitos do vídeo:", "  §7Mínimo de §f300 visualizações§7.",
+						"  §7Mínimo de §f50 gostei§7.", "  §fIP do servidor na descrição§7."));
 
 		inv.remove(glass);
 		player.openInventory(inv);

@@ -63,8 +63,9 @@ public final class PlayerListeners implements Listener {
 			}
 
 		TabAPI.sendTab(player, "\n     " + Strings.getNome() + "     \n     §fServidor de KitPvP 1.7x & 1.8x     \n",
-				"\n     §aWebsite: §f" + Strings.getWebsite() + "     \n     §aLoja: §f" + Strings.getLoja()
-						+ "     \n     §aDiscord: §f" + Strings.getDiscord() + "      \n");
+				"\n     " + Strings.getCorPrincipal() + "Website: §f" + Strings.getWebsite() + "     \n     "
+						+ Strings.getCorPrincipal() + "Loja: §f" + Strings.getLoja() + "     \n     "
+						+ Strings.getCorPrincipal() + "Discord: §f" + Strings.getDiscord() + "      \n");
 
 		player.playSound(player.getLocation(), Sound.LEVEL_UP, 10F, 0F);
 		for (int i = 0; i < 100; i++)

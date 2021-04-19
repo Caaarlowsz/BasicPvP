@@ -20,7 +20,7 @@ public final class SpawnCommand implements CommandExecutor {
 			Warp warp = Warps.getDefaultWarp();
 			WarpAPI.setWarp(player, warp);
 			player.sendMessage(Strings.getPrefixo() + " §aVocê foi teleportado para o " + warp.getName() + ".");
-			player.sendTitle(new Title("§a" + warp.getName(), "§fTeleportado.", 5, 10, 5));
+			player.sendTitle(new Title(Strings.getCorPrincipal() + warp.getName(), "§fTeleportado.", 5, 10, 5));
 		} else
 			sender.sendMessage(Strings.getPrefixo() + " §cApenas Jogadores podem usar este Comando.");
 		return true;

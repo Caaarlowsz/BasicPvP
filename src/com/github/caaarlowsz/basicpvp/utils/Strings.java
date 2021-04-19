@@ -37,15 +37,19 @@ public final class Strings {
 		return config.getString("aplicacoes.trialmod", "{website}/trialmod").replace("{website}", getWebsite());
 	}
 
+	public static String getCorPrincipal() {
+		return color(config.getString("mensagens.cor-principal", "&a"));
+	}
+
 	public static String getMOTD() {
 		return color(config.getString("mensagens.motd", "{prefixo} &aEstamos esperando por você!"))
-				.replace("{nome}", getNome()).replace("{prefixo}", getPrefixo()).replace("{website}", getWebsite())
-				.replace("{loja}", getLoja()).replace("{discord}", getDiscord());
+				.replace("{nl}", "\n").replace("{nome}", getNome()).replace("{prefixo}", getPrefixo())
+				.replace("{website}", getWebsite()).replace("{loja}", getLoja()).replace("{discord}", getDiscord());
 	}
 
 	public static String getWhitelistMOTD() {
 		return color(config.getString("mensagens.whitelist-motd", "{prefixo} &cServidor em manutenção."))
-				.replace("{nome}", getNome()).replace("{prefixo}", getPrefixo()).replace("{website}", getWebsite())
-				.replace("{loja}", getLoja()).replace("{discord}", getDiscord());
+				.replace("{nl}", "\n").replace("{nome}", getNome()).replace("{prefixo}", getPrefixo())
+				.replace("{website}", getWebsite()).replace("{loja}", getLoja()).replace("{discord}", getDiscord());
 	}
 }

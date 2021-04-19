@@ -8,5 +8,6 @@ informacoes:
 aplicacoes:
   trialmod: '{website}/trialmod'
 mensagens:
+  cor-principal: '&a'
   motd: '{prefixo} &aEstamos esperando por você!'
   whitelist-motd: '{prefixo} &cServidor em manutenção.'

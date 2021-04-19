@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
+import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class SignListeners implements Listener {
 
@@ -18,12 +19,12 @@ public final class SignListeners implements Listener {
 	private void onSignChang(SignChangeEvent event) {
 		if (event.getLine(0).equalsIgnoreCase("Recraft")) {
 			event.setLine(0, " ");
-			event.setLine(1, "§a§lRECRAFT");
+			event.setLine(1, Strings.getCorPrincipal() + "§lRECRAFT");
 			event.setLine(2, "§7(Clique)");
 			event.setLine(3, " ");
 		} else if (event.getLine(0).equalsIgnoreCase("Sopas")) {
 			event.setLine(0, " ");
-			event.setLine(1, "§a§lSOPAS");
+			event.setLine(1, Strings.getCorPrincipal() + "§lSOPAS");
 			event.setLine(2, "§7(Clique)");
 			event.setLine(3, " ");
 		}
@@ -36,7 +37,7 @@ public final class SignListeners implements Listener {
 				&& event.getAction().name().contains("RIGHT")) {
 			Sign sign = (Sign) event.getClickedBlock().getState();
 			if (sign.getLine(0).equals(" ") && sign.getLine(2).equals("§7(Clique)") && sign.getLine(3).equals(" ")) {
-				if (sign.getLine(1).equals("§a§lRECRAFT")) {
+				if (sign.getLine(1).equals(Strings.getCorPrincipal() + "§lRECRAFT")) {
 					Inventory inv = Bukkit.createInventory(null, 36, "Recraft");
 
 					for (int i = 0; i < 12; i++) {
@@ -46,7 +47,7 @@ public final class SignListeners implements Listener {
 					}
 
 					player.openInventory(inv);
-				} else if (sign.getLine(1).equals("§a§lSOPAS")) {
+				} else if (sign.getLine(1).equals(Strings.getCorPrincipal() + "§lSOPAS")) {
 					Inventory inv = Bukkit.createInventory(null, 36, "Sopas");
 
 					for (int i = 0; i < 36; i++)

@@ -3,8 +3,10 @@ package com.github.caaarlowsz.basicpvp.warp.warps;
 import java.util.Arrays;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import com.github.caaarlowsz.basicpvp.sidebar.Sidebar;
@@ -15,8 +17,8 @@ import com.github.caaarlowsz.basicpvp.warp.Warp;
 public final class FPSWarp extends Warp {
 
 	public FPSWarp() {
-		super("FPS", Stacks.item(Material.GLASS, "§aWarp FPS", "§7Jogue em um local mais limpo",
-				"§7e leve para otimizar seus FPS."));
+		super("FPS", Stacks.item(Material.GLASS, Strings.getCorPrincipal() + "Warp FPS",
+				"§7Jogue em um local mais limpo", "§7e leve para otimizar seus FPS."));
 		Sidebar sidebar = new Sidebar("   §a§l" + this.getName().toUpperCase() + "   ");
 		sidebar.addBlankLine(15);
 		sidebar.addLine(14, " Cargo: {player_group}");
@@ -36,14 +38,18 @@ public final class FPSWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setChestplate(
-				Stacks.item(Material.LEATHER_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE), "§aPeitoral"));
-		inv.setItem(0, Stacks.item(Material.STONE_SWORD, true,
-				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), "§aEspada"));
+		inv.setChestplate(Stacks.item(Material.LEATHER_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
+				Strings.getCorPrincipal() + "Peitoral"));
 
-		inv.setItem(13, Stacks.item(Material.BOWL, 64, "§aPote"));
-		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, "§aCogumelo"));
-		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, "§aCogumelo"));
+		ItemStack sword = Stacks.item(Material.STONE_SWORD, true,
+				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS),
+				Strings.getCorPrincipal() + "Espada");
+		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+		inv.setItem(0, sword);
+
+		inv.setItem(13, Stacks.item(Material.BOWL, 64, Strings.getCorPrincipal() + "Pote"));
+		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
+		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
 
 		for (int i = 0; i < 32; i++)
 			inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));

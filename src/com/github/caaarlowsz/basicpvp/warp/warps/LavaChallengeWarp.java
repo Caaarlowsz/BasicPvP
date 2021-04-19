@@ -15,9 +15,9 @@ import com.github.caaarlowsz.basicpvp.warp.Warp;
 public final class LavaChallengeWarp extends Warp {
 
 	public LavaChallengeWarp() {
-		super("Lava Challenge", Stacks.item(Material.LAVA_BUCKET, "§aWarp Lava Challenge",
+		super("Lava Challenge", Stacks.item(Material.LAVA_BUCKET, Strings.getCorPrincipal() + "Warp Lava Challenge",
 				"§7Treine seu refil e seu recraft", "§7enquanto completa desafios."));
-		Sidebar sidebar = new Sidebar("   §a§l" + this.getName().toUpperCase() + "   ");
+		Sidebar sidebar = new Sidebar("   " + Strings.getCorPrincipal() + "§l" + this.getName().toUpperCase() + "   ");
 		sidebar.addBlankLine(15);
 		sidebar.addLine(14, " Cargo: {player_group}");
 		sidebar.addLine(13, " Moedas: §6{player_coins}");
@@ -34,12 +34,13 @@ public final class LavaChallengeWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setItem(0, Stacks.item(Material.STONE_SWORD,
-				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), "§aEspada"));
+		inv.setItem(0,
+				Stacks.item(Material.STONE_SWORD, Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE),
+						Strings.getCorPrincipal() + "Espada"));
 
-		inv.setItem(13, Stacks.item(Material.BOWL, 64, "§aPote"));
-		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, "§aCogumelo"));
-		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, "§aCogumelo"));
+		inv.setItem(13, Stacks.item(Material.BOWL, 64, Strings.getCorPrincipal() + "Pote"));
+		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
+		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
 
 		for (int i = 0; i < 32; i++)
 			inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));

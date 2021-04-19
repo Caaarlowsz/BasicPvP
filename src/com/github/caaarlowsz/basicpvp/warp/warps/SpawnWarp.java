@@ -15,15 +15,16 @@ import com.github.caaarlowsz.basicpvp.warp.WarpsGUI;
 public final class SpawnWarp extends Warp {
 
 	public SpawnWarp() {
-		super("Spawn", Stacks.item(Material.BEACON, "§aSpawn", "§7Local de nascimento padrão."));
+		super("Spawn",
+				Stacks.item(Material.BEACON, Strings.getCorPrincipal() + "Spawn", "§7Local de nascimento padrão."));
 		Sidebar sidebar = new Sidebar(Strings.getNome());
 		sidebar.addBlankLine(15);
 		sidebar.addLine(14, " Cargo: {player_group}");
 		sidebar.addLine(13, " Moedas: §6{player_coins}");
 		sidebar.addBlankLine(8);
 		sidebar.addLine(7, " KillStreak: §7{player_killstreak}");
-		sidebar.addLine(6, " Abates: §a{player_kills}");
-		sidebar.addLine(5, " Mortes: §a{player_deaths}");
+		sidebar.addLine(6, " Abates: " + Strings.getCorPrincipal() + "{player_kills}");
+		sidebar.addLine(5, " Mortes: " + Strings.getCorPrincipal() + "{player_deaths}");
 		sidebar.addBlankLine(4);
 		sidebar.addLine(3, " Rank: {player_rank}");
 		sidebar.addLine(2, " Jogadores: §7{server_players}/{server_slots}");

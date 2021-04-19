@@ -52,4 +52,34 @@ public final class Strings {
 				.replace("{nl}", "\n").replace("{nome}", getNome()).replace("{prefixo}", getPrefixo())
 				.replace("{website}", getWebsite()).replace("{loja}", getLoja()).replace("{discord}", getDiscord());
 	}
+
+	public static String getPeitoral() {
+		return color(config.getString("itens.peitoral", "{cor_principal}Peitoral")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
+	public static String getEspadaDePedra() {
+		return color(config.getString("itens.espada-de-pedra", "{cor_principal}Espada")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
+	public static String getBussola() {
+		return color(config.getString("itens.bussola", "{cor_principal}Bússola")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
+	public static String getPote() {
+		return color(config.getString("itens.pote", "{cor_principal}Pote")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
+	public static String getCogumeloVermelho() {
+		return color(config.getString("itens.cogumelo-vermelho", "{cor_principal}Cogumelo")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
+	public static String getCogumeloMarrom() {
+		return color(config.getString("itens.cogumelo-marrom", "{cor_principal}Cogumelo")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
 }

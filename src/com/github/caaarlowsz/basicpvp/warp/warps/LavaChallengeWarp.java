@@ -34,13 +34,12 @@ public final class LavaChallengeWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setItem(0,
-				Stacks.item(Material.STONE_SWORD, Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE),
-						Strings.getCorPrincipal() + "Espada"));
+		inv.setItem(0, Stacks.item(Material.STONE_SWORD,
+				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getEspadaDePedra()));
 
-		inv.setItem(13, Stacks.item(Material.BOWL, 64, Strings.getCorPrincipal() + "Pote"));
-		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
-		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
+		inv.setItem(13, Stacks.item(Material.BOWL, 64, Strings.getPote()));
+		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, Strings.getCogumeloVermelho()));
+		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, Strings.getCogumeloMarrom()));
 
 		for (int i = 0; i < 32; i++)
 			inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));

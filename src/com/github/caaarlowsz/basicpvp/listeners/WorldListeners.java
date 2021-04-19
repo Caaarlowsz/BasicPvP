@@ -48,7 +48,7 @@ public final class WorldListeners implements Listener {
 
 				event.getItem().setType(Material.BOWL);
 				ItemMeta mItem = event.getItem().getItemMeta();
-				mItem.setDisplayName("§aPote");
+				mItem.setDisplayName(Strings.getPote());
 				event.getItem().setItemMeta(mItem);
 			}
 		}

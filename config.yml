@@ -11,3 +11,11 @@ mensagens:
   cor-principal: '&a'
   motd: '{prefixo} &aEstamos esperando por você!'
   whitelist-motd: '{prefixo} &cServidor em manutenção.'
+permissoes:
+itens:
+  peitoral: '{cor_principal}Peitoral'
+  espada-de-pedra: '{cor_principal}Espada'
+  bussola: '{cor_principal}Bússola'
+  pote: '{cor_principal}Pote'
+  cogumelo-vermelho: '{cor_principal}Cogumelo'
+  cogumelo-marrom: '{cor_principal}Cogumelo'

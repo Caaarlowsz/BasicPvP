@@ -39,17 +39,17 @@ public final class FPSWarp extends Warp {
 		super.giveItems(player);
 
 		inv.setChestplate(Stacks.item(Material.LEATHER_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
-				Strings.getCorPrincipal() + "Peitoral"));
+				Strings.getPeitoral()));
 
 		ItemStack sword = Stacks.item(Material.STONE_SWORD, true,
 				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS),
-				Strings.getCorPrincipal() + "Espada");
+				Strings.getEspadaDePedra());
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 		inv.setItem(0, sword);
 
-		inv.setItem(13, Stacks.item(Material.BOWL, 64, Strings.getCorPrincipal() + "Pote"));
-		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
-		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, Strings.getCorPrincipal() + "Cogumelo"));
+		inv.setItem(13, Stacks.item(Material.BOWL, 64, Strings.getPote()));
+		inv.setItem(14, Stacks.item(Material.RED_MUSHROOM, 64, Strings.getCogumeloVermelho()));
+		inv.setItem(15, Stacks.item(Material.BROWN_MUSHROOM, 64, Strings.getCogumeloMarrom()));
 
 		for (int i = 0; i < 32; i++)
 			inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));

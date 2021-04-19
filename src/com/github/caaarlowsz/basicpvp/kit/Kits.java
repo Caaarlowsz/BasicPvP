@@ -41,6 +41,8 @@ public final class Kits {
 		pm.registerEvents(new LojaDeKitsGUI(), plugin);
 		pm.registerEvents(new SeusKitsGUI(), plugin);
 
+		plugin.getCommand("kit").setExecutor(new KitCommand());
+
 		getKits().clear();
 		getKits().add(DEFAULT_KIT);
 	}

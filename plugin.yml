@@ -43,6 +43,9 @@ commands:
     description: Use este comando para ver o inventário de jogadores.
     usage: /<command> (Nickname)
     aliases: [invsee, inv]
+  kit:
+    description: Use este comando para selecionar um kit.
+    usage: /<command> (Nome do Kit)
   ping:
     description: Use este comando para ver o ping de um jogador.
     usage: /<command> [Nickname]

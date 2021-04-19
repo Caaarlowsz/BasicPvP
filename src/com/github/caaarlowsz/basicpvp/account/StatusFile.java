@@ -2,7 +2,6 @@ package com.github.caaarlowsz.basicpvp.account;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -21,10 +20,6 @@ public final class StatusFile {
 
 	public static int getMoedas(Player player) {
 		return config.getInt("status." + player.getName() + ".moedas", 0);
-	}
-
-	public static String getFormattedMoedas(Player player) {
-		return new DecimalFormat().format(getMoedas(player)).replace(",", ".");
 	}
 
 	private static void setMoedas(Player player, int value) {
@@ -49,10 +44,6 @@ public final class StatusFile {
 		return config.getInt("status." + player.getName() + ".xp", 0);
 	}
 
-	public static String getFormattedXP(Player player) {
-		return new DecimalFormat().format(getXP(player)).replace(",", ".");
-	}
-
 	private static void setXP(Player player, int value) {
 		try {
 			config.set("status." + player.getName() + ".xp", value);
@@ -73,10 +64,6 @@ public final class StatusFile {
 
 	public static int getKillStreak(Player player) {
 		return config.getInt("status." + player.getName() + ".abatestreak", 0);
-	}
-
-	public static String getFormattedKillStreak(Player player) {
-		return new DecimalFormat().format(getKillStreak(player)).replace(",", ".");
 	}
 
 	public static void setKillStreak(Player player, int value) {
@@ -100,10 +87,6 @@ public final class StatusFile {
 		return config.getInt("status." + player.getName() + ".abates", 0);
 	}
 
-	public static String getFormattedAbates(Player player) {
-		return new DecimalFormat().format(getAbates(player)).replace(",", ".");
-	}
-
 	public static void addAbate(Player player) {
 		try {
 			config.set("status." + player.getName() + ".abates", getAbates(player) + 1);
@@ -115,10 +98,6 @@ public final class StatusFile {
 
 	public static int getMortes(Player player) {
 		return config.getInt("status." + player.getName() + ".mortes", 0);
-	}
-
-	public static String getFormattedMortes(Player player) {
-		return new DecimalFormat().format(getMortes(player)).replace(",", ".");
 	}
 
 	public static void addMorte(Player player) {

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
-import com.github.caaarlowsz.basicpvp.account.StatusFile;
+import com.github.caaarlowsz.basicpvp.account.StatusAPI;
 import com.nametagedit.plugin.NametagEdit;
 
 public final class TagAPI {
@@ -19,8 +19,9 @@ public final class TagAPI {
 	public static void setTag(Player player, Tag tag) {
 		tagMap.put(player.getUniqueId(), tag);
 		NametagEdit.getApi().setNametag(player.getName(), tag.getPrefix(),
-				" §8(" + StatusFile.getRankIcon(player) + "§8)");
-		player.setDisplayName(tag.getPrefix() + player.getName() + " §8(" + StatusFile.getRankIcon(player) + "§8)");
+				" §8(" + StatusAPI.getRank(player).getColoredSymbol() + "§8)");
+		player.setDisplayName(
+				tag.getPrefix() + player.getName() + " §8(" + StatusAPI.getRank(player).getColoredSymbol() + "§8)");
 	}
 
 	public static void removeTag(Player player) {

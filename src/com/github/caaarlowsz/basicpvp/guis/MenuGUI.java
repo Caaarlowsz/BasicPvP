@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import com.github.caaarlowsz.basicpvp.account.StatusAPI;
 import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
@@ -61,7 +62,7 @@ public final class MenuGUI implements Listener {
 				Stacks.skull(1, player.getName(), "§aSeu Perfil", " ",
 						"  §fCargo: §7" + StatusFile.getMaxGroup(player) + "   ",
 						"  §fMoedas: §6" + StatusFile.getFormattedMoedas(player) + "   ", " ",
-						"  §fRank: " + StatusFile.getRankIconName(player) + "   ",
+						"  §fRank: " + StatusAPI.getRank(player).getColoredSymbolName() + "   ",
 						"  §fXP: §b" + StatusFile.getFormattedXP(player) + "   ", " ",
 						" §fKillStreak: §7" + StatusFile.getFormattedKillStreak(player) + "   ",
 						" §fAbates: §7" + StatusFile.getFormattedAbates(player) + "   ",

@@ -31,6 +31,7 @@ import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
 import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
 import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
 import com.github.caaarlowsz.basicpvp.listeners.WorldListeners;
+import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tags;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
@@ -84,6 +85,8 @@ public final class BasicKitPvP extends JavaPlugin {
 		new Kits(this);
 		new Warps(this);
 
+		Bukkit.getScheduler().runTaskTimer(this,
+				() -> Bukkit.getOnlinePlayers().forEach(players -> SidebarAPI.updateSidebar(players)), 20L, 20L);
 		Bukkit.getConsoleSender().sendMessage(Strings.getPrefixo() + " §aPlugin habilitado com sucesso.");
 	}
 

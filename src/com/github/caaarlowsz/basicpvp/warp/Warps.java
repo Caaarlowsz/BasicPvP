@@ -50,6 +50,8 @@ public final class Warps {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new WarpsGUI(), plugin);
 
+		pm.registerEvents(new LavaChallengeWarp(), plugin);
+
 		plugin.getCommand("set").setExecutor(new SetCommand());
 		plugin.getCommand("spawn").setExecutor(new SpawnCommand());
 		plugin.getCommand("warp").setExecutor(new WarpCommand());

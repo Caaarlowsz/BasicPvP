@@ -48,7 +48,7 @@ public final class CabecasGUI implements Listener {
 							new Title(Strings.getCorPrincipal() + cabeca.getName(), "§fCabeça removida.", 5, 10, 5));
 					player.closeInventory();
 				} else if (display.startsWith(Strings.getCorPrincipal())) {
-					if (player.hasPermission("kitpvp.permission.cabecas")) {
+					if (player.hasPermission("kitpvp.vip.cabecas")) {
 						CabecaAPI.setCabeca(player, Cabeca.getByName(ChatColor.stripColor(display)));
 						player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Cabeça: " + display);
 						player.sendTitle(new Title(display, "§fCabeça selecionada.", 5, 10, 5));
@@ -81,7 +81,7 @@ public final class CabecasGUI implements Listener {
 			ItemMeta mIcon = icon.getItemMeta();
 			List<String> lore = mIcon.getLore();
 			lore.add(" ");
-			if (player.hasPermission("kitpvp.permission.cabecas"))
+			if (player.hasPermission("kitpvp.vip.cabecas"))
 				lore.add("§eClique para selecionar");
 			else
 				lore.add("§cSem permissão para selecionar");

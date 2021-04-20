@@ -40,6 +40,10 @@ public final class TellCommand implements CommandExecutor {
 								for (int i = 1; i < args.length; i++)
 									message += (message.isEmpty() ? "" : " ") + args[i];
 
+								for (Player players : Bukkit.getOnlinePlayers())
+									if (players.hasPermission("kitpvp.permission.viewtells"))
+										players.sendMessage("§7(" + player.getName() + " §8» §7" + target.getName()
+												+ ") §6" + message);
 								target.sendMessage("§7(" + player.getName() + " §8» §7você) §6" + message);
 								player.sendMessage("§7(você §8» §7" + target.getName() + ") §6" + message);
 							} else

@@ -11,12 +11,14 @@ import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.SeusKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
+import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class Kits {
 
 	private static final ArrayList<Kit> kits = new ArrayList<>();
 	private static final Kit NONE_KIT = new Kit("Nenhum",
-			Stacks.item(Material.STAINED_GLASS_PANE, "§aKit Nenhum", "§7Sem descrição.")), DEFAULT_KIT = new PvPKit();
+			Stacks.item(Material.STAINED_GLASS_PANE, Strings.getCorPrincipal() + "Kit Nenhum", "§7Sem descrição.")),
+			DEFAULT_KIT = new PvPKit();
 
 	public static Kit getNoneKit() {
 		return NONE_KIT;

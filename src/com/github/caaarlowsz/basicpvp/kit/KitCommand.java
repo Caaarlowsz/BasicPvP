@@ -20,12 +20,18 @@ public final class KitCommand implements CommandExecutor {
 				Kit kit = Kits.getByName(args[0]);
 				if (kit != null) {
 					if (!KitAPI.hasKit(player)) {
-						if (!WarpAPI.getWarp(player).getName().equals(Warps.getDefaultWarp().getName()))
-							WarpAPI.setWarp(player, Warps.getDefaultWarp());
-						KitAPI.setKit(player, kit);
-						player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
-						player.sendTitle(new Title(Strings.getCorPrincipal() + "Kit " + kit.getName(), "§fSelecionado.",
-								5, 10, 5));
+						if (kit.getName().equals(Kits.getDefaultKit().getName())
+								|| player.hasPermission("kitpvp.kit." + kit.getName())) {
+							if (!WarpAPI.getWarp(player).getName().equals(Warps.getDefaultWarp().getName()))
+								WarpAPI.setWarp(player, Warps.getDefaultWarp());
+							KitAPI.setKit(player, kit);
+							player.sendMessage(
+									Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
+							player.sendTitle(new Title(Strings.getCorPrincipal() + "Kit " + kit.getName(),
+									"§fSelecionado.", 5, 10, 5));
+						} else
+							player.sendMessage(
+									Strings.getPrefixo() + " §cVocê não possui o Kit " + kit.getName() + ".");
 					} else
 						player.sendMessage(Strings.getPrefixo() + " §cVocê já está usando um Kit.");
 				} else

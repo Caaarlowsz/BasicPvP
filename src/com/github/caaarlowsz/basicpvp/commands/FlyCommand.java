@@ -16,7 +16,7 @@ public final class FlyCommand implements CommandExecutor {
 			Player player = (Player) sender;
 			if (player.hasPermission("kitpvp.command.fly")) {
 				if (args.length > 0) {
-					if (player.hasPermission("command.fly.others")) {
+					if (player.hasPermission("kitpvp.command.fly.others")) {
 						Player target = Bukkit.getPlayer(args[0]);
 						if (target != null) {
 							if (!target.getAllowFlight()) {

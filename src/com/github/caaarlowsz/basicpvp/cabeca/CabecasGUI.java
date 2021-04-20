@@ -81,7 +81,10 @@ public final class CabecasGUI implements Listener {
 			ItemMeta mIcon = icon.getItemMeta();
 			List<String> lore = mIcon.getLore();
 			lore.add(" ");
-			lore.add("§eClique para selecionar");
+			if (player.hasPermission("kitpvp.permission.cabecas"))
+				lore.add("§eClique para selecionar");
+			else
+				lore.add("§cSem permissão para selecionar");
 			mIcon.setLore(lore);
 			icon.setItemMeta(mIcon);
 			inv.addItem(icon);

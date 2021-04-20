@@ -16,14 +16,19 @@ public final class TagCommand implements CommandExecutor {
 			if (args.length > 0) {
 				Tag tag = Tag.getByName(args[0]);
 				if (tag != null) {
-					TagAPI.setTag(player, tag);
-					player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Tag " + tag.getName() + ".");
+					if (player.hasPermission("kitpvp.tag." + tag.getName())) {
+						TagAPI.setTag(player, tag);
+						player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Tag " + tag.getName() + ".");
+					} else
+						player.sendMessage(
+								Strings.getPrefixo() + " §cVocê não possui acesso a Tag " + tag.getName() + ".");
 				} else
 					player.sendMessage(Strings.getPrefixo() + " §cEsta Tag não existe.");
 			} else {
 				String tags = "";
 				for (Tag tag : Tag.values())
-					tags += (tags.isEmpty() ? "" : ", ") + tag.getName();
+					if (player.hasPermission("kitpvp.tag." + tag.getName()))
+						tags += (tags.isEmpty() ? "" : ", ") + tag.getName();
 				player.sendMessage(Strings.getPrefixo() + " §7Use: /" + label + " (" + tags + ")");
 			}
 		} else

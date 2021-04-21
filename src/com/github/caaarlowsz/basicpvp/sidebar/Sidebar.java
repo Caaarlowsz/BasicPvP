@@ -21,7 +21,7 @@ public final class Sidebar {
 	}
 
 	private String fixDuplicates(String input) {
-		while (this.getLines().containsKey(input))
+		while (this.getLines().containsValue(input))
 			input = "§r" + input;
 		return input;
 	}

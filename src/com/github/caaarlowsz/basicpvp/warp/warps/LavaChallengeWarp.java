@@ -27,9 +27,9 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 		super("Lava Challenge", Stacks.item(Material.LAVA_BUCKET, Strings.getCorPrincipal() + "Warp Lava Challenge",
 				"§7Treine seu refil e seu recraft", "§7enquanto completa desafios."));
 		Sidebar sidebar = new Sidebar("   " + Strings.getCorPrincipal() + "§l" + this.getName().toUpperCase() + "   ");
-		sidebar.addBlankLine(15);
-		sidebar.addLine(14, " Cargo: {player_group}");
-		sidebar.addLine(13, " Moedas: §6{player_coins}");
+		sidebar.addBlankLine(7);
+		sidebar.addLine(6, " Cargo: {player_group}");
+		sidebar.addLine(5, " Moedas: §6{player_coins}");
 		sidebar.addBlankLine(4);
 		sidebar.addLine(3, " Rank: {player_rank}");
 		sidebar.addLine(2, " Jogadores: §7{server_players}/{server_slots}");

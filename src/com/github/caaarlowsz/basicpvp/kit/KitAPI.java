@@ -31,9 +31,9 @@ public final class KitAPI {
 		WarpAPI.removeWarp(player);
 
 		Sidebar sidebar = new Sidebar("   " + Strings.getCorPrincipal() + "§lARENA   ");
-		sidebar.addBlankLine(15);
-		sidebar.addLine(14, " Cargo: {player_group}");
-		sidebar.addLine(13, " Moedas: §6{player_coins}");
+		sidebar.addBlankLine(10);
+		sidebar.addLine(9, " Cargo: {player_group}");
+		sidebar.addLine(8, " Moedas: §6{player_coins}");
 		sidebar.addBlankLine(7);
 		sidebar.addLine(6, " KillStreak: §7{player_killstreak}");
 		sidebar.addLine(5, " Kit: " + Strings.getCorPrincipal() + "{player_kit}");

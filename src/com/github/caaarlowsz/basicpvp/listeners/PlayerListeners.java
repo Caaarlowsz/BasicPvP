@@ -48,6 +48,7 @@ public final class PlayerListeners implements Listener {
 	private void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
+		player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 
 		ChatAPI.removeAntiFlood(player);
 		WarpAPI.setWarp(player, Warps.getDefaultWarp());

@@ -18,9 +18,9 @@ public final class SpawnWarp extends Warp {
 		super("Spawn",
 				Stacks.item(Material.BEACON, Strings.getCorPrincipal() + "Spawn", "§7Local de nascimento padrão."));
 		Sidebar sidebar = new Sidebar(Strings.getNome());
-		sidebar.addBlankLine(15);
-		sidebar.addLine(14, " Cargo: {player_group}");
-		sidebar.addLine(13, " Moedas: §6{player_coins}");
+		sidebar.addBlankLine(11);
+		sidebar.addLine(10, " Cargo: {player_group}");
+		sidebar.addLine(9, " Moedas: §6{player_coins}");
 		sidebar.addBlankLine(8);
 		sidebar.addLine(7, " KillStreak: §7{player_killstreak}");
 		sidebar.addLine(6, " Abates: " + Strings.getCorPrincipal() + "{player_kills}");

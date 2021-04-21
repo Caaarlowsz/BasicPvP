@@ -6,6 +6,10 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import com.github.caaarlowsz.basicpvp.account.StatusAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
@@ -28,24 +32,57 @@ public final class SidebarAPI {
 
 	public static void setSidebar(Player player, Sidebar sidebar) {
 		sidebarMap.put(player.getUniqueId(), sidebar);
-		sidebar.addPlayer(player);
+
+		Scoreboard scoreboard = player.getScoreboard();
+		Objective objective = scoreboard.getObjective("Sidebar");
+		if (objective == null)
+			objective = scoreboard.registerNewObjective("Sidebar", "dummy");
+		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+		objective.setDisplayName(sidebar.getDisplayName());
+		scoreboard.getTeams().stream().filter(teams -> teams.getName().startsWith("sidebar-"))
+				.forEach(teams -> teams.getEntries().forEach(entries -> scoreboard.resetScores(entries)));
+
+		for (Entry<Integer, String> entry : sidebar.getLines().entrySet()) {
+			int index = entry.getKey();
+			String line = entry.getValue().replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
+					.replace("{player_coins}", StatusAPI.getMoedas(player))
+					.replace("{player_killstreak}", StatusAPI.getKillStreak(player))
+					.replace("{player_kills}", StatusAPI.getAbates(player))
+					.replace("{player_deaths}", StatusAPI.getMortes(player))
+					.replace("{player_rank}", StatusAPI.getRank(player).getColoredName())
+					.replace("{player_kit}", KitAPI.getKit(player).getName())
+					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
+					.replace("{server_players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
+					.replace("{server_slots}", String.valueOf(Bukkit.getMaxPlayers())), prefix = "", suffix = "";
+			if (line.length() > 16) {
+				prefix = line.substring(0, 16);
+				line = line.substring(16);
+			}
+			if (line.length() > 16) {
+				suffix = line.substring(16);
+				if (suffix.length() > 16)
+					suffix = suffix.substring(0, 16);
+				line = line.substring(0, 16);
+			}
+
+			Team team = scoreboard.getTeam("sidebar-" + index);
+			if (team == null)
+				team = scoreboard.registerNewTeam("sidebar-" + index);
+			team.setPrefix(prefix);
+			team.addEntry(line);
+			team.setSuffix(suffix);
+
+			objective.getScore(line).setScore(index);
+		}
+
 		updateSidebar(player);
 	}
 
 	public static void updateSidebar(Player player) {
-		Sidebar sidebar = getSidebar(player);
-		for (Entry<Integer, String> lines : sidebar.getLines())
-			sidebar.updateLine(lines.getKey(),
-					lines.getValue().replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
-							.replace("{player_coins}", StatusAPI.getMoedas(player))
-							.replace("{player_killstreak}", StatusAPI.getKillStreak(player))
-							.replace("{player_kills}", StatusAPI.getAbates(player))
-							.replace("{player_deaths}", StatusAPI.getMortes(player))
-							.replace("{player_rank}", StatusAPI.getRank(player).getColoredName())
-							.replace("{player_kit}", KitAPI.getKit(player).getName())
-							.replace("{player_warp}", WarpAPI.getWarp(player).getName())
-							.replace("{server_players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-							.replace("{server_slots}", String.valueOf(Bukkit.getMaxPlayers())));
+		// Sidebar sidebar = getSidebar(player);
+		// for (Entry<Integer, String> lines : sidebar.getLines())
+		// sidebar.updateLine(lines.getKey(),
+		// );
 	}
 
 	public static void removeSidebar(Player player) {

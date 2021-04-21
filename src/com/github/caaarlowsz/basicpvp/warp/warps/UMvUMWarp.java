@@ -15,10 +15,11 @@ public final class UMvUMWarp extends Warp {
 		super("1v1", Stacks.item(Material.BLAZE_ROD, Strings.getCorPrincipal() + "Warp 1v1", "§7Tenha duelos solo",
 				"§7contra outros jogadores."));
 		Sidebar sidebar = new Sidebar("   " + Strings.getCorPrincipal() + "§l" + this.getName().toUpperCase() + "   ");
-		sidebar.addBlankLine(15);
-		sidebar.addLine(14, " Cargo: {player_group}");
-		sidebar.addLine(13, " Moedas: §6{player_coins}");
-		sidebar.addBlankLine(7);
+		sidebar.addBlankLine(11);
+		sidebar.addLine(10, " Cargo: {player_group}");
+		sidebar.addLine(9, " Moedas: §6{player_coins}");
+		sidebar.addBlankLine(8);
+		sidebar.addLine(7, " KillStreak: §7{player_killstreak}");
 		sidebar.addLine(6, " Inimigo:");
 		sidebar.addLine(5, "  " + Strings.getCorPrincipal() + "{player_enemy}");
 		sidebar.addBlankLine(4);

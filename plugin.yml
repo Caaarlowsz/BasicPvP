@@ -1,6 +1,6 @@
 main: com.github.caaarlowsz.basicpvp.BasicKitPvP
 name: BasicPvP
-version: 0.8.0
+version: 0.9.0
 description: Minecraft Bukkit Basic PvP Plugin.
 author: Carlos Henrique#0240
 depend: [NametagEdit]

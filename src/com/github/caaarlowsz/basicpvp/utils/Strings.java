@@ -1,9 +1,14 @@
 package com.github.caaarlowsz.basicpvp.utils;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.sidebar.Sidebar;
 
 public final class Strings {
 
@@ -81,5 +86,33 @@ public final class Strings {
 	public static String getCogumeloMarrom() {
 		return color(config.getString("itens.cogumelo-marrom", "{cor_principal}Cogumelo")).replace("{cor_principal}",
 				getCorPrincipal());
+	}
+
+	private static Sidebar getSidebar(String name) {
+		Sidebar sidebar = new Sidebar(color(config.getString("sidebar." + name + ".titulo", "{nome}"))
+				.replace("{cor_principal}", getCorPrincipal()).replace("{nome}", getNome())
+				.replace("{prefixo}", getPrefixo().replace("{website}",
+						getWebsite().replace("{loja}", getLoja()).replace("{discord}", getDiscord()))));
+		List<String> lines = Arrays.asList(" ", " Cargo: {player_group}", " Moedas: &6{player_coins}", " ",
+				" KillStreak: &7{player_killstreak}", " Abates: &7{player_kills}", " Mortes: &7{player_deaths}", " ",
+				" Rank: {player_rank}", " Jogadores: &7{server_players}/{server_slots}", "&e{website}");
+		if (config.contains("sidebar." + name + ".linhas"))
+			lines = config.getStringList("sidebar." + name + ".linhas");
+		else
+			config.set("sidebar." + name + ".linhas", lines);
+		Collections.reverse(lines);
+		for (String line : lines)
+			sidebar.addLine(color(line.replace("{cor_principal}", getCorPrincipal()).replace("{nome}", getNome())
+					.replace("{prefixo}", getPrefixo()).replace("{website}", getWebsite()).replace("{loja}", getLoja())
+					.replace("{loja}", getLoja())));
+		return sidebar;
+	}
+
+	public static Sidebar getSidebarKits() {
+		return getSidebar("kits");
+	}
+
+	public static Sidebar getSidebarWarps() {
+		return getSidebar("warps");
 	}
 }

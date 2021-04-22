@@ -1,6 +1,8 @@
 package com.github.caaarlowsz.basicpvp.sidebar;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
@@ -31,6 +33,7 @@ public final class SidebarAPI {
 	}
 
 	public static void setSidebar(Player player, Sidebar sidebar) {
+		sidebar = sidebar.clone();
 		sidebarMap.put(player.getUniqueId(), sidebar);
 
 		Scoreboard scoreboard = player.getScoreboard();
@@ -43,46 +46,67 @@ public final class SidebarAPI {
 				.forEach(teams -> teams.getEntries().forEach(entries -> scoreboard.resetScores(entries)));
 
 		for (Entry<Integer, String> entry : sidebar.getLines().entrySet()) {
-			int index = entry.getKey();
-			String line = entry.getValue().replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
-					.replace("{player_coins}", StatusAPI.getMoedas(player))
-					.replace("{player_killstreak}", StatusAPI.getKillStreak(player))
-					.replace("{player_kills}", StatusAPI.getAbates(player))
-					.replace("{player_deaths}", StatusAPI.getMortes(player))
-					.replace("{player_rank}", StatusAPI.getRank(player).getColoredName())
-					.replace("{player_kit}", KitAPI.getKit(player).getName())
-					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
-					.replace("{server_players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-					.replace("{server_slots}", String.valueOf(Bukkit.getMaxPlayers())), prefix = "", suffix = "";
+			String prefix = "", line = entry.getValue();
+
+			List<String> suffixes = Arrays.asList("{player_group}", "{player_coins}", "{player_killstreak}",
+					"{player_kills}", "{player_deaths}", "{player_rank}", "{player_kit}", "{player_warp}",
+					"{server_players}/{server_slots}", "{server_players}", "{server_slots}");
+			for (String suffix : suffixes)
+				if (line.contains(suffix))
+					sidebar.setSuffix(suffix, line = line.replace(suffix, ""));
+
 			if (line.length() > 16) {
 				prefix = line.substring(0, 16);
 				line = line.substring(16);
 			}
-			if (line.length() > 16) {
-				suffix = line.substring(16);
-				if (suffix.length() > 16)
-					suffix = suffix.substring(0, 16);
+			if (line.length() > 16)
 				line = line.substring(0, 16);
-			}
 
-			Team team = scoreboard.getTeam("sidebar-" + index);
+			int score = entry.getKey();
+			Team team = scoreboard.getTeam("sidebar-" + score);
 			if (team == null)
-				team = scoreboard.registerNewTeam("sidebar-" + index);
+				team = scoreboard.registerNewTeam("sidebar-" + score);
 			team.setPrefix(prefix);
+			team.setSuffix("");
 			team.addEntry(line);
-			team.setSuffix(suffix);
 
-			objective.getScore(line).setScore(index);
+			objective.getScore(line).setScore(score);
 		}
 
 		updateSidebar(player);
 	}
 
 	public static void updateSidebar(Player player) {
-		// Sidebar sidebar = getSidebar(player);
-		// for (Entry<Integer, String> lines : sidebar.getLines())
-		// sidebar.updateLine(lines.getKey(),
-		// );
+		HashMap<String, String> suffixes = getSidebar(player).getSuffixes();
+		player.getScoreboard().getTeams().stream().filter(team -> team.getName().startsWith("sidebar-"))
+				.forEach(team -> team.getEntries().forEach(entry -> {
+					String line = team.getPrefix() + entry;
+					if (suffixes.containsValue(line))
+						suffixes.entrySet().stream().filter(map -> map.getValue().equals(line)).forEach(map -> {
+							if (map.getKey().equals("{player_group}"))
+								team.setSuffix(TagAPI.getMaxTag(player).getColoredName());
+							if (map.getKey().equals("{player_coins}"))
+								team.setSuffix(StatusAPI.getMoedas(player));
+							if (map.getKey().equals("{player_killstreak}"))
+								team.setSuffix(StatusAPI.getKillStreak(player));
+							if (map.getKey().equals("{player_kills}"))
+								team.setSuffix(StatusAPI.getAbates(player));
+							if (map.getKey().equals("{player_deaths}"))
+								team.setSuffix(StatusAPI.getMortes(player));
+							if (map.getKey().equals("{player_rank}"))
+								team.setSuffix(StatusAPI.getRank(player).getColoredName());
+							if (map.getKey().equals("{player_kit}"))
+								team.setSuffix(KitAPI.getKit(player).getName());
+							if (map.getKey().equals("{player_warp}"))
+								team.setSuffix(WarpAPI.getWarp(player).getName());
+							if (map.getKey().equals("{server_players}/{server_slots}"))
+								team.setSuffix(Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers());
+							if (map.getKey().equals("{server_players}"))
+								team.setSuffix(Bukkit.getOnlinePlayers().size() + "");
+							if (map.getKey().equals("{server_slots}"))
+								team.setSuffix(Bukkit.getMaxPlayers() + "");
+						});
+				}));
 	}
 
 	public static void removeSidebar(Player player) {

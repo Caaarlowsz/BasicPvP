@@ -9,6 +9,7 @@ import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
+import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class WarpAPI {
 
@@ -24,7 +25,8 @@ public final class WarpAPI {
 		StaffAPI.removeBuild(player);
 		removeWarp(player);
 		warpMap.put(player.getUniqueId(), warp);
-		SidebarAPI.setSidebar(player, warp.getSidebar());
+
+		SidebarAPI.setSidebar(player, Strings.getSidebarWarps());
 
 		if (WarpsFile.hasLocation(warp.getName()))
 			player.teleport(WarpsFile.getLocation(warp.getName()));

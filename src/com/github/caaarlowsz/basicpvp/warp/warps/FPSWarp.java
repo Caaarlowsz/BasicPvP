@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.utils.ServerType;
@@ -42,7 +43,11 @@ public final class FPSWarp extends Warp {
 			sword = Stacks.item(Material.DIAMOND_SWORD, true,
 					Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getEspada());
 		}
+
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+		ItemMeta mSword = sword.getItemMeta();
+		mSword.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		sword.setItemMeta(mSword);
 		inv.setItem(0, sword);
 
 		inv.setItem(13, Stacks.item(Material.BOWL, 64, Strings.getPote()));

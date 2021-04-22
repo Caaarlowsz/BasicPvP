@@ -58,13 +58,28 @@ public final class Strings {
 				.replace("{website}", getWebsite()).replace("{loja}", getLoja()).replace("{discord}", getDiscord());
 	}
 
+	public static String getCapacete() {
+		return color(config.getString("itens.capacete", "{cor_principal}Capacete")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
 	public static String getPeitoral() {
 		return color(config.getString("itens.peitoral", "{cor_principal}Peitoral")).replace("{cor_principal}",
 				getCorPrincipal());
 	}
 
-	public static String getEspadaDePedra() {
-		return color(config.getString("itens.espada-de-pedra", "{cor_principal}Espada")).replace("{cor_principal}",
+	public static String getCalca() {
+		return color(config.getString("itens.calca", "{cor_principal}Calça")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
+	public static String getBotas() {
+		return color(config.getString("itens.botas", "{cor_principal}Botas")).replace("{cor_principal}",
+				getCorPrincipal());
+	}
+
+	public static String getEspada() {
+		return color(config.getString("itens.espada", "{cor_principal}Espada")).replace("{cor_principal}",
 				getCorPrincipal());
 	}
 

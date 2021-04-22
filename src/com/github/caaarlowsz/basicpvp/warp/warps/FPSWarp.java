@@ -9,6 +9,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.utils.ServerType;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
@@ -25,12 +27,21 @@ public final class FPSWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setChestplate(Stacks.item(Material.LEATHER_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
-				Strings.getPeitoral()));
-
 		ItemStack sword = Stacks.item(Material.STONE_SWORD, true,
-				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS),
-				Strings.getEspadaDePedra());
+				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getEspada());
+		if (BasicKitPvP.isServerType(ServerType.FULLIRON)) {
+			inv.setHelmet(Stacks.item(Material.IRON_HELMET, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
+					Strings.getCapacete()));
+			inv.setChestplate(Stacks.item(Material.IRON_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
+					Strings.getPeitoral()));
+			inv.setChestplate(Stacks.item(Material.IRON_LEGGINGS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
+					Strings.getCalca()));
+			inv.setChestplate(Stacks.item(Material.IRON_BOOTS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
+					Strings.getBotas()));
+
+			sword = Stacks.item(Material.DIAMOND_SWORD, true,
+					Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getEspada());
+		}
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 		inv.setItem(0, sword);
 

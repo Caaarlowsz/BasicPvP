@@ -1,3 +1,5 @@
+# SIMULATOR, FULLIRON
+modo: 'SIMULATOR'
 servidor:
   nome: '&aBasicPvP'
   prefixo: '&f[{nome}&f]'
@@ -13,8 +15,11 @@ mensagens:
   whitelist-motd: '{prefixo} &cServidor em manutenção.'
 permissoes:
 itens:
+  capacete: '{cor_principal}Capacete'
   peitoral: '{cor_principal}Peitoral'
-  espada-de-pedra: '{cor_principal}Espada'
+  calca: '{cor_principal}Calça'
+  botas: '{cor_principal}Botas'
+  espada: '{cor_principal}Espada'
   bussola: '{cor_principal}Bússola'
   pote: '{cor_principal}Pote'
   cogumelo-vermelho: '{cor_principal}Cogumelo'

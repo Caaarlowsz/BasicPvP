@@ -33,10 +33,21 @@ import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
 import com.github.caaarlowsz.basicpvp.listeners.WorldListeners;
 import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tags;
+import com.github.caaarlowsz.basicpvp.utils.ServerType;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
 
 public final class BasicKitPvP extends JavaPlugin {
+
+	private static ServerType serverType;
+
+	public static ServerType getServerType() {
+		return serverType;
+	}
+
+	public static boolean isServerType(ServerType type) {
+		return getServerType().equals(type);
+	}
 
 	public static BasicKitPvP getInstance() {
 		return getPlugin(BasicKitPvP.class);
@@ -51,6 +62,8 @@ public final class BasicKitPvP extends JavaPlugin {
 	public void onEnable() {
 		super.onEnable();
 		this.saveDefaultConfig();
+		serverType = ServerType.valueOf(this.getConfig().getString("modo"));
+
 		StatusFile.createNewFile(this.getDataFolder().getPath());
 
 		PluginManager pm = Bukkit.getPluginManager();

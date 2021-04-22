@@ -34,9 +34,9 @@ public final class FPSWarp extends Warp {
 					Strings.getCapacete()));
 			inv.setChestplate(Stacks.item(Material.IRON_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
 					Strings.getPeitoral()));
-			inv.setChestplate(Stacks.item(Material.IRON_LEGGINGS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
+			inv.setLeggings(Stacks.item(Material.IRON_LEGGINGS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
 					Strings.getCalca()));
-			inv.setChestplate(Stacks.item(Material.IRON_BOOTS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
+			inv.setBoots(Stacks.item(Material.IRON_BOOTS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
 					Strings.getBotas()));
 
 			sword = Stacks.item(Material.DIAMOND_SWORD, true,

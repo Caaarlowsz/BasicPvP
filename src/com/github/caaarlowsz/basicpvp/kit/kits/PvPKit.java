@@ -10,7 +10,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.kit.Kit;
+import com.github.caaarlowsz.basicpvp.utils.ServerType;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
@@ -18,9 +20,10 @@ public final class PvPKit extends Kit {
 
 	public PvPKit() {
 		super("PvP",
-				Stacks.item(Material.STONE_SWORD, Arrays.asList(ItemFlag.HIDE_ATTRIBUTES),
-						Strings.getCorPrincipal() + "Kit PvP", "§7Mostre a verdadeira força da",
-						"§7sua Espada com Afiação I."));
+				Stacks.item(
+						BasicKitPvP.isServerType(ServerType.FULLIRON) ? Material.DIAMOND_SWORD : Material.STONE_SWORD,
+						Arrays.asList(ItemFlag.HIDE_ATTRIBUTES), Strings.getCorPrincipal() + "Kit PvP",
+						"§7Mostre a verdadeira força da", "§7sua Espada com Afiação I."));
 	}
 
 	@Override

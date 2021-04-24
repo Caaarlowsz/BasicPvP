@@ -9,6 +9,7 @@ import org.bukkit.plugin.PluginManager;
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.SeusKitsGUI;
+import com.github.caaarlowsz.basicpvp.kit.kits.ArcherKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
@@ -47,5 +48,6 @@ public final class Kits {
 
 		getKits().clear();
 		getKits().add(DEFAULT_KIT);
+		getKits().add(new ArcherKit());
 	}
 }

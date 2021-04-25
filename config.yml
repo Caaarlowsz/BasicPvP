@@ -78,7 +78,7 @@ itens:
 inventarios:
   menu-geral:
     perfil:
-      material: 'SKULL_ITEM'
+      material: 'SKULL_ITEM,1,3'
       display: '&aSeu Perfil'
       lore:
       - ' '

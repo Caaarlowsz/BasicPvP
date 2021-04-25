@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 
 public final class Stacks {
 
@@ -129,5 +133,38 @@ public final class Stacks {
 		mSkull.setOwner(owner);
 		skull.setItemMeta(mSkull);
 		return skull;
+	}
+
+	public static int getSlotConfigItem(String path) {
+		return BasicKitPvP.getInstance().getConfig().getInt(path + ".slot") - 1;
+	}
+
+	public static ItemStack getConfigItem(String path) {
+		FileConfiguration config = BasicKitPvP.getInstance().getConfig();
+		String material = config.getString(path + ".material");
+		String display = ChatColor.translateAlternateColorCodes('&', config.getString(path + ".display"))
+				.replace("{nome}", Strings.getNome());
+		List<String> lore = null;
+		if (config.contains(path + ".lore"))
+			lore = config.getStringList(path + ".lore");
+
+		Material type = Material.STONE;
+		int amount = 1, durability = 0;
+
+		String[] split = material.split(",");
+		type = Material.getMaterial(split[0]);
+		if (split.length == 2)
+			amount = Integer.valueOf(split[1]);
+		if (split.length == 3)
+			durability = Integer.valueOf(split[2]);
+
+		ItemStack item = Stacks.item(type, amount, durability, display);
+		if (lore != null) {
+			ItemMeta mItem = item.getItemMeta();
+			mItem.setLore(lore);
+			item.setItemMeta(mItem);
+		}
+
+		return item;
 	}
 }

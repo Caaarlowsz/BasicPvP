@@ -14,6 +14,9 @@ mensagens:
   motd: '{prefixo} &aEstamos esperando por você!'
   whitelist-motd: '{prefixo} &cServidor em manutenção.'
 permissoes:
+# MODELO DO ITEM:
+# material: TYPE,AMOUNT,DURABILITY
+
 itens:
   geral:
     capacete: '&aCapacete'
@@ -25,6 +28,19 @@ itens:
     pote: '&aPote'
     cogumelo-vermelho: '&aCogumelo'
     cogumelo-marrom: '&aCogumelo'
+  spawn:
+    kits:
+      material: CHEST
+      display: '&aSeus Kits'
+      slot: 3
+    menu:
+      material: NETHER_STAR
+      display: '&aMenu'
+      slot: 4
+    warps:
+      material: COMPASS
+      display: '&aWarps'
+      slot: 5
 sidebar:
   kits:
     titulo: '{nome}'

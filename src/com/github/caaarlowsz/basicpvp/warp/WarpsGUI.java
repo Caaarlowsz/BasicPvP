@@ -20,12 +20,14 @@ import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class WarpsGUI implements Listener {
 
-	public static final ItemStack ICON = Stacks.item(Material.COMPASS, "§aWarps");
+	public static ItemStack getIcon() {
+		return Stacks.getConfigItem("itens.spawn.warps");
+	}
 
 	@EventHandler
 	private void onPlayerInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
-		if (event.hasItem() && event.getItem().isSimilar(ICON)) {
+		if (event.hasItem() && event.getItem().isSimilar(getIcon())) {
 			event.setCancelled(true);
 			if (event.getAction().name().contains("RIGHT")) {
 				player.playSound(player.getLocation(), Sound.DOOR_OPEN, 5F, 5F);

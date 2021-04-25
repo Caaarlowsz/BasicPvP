@@ -21,9 +21,9 @@ public final class SpawnWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setItem(3, SeusKitsGUI.ICON);
-		inv.setItem(4, MenuGUI.ICON);
-		inv.setItem(5, WarpsGUI.ICON);
+		inv.setItem(Stacks.getSlotConfigItem("itens.spawn.kits"), SeusKitsGUI.getIcon());
+		inv.setItem(Stacks.getSlotConfigItem("itens.spawn.menu"), MenuGUI.getIcon());
+		inv.setItem(Stacks.getSlotConfigItem("itens.spawn.warps"), WarpsGUI.getIcon());
 
 		player.updateInventory();
 	}

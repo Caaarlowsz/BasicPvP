@@ -15,15 +15,16 @@ mensagens:
   whitelist-motd: '{prefixo} &cServidor em manutenção.'
 permissoes:
 itens:
-  capacete: '&aCapacete'
-  peitoral: '&aPeitoral'
-  calca: '&aCalça'
-  botas: '&aBotas'
-  espada: '&aEspada'
-  bussola: '&aBússola'
-  pote: '&aPote'
-  cogumelo-vermelho: '&aCogumelo'
-  cogumelo-marrom: '&aCogumelo'
+  geral:
+    capacete: '&aCapacete'
+    peitoral: '&aPeitoral'
+    calca: '&aCalça'
+    botas: '&aBotas'
+    espada: '&aEspada'
+    bussola: '&aBússola'
+    pote: '&aPote'
+    cogumelo-vermelho: '&aCogumelo'
+    cogumelo-marrom: '&aCogumelo'
 sidebar:
   kits:
     titulo: '{nome}'

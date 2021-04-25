@@ -55,39 +55,39 @@ public final class Strings {
 	}
 
 	public static String getCapacete() {
-		return color(config.getString("itens.capacete", "&aCapacete"));
+		return color(config.getString("itens.geral.capacete", "&aCapacete"));
 	}
 
 	public static String getPeitoral() {
-		return color(config.getString("itens.peitoral", "&aPeitoral"));
+		return color(config.getString("itens.geral.peitoral", "&aPeitoral"));
 	}
 
 	public static String getCalca() {
-		return color(config.getString("itens.calca", "&aCalça"));
+		return color(config.getString("itens.geral.calca", "&aCalça"));
 	}
 
 	public static String getBotas() {
-		return color(config.getString("itens.botas", "&aBotas"));
+		return color(config.getString("itens.geral.botas", "&aBotas"));
 	}
 
 	public static String getEspada() {
-		return color(config.getString("itens.espada", "&aEspada"));
+		return color(config.getString("itens.geral.espada", "&aEspada"));
 	}
 
 	public static String getBussola() {
-		return color(config.getString("itens.bussola", "&aBússola"));
+		return color(config.getString("itens.geral.bussola", "&aBússola"));
 	}
 
 	public static String getPote() {
-		return color(config.getString("itens.pote", "&aPote"));
+		return color(config.getString("itens.geral.pote", "&aPote"));
 	}
 
 	public static String getCogumeloVermelho() {
-		return color(config.getString("itens.cogumelo-vermelho", "&aCogumelo"));
+		return color(config.getString("itens.geral.cogumelo-vermelho", "&aCogumelo"));
 	}
 
 	public static String getCogumeloMarrom() {
-		return color(config.getString("itens.cogumelo-marrom", "&aCogumelo"));
+		return color(config.getString("itens.geral.cogumelo-marrom", "&aCogumelo"));
 	}
 
 	private static Sidebar getSidebar(String name) {

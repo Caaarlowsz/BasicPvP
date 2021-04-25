@@ -55,39 +55,39 @@ public final class Strings {
 	}
 
 	public static String getCapacete() {
-		return color(config.getString("itens.geral.capacete", "&aCapacete"));
+		return color(config.getString("itens.geral.capacete", "&aCapacete")).replace("{nome}", getNome());
 	}
 
 	public static String getPeitoral() {
-		return color(config.getString("itens.geral.peitoral", "&aPeitoral"));
+		return color(config.getString("itens.geral.peitoral", "&aPeitoral")).replace("{nome}", getNome());
 	}
 
 	public static String getCalca() {
-		return color(config.getString("itens.geral.calca", "&aCalça"));
+		return color(config.getString("itens.geral.calca", "&aCalça")).replace("{nome}", getNome());
 	}
 
 	public static String getBotas() {
-		return color(config.getString("itens.geral.botas", "&aBotas"));
+		return color(config.getString("itens.geral.botas", "&aBotas")).replace("{nome}", getNome());
 	}
 
 	public static String getEspada() {
-		return color(config.getString("itens.geral.espada", "&aEspada"));
+		return color(config.getString("itens.geral.espada", "&aEspada")).replace("{nome}", getNome());
 	}
 
 	public static String getBussola() {
-		return color(config.getString("itens.geral.bussola", "&aBússola"));
+		return color(config.getString("itens.geral.bussola", "&aBússola")).replace("{nome}", getNome());
 	}
 
 	public static String getPote() {
-		return color(config.getString("itens.geral.pote", "&aPote"));
+		return color(config.getString("itens.geral.pote", "&aPote")).replace("{nome}", getNome());
 	}
 
 	public static String getCogumeloVermelho() {
-		return color(config.getString("itens.geral.cogumelo-vermelho", "&aCogumelo"));
+		return color(config.getString("itens.geral.cogumelo-vermelho", "&aCogumelo")).replace("{nome}", getNome());
 	}
 
 	public static String getCogumeloMarrom() {
-		return color(config.getString("itens.geral.cogumelo-marrom", "&aCogumelo"));
+		return color(config.getString("itens.geral.cogumelo-marrom", "&aCogumelo")).replace("{nome}", getNome());
 	}
 
 	private static Sidebar getSidebar(String name) {

@@ -36,15 +36,14 @@ public final class MenuGUI implements Listener {
 	@EventHandler
 	private void onInventoryClick(InventoryClickEvent event) {
 		if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("Menu")
-				&& event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()
-				&& event.getCurrentItem().getItemMeta().hasDisplayName()) {
-			String display = event.getCurrentItem().getItemMeta().getDisplayName();
+				&& event.getCurrentItem() != null) {
+			ItemStack item = event.getCurrentItem();
 			Player player = (Player) event.getWhoClicked();
 			event.setCancelled(true);
 
-			if (display.equals("§aLoja de Kits"))
+			if (item.isSimilar(Stacks.getConfigItem("inventarios.menu-geral.loja-de-kits")))
 				LojaDeKitsGUI.openGUI(player);
-			else if (display.equals("§aCabeças"))
+			else if (item.isSimilar(Stacks.getConfigItem("inventarios.menu-geral.cabecas")))
 				CabecasGUI.openGUI(player);
 		}
 	}

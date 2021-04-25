@@ -42,10 +42,6 @@ public final class Strings {
 		return config.getString("aplicacoes.trialmod", "{website}/trialmod").replace("{website}", getWebsite());
 	}
 
-	public static String getCorPrincipal() {
-		return color(config.getString("mensagens.cor-principal", "&a"));
-	}
-
 	public static String getMOTD() {
 		return color(config.getString("mensagens.motd", "{prefixo} &aEstamos esperando por você!"))
 				.replace("{nl}", "\n").replace("{nome}", getNome()).replace("{prefixo}", getPrefixo())
@@ -59,54 +55,44 @@ public final class Strings {
 	}
 
 	public static String getCapacete() {
-		return color(config.getString("itens.capacete", "{cor_principal}Capacete")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.capacete", "&aCapacete"));
 	}
 
 	public static String getPeitoral() {
-		return color(config.getString("itens.peitoral", "{cor_principal}Peitoral")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.peitoral", "&aPeitoral"));
 	}
 
 	public static String getCalca() {
-		return color(config.getString("itens.calca", "{cor_principal}Calça")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.calca", "&aCalça"));
 	}
 
 	public static String getBotas() {
-		return color(config.getString("itens.botas", "{cor_principal}Botas")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.botas", "&aBotas"));
 	}
 
 	public static String getEspada() {
-		return color(config.getString("itens.espada", "{cor_principal}Espada")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.espada", "&aEspada"));
 	}
 
 	public static String getBussola() {
-		return color(config.getString("itens.bussola", "{cor_principal}Bússola")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.bussola", "&aBússola"));
 	}
 
 	public static String getPote() {
-		return color(config.getString("itens.pote", "{cor_principal}Pote")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.pote", "&aPote"));
 	}
 
 	public static String getCogumeloVermelho() {
-		return color(config.getString("itens.cogumelo-vermelho", "{cor_principal}Cogumelo")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.cogumelo-vermelho", "&aCogumelo"));
 	}
 
 	public static String getCogumeloMarrom() {
-		return color(config.getString("itens.cogumelo-marrom", "{cor_principal}Cogumelo")).replace("{cor_principal}",
-				getCorPrincipal());
+		return color(config.getString("itens.cogumelo-marrom", "&aCogumelo"));
 	}
 
 	private static Sidebar getSidebar(String name) {
 		Sidebar sidebar = new Sidebar(color(config.getString("sidebar." + name + ".titulo", "{nome}"))
-				.replace("{cor_principal}", getCorPrincipal()).replace("{nome}", getNome())
-				.replace("{prefixo}", getPrefixo().replace("{website}",
+				.replace("{nome}", getNome()).replace("{prefixo}", getPrefixo().replace("{website}",
 						getWebsite().replace("{loja}", getLoja()).replace("{discord}", getDiscord()))));
 		List<String> lines = Arrays.asList(" ", " Cargo: {player_group}", " Moedas: &6{player_coins}", " ",
 				" KillStreak: &7{player_killstreak}", " Abates: &7{player_kills}", " Mortes: &7{player_deaths}", " ",
@@ -117,9 +103,8 @@ public final class Strings {
 			config.set("sidebar." + name + ".linhas", lines);
 		Collections.reverse(lines);
 		for (String line : lines)
-			sidebar.addLine(color(line.replace("{cor_principal}", getCorPrincipal()).replace("{nome}", getNome())
-					.replace("{prefixo}", getPrefixo()).replace("{website}", getWebsite()).replace("{loja}", getLoja())
-					.replace("{loja}", getLoja())));
+			sidebar.addLine(color(line.replace("{nome}", getNome()).replace("{prefixo}", getPrefixo())
+					.replace("{website}", getWebsite()).replace("{loja}", getLoja()).replace("{loja}", getLoja())));
 		return sidebar;
 	}
 

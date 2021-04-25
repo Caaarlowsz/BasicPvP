@@ -13,13 +13,12 @@ import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.kit.Kit;
 import com.github.caaarlowsz.basicpvp.utils.ServerType;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
-import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class ArcherKit extends Kit {
 
 	public ArcherKit() {
-		super("Archer", 500, Stacks.item(Material.BOW, Strings.getCorPrincipal() + "Kit Archer",
-				"§7Seja um atirador de longa distância,", "§7e mostre um estilo de combate diferente."));
+		super("Archer", 500, Stacks.item(Material.BOW, "§aKit Archer", "§7Seja um atirador de longa distância,",
+				"§7e mostre um estilo de combate diferente."));
 	}
 
 	@Override
@@ -28,13 +27,12 @@ public final class ArcherKit extends Kit {
 		super.giveItems(player);
 
 		ItemStack bow = Stacks.item(Material.BOW, true,
-				Arrays.asList(ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS), Strings.getCorPrincipal() + "Arco",
-				"§7Kit " + this.getName());
+				Arrays.asList(ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS), "§aArco", "§7Kit " + this.getName());
 		bow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 		if (BasicKitPvP.isServerType(ServerType.FULLIRON))
 			bow.addEnchantment(Enchantment.ARROW_DAMAGE, 5);
 		inv.setItem(1, bow);
-		inv.setItem(2, Stacks.item(Material.ARROW, Strings.getCorPrincipal() + "Flecha", "§7Kit " + this.getName()));
+		inv.setItem(2, Stacks.item(Material.ARROW, "§aFlecha", "§7Kit " + this.getName()));
 		player.updateInventory();
 	}
 }

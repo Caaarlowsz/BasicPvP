@@ -20,7 +20,7 @@ import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class WarpsGUI implements Listener {
 
-	public static final ItemStack ICON = Stacks.item(Material.COMPASS, Strings.getCorPrincipal() + "Warps");
+	public static final ItemStack ICON = Stacks.item(Material.COMPASS, "§aWarps");
 
 	@EventHandler
 	private void onPlayerInteract(PlayerInteractEvent event) {
@@ -43,14 +43,13 @@ public final class WarpsGUI implements Listener {
 			Player player = (Player) event.getWhoClicked();
 			event.setCancelled(true);
 
-			if (display.startsWith(Strings.getCorPrincipal() + "Warp ")) {
-				Warp warp = Warps.getByName(display.replace(Strings.getCorPrincipal() + "Warp ", ""));
+			if (display.startsWith("§aWarp ")) {
+				Warp warp = Warps.getByName(display.replace("§aWarp ", ""));
 				if (warp != null) {
 					WarpAPI.setWarp(player, warp);
 					player.sendMessage(
 							Strings.getPrefixo() + " §aVocê foi teleportado para a Warp " + warp.getName() + ".");
-					player.sendTitle(new Title(Strings.getCorPrincipal() + "Warp " + warp.getName(), "§fTeleportado.",
-							5, 10, 5));
+					player.sendTitle(new Title("§aWarp " + warp.getName(), "§fTeleportado.", 5, 10, 5));
 					player.closeInventory();
 				}
 			}

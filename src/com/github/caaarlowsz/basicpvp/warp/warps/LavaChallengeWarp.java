@@ -23,7 +23,7 @@ import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 public final class LavaChallengeWarp extends Warp implements Listener {
 
 	public LavaChallengeWarp() {
-		super("Lava Challenge", Stacks.item(Material.LAVA_BUCKET, Strings.getCorPrincipal() + "Warp Lava Challenge",
+		super("Lava Challenge", Stacks.item(Material.LAVA_BUCKET, "§aWarp Lava Challenge",
 				"§7Treine seu refil e seu recraft", "§7enquanto completa desafios."));
 	}
 
@@ -47,25 +47,25 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 	@EventHandler
 	private void onSignChange(SignChangeEvent event) {
 		if (event.getLine(0).equalsIgnoreCase("Facil")) {
-			event.setLine(0, Strings.getCorPrincipal() + "§lDESAFIO:");
+			event.setLine(0, "§a§lDESAFIO:");
 			event.setLine(1, "§aFácil");
 			event.setLine(2, "§7(Clique)");
-			event.setLine(3, Strings.getCorPrincipal() + "§lCOMPLETO!");
+			event.setLine(3, "§a§lCOMPLETO!");
 		} else if (event.getLine(0).equalsIgnoreCase("Medio")) {
-			event.setLine(0, Strings.getCorPrincipal() + "§lDESAFIO:");
+			event.setLine(0, "§a§lDESAFIO:");
 			event.setLine(1, "§eMédio");
 			event.setLine(2, "§7(Clique)");
-			event.setLine(3, Strings.getCorPrincipal() + "§lCOMPLETO!");
+			event.setLine(3, "§a§lCOMPLETO!");
 		} else if (event.getLine(0).equalsIgnoreCase("Dificil")) {
-			event.setLine(0, Strings.getCorPrincipal() + "§lDESAFIO:");
+			event.setLine(0, "§a§lDESAFIO:");
 			event.setLine(1, "§cDifícil");
 			event.setLine(2, "§7(Clique)");
-			event.setLine(3, Strings.getCorPrincipal() + "§lCOMPLETO!");
+			event.setLine(3, "§a§lCOMPLETO!");
 		} else if (event.getLine(0).equalsIgnoreCase("Extremo")) {
-			event.setLine(0, Strings.getCorPrincipal() + "§lDESAFIO:");
+			event.setLine(0, "§a§lDESAFIO:");
 			event.setLine(1, "§8Extremo");
 			event.setLine(2, "§7(Clique)");
-			event.setLine(3, Strings.getCorPrincipal() + "§lCOMPLETO!");
+			event.setLine(3, "§a§lCOMPLETO!");
 		}
 	}
 
@@ -77,8 +77,8 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 				&& event.getAction().name().contains("RIGHT")) {
 			Sign sign = (Sign) event.getClickedBlock().getState();
 
-			if (sign.getLine(0).equals(Strings.getCorPrincipal() + "§lDESAFIO:") && sign.getLine(2).equals("§7(Clique)")
-					&& sign.getLine(3).equals(Strings.getCorPrincipal() + "§lCOMPLETO!")) {
+			if (sign.getLine(0).equals("§a§lDESAFIO:") && sign.getLine(2).equals("§7(Clique)")
+					&& sign.getLine(3).equals("§a§lCOMPLETO!")) {
 				if (sign.getLine(1).equals("§aFácil")) {
 					WarpAPI.setWarp(player, this);
 

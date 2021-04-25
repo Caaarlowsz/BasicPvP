@@ -19,8 +19,8 @@ import com.github.caaarlowsz.basicpvp.warp.Warp;
 public final class FPSWarp extends Warp {
 
 	public FPSWarp() {
-		super("FPS", Stacks.item(Material.GLASS, Strings.getCorPrincipal() + "Warp FPS",
-				"§7Jogue em um local mais limpo", "§7e leve para otimizar seus FPS."));
+		super("FPS", Stacks.item(Material.GLASS, "§aWarp FPS", "§7Jogue em um local mais limpo",
+				"§7e leve para otimizar seus FPS."));
 	}
 
 	@Override

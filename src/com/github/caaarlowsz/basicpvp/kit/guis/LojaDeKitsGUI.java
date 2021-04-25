@@ -35,13 +35,12 @@ public class LojaDeKitsGUI implements Listener {
 
 			if (display.equals("§7Voltar"))
 				MenuGUI.openGUI(player);
-			else if (display.startsWith(Strings.getCorPrincipal() + "Kit ")) {
-				Kit kit = Kits.getByName(display.replace(Strings.getCorPrincipal() + "Kit ", ""));
+			else if (display.startsWith("§aKit ")) {
+				Kit kit = Kits.getByName(display.replace("§aKit ", ""));
 				if (kit != null) {
 					KitAPI.setKit(player, kit);
 					player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
-					player.sendTitle(
-							new Title(Strings.getCorPrincipal() + "Kit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
+					player.sendTitle(new Title("§aKit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
 					player.closeInventory();
 				}
 			}

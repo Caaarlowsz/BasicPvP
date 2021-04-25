@@ -23,7 +23,7 @@ import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class SeusKitsGUI implements Listener {
 
-	public static final ItemStack ICON = Stacks.item(Material.CHEST, Strings.getCorPrincipal() + "Seus Kits");
+	public static final ItemStack ICON = Stacks.item(Material.CHEST, "§aSeus Kits");
 
 	@EventHandler
 	private void onPlayerInteract(PlayerInteractEvent event) {
@@ -46,13 +46,12 @@ public final class SeusKitsGUI implements Listener {
 			Player player = (Player) event.getWhoClicked();
 			event.setCancelled(true);
 
-			if (display.startsWith(Strings.getCorPrincipal() + "Kit ")) {
-				Kit kit = Kits.getByName(display.replace(Strings.getCorPrincipal() + "Kit ", ""));
+			if (display.startsWith("§aKit ")) {
+				Kit kit = Kits.getByName(display.replace("§aKit ", ""));
 				if (kit != null) {
 					KitAPI.setKit(player, kit);
 					player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
-					player.sendTitle(
-							new Title(Strings.getCorPrincipal() + "Kit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
+					player.sendTitle(new Title("§aKit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
 					player.closeInventory();
 				}
 			}

@@ -49,6 +49,7 @@ sidebar:
     - ' Jogadores: &7{server_players}/{server_slots}'
     - ' '
     - '&e{website}'
+# TIPOS DE KIT: SIMULATOR, FULLIRON, PRESET01
 # MODELO DO ITEM:
 # material: TYPE,AMOUNT,DURABILITY
 itens:
@@ -75,6 +76,9 @@ itens:
       material: 'COMPASS'
       display: '&aWarps'
       slot: 5
+  arena: SIMULATOR
+  fps: PRESET01
+  1v1: FULLIRON
 inventarios:
   menu-geral:
     perfil:

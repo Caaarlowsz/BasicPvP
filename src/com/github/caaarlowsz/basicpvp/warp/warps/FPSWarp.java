@@ -1,7 +1,5 @@
 package com.github.caaarlowsz.basicpvp.warp.warps;
 
-import java.util.Arrays;
-
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -11,7 +9,6 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
-import com.github.caaarlowsz.basicpvp.utils.ServerType;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
@@ -28,22 +25,8 @@ public final class FPSWarp extends Warp {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		ItemStack sword = Stacks.item(Material.STONE_SWORD, true,
-				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getEspada());
-		if (BasicKitPvP.isServerType(ServerType.FULLIRON)) {
-			inv.setHelmet(Stacks.item(Material.IRON_HELMET, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
-					Strings.getCapacete()));
-			inv.setChestplate(Stacks.item(Material.IRON_CHESTPLATE, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
-					Strings.getPeitoral()));
-			inv.setLeggings(Stacks.item(Material.IRON_LEGGINGS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
-					Strings.getCalca()));
-			inv.setBoots(Stacks.item(Material.IRON_BOOTS, true, Arrays.asList(ItemFlag.HIDE_UNBREAKABLE),
-					Strings.getBotas()));
-
-			sword = Stacks.item(Material.DIAMOND_SWORD, true,
-					Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getEspada());
-		}
-
+		BasicKitPvP.getKitType("itens.fps").applyKit(player);
+		ItemStack sword = inv.getItem(0);
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 		ItemMeta mSword = sword.getItemMeta();
 		mSword.addItemFlags(ItemFlag.HIDE_ENCHANTS);

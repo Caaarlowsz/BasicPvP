@@ -49,8 +49,8 @@ public final class SidebarAPI {
 			String prefix = "", line = entry.getValue();
 
 			List<String> suffixes = Arrays.asList("{player_group}", "{player_coins}", "{player_killstreak}",
-					"{player_kills}", "{player_deaths}", "{player_rank}", "{player_rank_icon} {player_rank}",
-					"{player_rank} {player_rank_icon}", "{player_kit}", "{player_warp}",
+					"{player_kills}", "{player_deaths}", "{player_rank_icon} {player_rank}",
+					"{player_rank} {player_rank_icon}", "{player_rank}", "{player_kit}", "{player_warp}",
 					"{server_players}/{server_slots}", "{server_players}", "{server_slots}");
 			for (String suffix : suffixes)
 				if (line.contains(suffix))

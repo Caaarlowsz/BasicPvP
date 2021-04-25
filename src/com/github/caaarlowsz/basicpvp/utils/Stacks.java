@@ -143,10 +143,16 @@ public final class Stacks {
 		FileConfiguration config = BasicKitPvP.getInstance().getConfig();
 		String material = config.getString(path + ".material");
 		String display = ChatColor.translateAlternateColorCodes('&', config.getString(path + ".display"))
-				.replace("{nome}", Strings.getNome());
-		List<String> lore = null;
+				.replace("{nome}", Strings.getNome()).replace("{prefixo}", Strings.getPrefixo())
+				.replace("{website}", Strings.getWebsite()).replace("{loja}", Strings.getLoja())
+				.replace("{discord}", Strings.getDiscord()).replace("{nome}", Strings.getNome());
+		ArrayList<String> lore = new ArrayList<>();
 		if (config.contains(path + ".lore"))
-			lore = config.getStringList(path + ".lore");
+			config.getStringList(path + ".lore")
+					.forEach(line -> lore.add(ChatColor.translateAlternateColorCodes('&', line)
+							.replace("{nome}", Strings.getNome()).replace("{prefixo}", Strings.getPrefixo())
+							.replace("{website}", Strings.getWebsite()).replace("{loja}", Strings.getLoja())
+							.replace("{discord}", Strings.getDiscord()).replace("{nome}", Strings.getNome())));
 
 		Material type = Material.STONE;
 		int amount = 1, durability = 0;
@@ -159,7 +165,7 @@ public final class Stacks {
 			durability = Integer.valueOf(split[2]);
 
 		ItemStack item = Stacks.item(type, amount, durability, display);
-		if (lore != null) {
+		if (lore.size() > 0) {
 			ItemMeta mItem = item.getItemMeta();
 			mItem.setLore(lore);
 			item.setItemMeta(mItem);

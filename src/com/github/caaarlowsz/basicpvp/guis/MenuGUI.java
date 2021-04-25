@@ -11,10 +11,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.github.caaarlowsz.basicpvp.account.StatusAPI;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
-import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
 public final class MenuGUI implements Listener {
@@ -60,28 +58,17 @@ public final class MenuGUI implements Listener {
 		for (int i = 17; i < 27; i++)
 			inv.setItem(i, glass);
 
-		inv.setItem(10,
-				Stacks.skull(1, player.getName(), "§aSeu Perfil", " ",
-						"  §fCargo: " + TagAPI.getMaxTag(player).getColoredName() + "   ",
-						"  §fMoedas: §6" + StatusAPI.getMoedas(player) + "   ", " ",
-						"  §fRank: " + StatusAPI.getRank(player).getColoredSymbolName() + "   ",
-						"  §fXP: §b" + StatusAPI.getXP(player) + "   ", " ",
-						" §fKillStreak: §7" + StatusAPI.getKillStreak(player) + "   ",
-						" §fAbates: §7" + StatusAPI.getAbates(player) + "   ",
-						" §fMortes: §7" + StatusAPI.getMortes(player) + "   ", " "));
+		inv.setItem(Stacks.getSlotConfigItem("inventarios.menu-geral.perfil"),
+				Stacks.getConfigItem("inventarios.menu-geral.perfil"));
 
-		inv.setItem(12, Stacks.item(Material.EMERALD, "§aLoja de Kits", "§7Compre Kits usando as moedas",
-				"§7que adquiriu jogando."));
+		inv.setItem(Stacks.getSlotConfigItem("inventarios.menu-geral.loja-de-kits"),
+				Stacks.getConfigItem("inventarios.menu-geral.loja-de-kits"));
 
-		inv.setItem(14, Stacks.item(Material.LEATHER_HELMET, "§aCabeças", "§7Escolha um bloco e deixe",
-				"§7sua cabeça customizada."));
+		inv.setItem(Stacks.getSlotConfigItem("inventarios.menu-geral.cabecas"),
+				Stacks.getConfigItem("inventarios.menu-geral.cabecas"));
 
-		inv.setItem(16,
-				Stacks.item(Material.BOOK, "§aRequisitos para §bYouTuber" + "§a:", " ", " §7Requisitos do canal:",
-						"  §7Mínimo de §f1.000 inscritos§7.", "  §7Necessário ser um §fcanal ativo§7.",
-						"  §7Gravar um §fvídeo no servidor§7.", " §7Requisitos do vídeo:",
-						"  §7Mínimo de §f300 visualizações§7.", "  §7Mínimo de §f50 gostei§7.",
-						"  §fIP do servidor na descrição§7."));
+		inv.setItem(Stacks.getSlotConfigItem("inventarios.menu-geral.requisitos-youtuber"),
+				Stacks.getConfigItem("inventarios.menu-geral.requisitos-youtuber"));
 
 		inv.remove(glass);
 		player.openInventory(inv);

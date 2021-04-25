@@ -92,8 +92,8 @@ public final class Strings {
 
 	private static Sidebar getSidebar(String name) {
 		Sidebar sidebar = new Sidebar(color(config.getString("sidebar." + name + ".titulo", "{nome}"))
-				.replace("{nome}", getNome()).replace("{prefixo}", getPrefixo().replace("{website}",
-						getWebsite().replace("{loja}", getLoja()).replace("{discord}", getDiscord()))));
+				.replace("{nome}", getNome()).replace("{prefixo}", getPrefixo()).replace("{website}", getWebsite())
+				.replace("{loja}", getLoja()).replace("{discord}", getDiscord()));
 		List<String> lines = Arrays.asList(" ", " Cargo: {player_group}", " Moedas: &6{player_coins}", " ",
 				" KillStreak: &7{player_killstreak}", " Abates: &7{player_kills}", " Mortes: &7{player_deaths}", " ",
 				" Rank: {player_rank}", " Jogadores: &7{server_players}/{server_slots}", "&e{website}");

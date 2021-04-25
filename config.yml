@@ -9,38 +9,11 @@ informacoes:
   discord: '{website}/discord'
 aplicacoes:
   trialmod: '{website}/trialmod'
+permissoes:
 mensagens:
   cor-principal: '&a'
   motd: '{prefixo} &aEstamos esperando por você!'
   whitelist-motd: '{prefixo} &cServidor em manutenção.'
-permissoes:
-# MODELO DO ITEM:
-# material: TYPE,AMOUNT,DURABILITY
-
-itens:
-  geral:
-    capacete: '&aCapacete'
-    peitoral: '&aPeitoral'
-    calca: '&aCalça'
-    botas: '&aBotas'
-    espada: '&aEspada'
-    bussola: '&aBússola'
-    pote: '&aPote'
-    cogumelo-vermelho: '&aCogumelo'
-    cogumelo-marrom: '&aCogumelo'
-  spawn:
-    kits:
-      material: CHEST
-      display: '&aSeus Kits'
-      slot: 3
-    menu:
-      material: NETHER_STAR
-      display: '&aMenu'
-      slot: 4
-    warps:
-      material: COMPASS
-      display: '&aWarps'
-      slot: 5
 sidebar:
   kits:
     titulo: '{nome}'
@@ -76,3 +49,75 @@ sidebar:
     - ' Jogadores: &7{server_players}/{server_slots}'
     - ' '
     - '&e{website}'
+# MODELO DO ITEM:
+# material: TYPE,AMOUNT,DURABILITY
+itens:
+  geral:
+    capacete: '&aCapacete'
+    peitoral: '&aPeitoral'
+    calca: '&aCalça'
+    botas: '&aBotas'
+    espada: '&aEspada'
+    bussola: '&aBússola'
+    pote: '&aPote'
+    cogumelo-vermelho: '&aCogumelo'
+    cogumelo-marrom: '&aCogumelo'
+  spawn:
+    kits:
+      material: 'CHEST'
+      display: '&aSeus Kits'
+      slot: 3
+    menu:
+      material: 'NETHER_STAR'
+      display: '&aMenu'
+      slot: 4
+    warps:
+      material: 'COMPASS'
+      display: '&aWarps'
+      slot: 5
+inventarios:
+  menu-geral:
+    perfil:
+      material: 'SKULL_ITEM'
+      display: '&aSeu Perfil'
+      lore:
+      - ' '
+      - ' &fCargo: {player_group}'
+      - ' &fMoedas: &6{player_coins}'
+      - ' '
+      - ' &fRank: {player_rank_icon} {player_rank}'
+      - ' &fXP: &b{player_xp}'
+      - ' '
+      - ' &fKillStreak: &7{player_killstreak}'
+      - ' &fAbates: &7{player_kills}'
+      - ' &fMortes: &7{player_deaths}'
+      - ' '
+      slot: 11
+    loja-de-kits:
+      material: 'EMERALD'
+      display: '&aLoja de Kits'
+      lore:
+      - '&7Compre Kits usando as moedas'
+      - '&7que adiquiriu jogando.'
+      slot: 13
+    cabecas:
+      material: 'LEATHER_HELMET'
+      display: '&aCabeças'
+      lore:
+      - '&7Escolha um bloco e deixe'
+      - '&7sua cabeça customizada.'
+      slot: 15
+    requisitos-youtuber:
+      material: 'BOOK'
+      display: '&aRequisitos para &bYouTuber&a:'
+      lore:
+      - ' '
+      - ' &7Requisitos para canal:'
+      - '  &7Mínimo de &f1.000 inscritos&7.'
+      - '  &7Necessário ser um &fcanal ativo&7.'
+      - '  &7Gravar um &fvídeo no servidor&7.'
+      - ' &7Requisitos do vídeo:'
+      - '  &7Mínimo de &f300 visualizações&7.'
+      - '  &7Mínimo de &f50 gostei&7.'
+      - '  &fIP do servidor na descrição.'
+      slot: 17

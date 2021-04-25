@@ -3,17 +3,11 @@ package com.github.caaarlowsz.basicpvp.account;
 import org.bukkit.ChatColor;
 
 public enum Rank {
-	LEGENDARY(ChatColor.DARK_RED, '✪', 3000),
-	SAPPHIRE(ChatColor.DARK_AQUA, '✵', 2700),
-	RUBY(ChatColor.RED, '✸', 2400),
-	EMERALD(ChatColor.DARK_GREEN, '✶', 2100),
-	DIAMOND(ChatColor.AQUA, '❋', 1600),
-	GOLD(ChatColor.GOLD, '✦', 1500),
-	SILVER(ChatColor.GRAY, '✷', 1200),
-	EXPERT(ChatColor.DARK_BLUE, '✥', 900),
-	ADVANCED(ChatColor.YELLOW, '☲', 600),
-	PRIMARY(ChatColor.GREEN, '═', 300),
-	UNRANKED(ChatColor.WHITE, '-', 0);
+	LEGENDARY(ChatColor.DARK_RED, '✪', 3000), SAPPHIRE(ChatColor.DARK_AQUA, '✵', 2700), RUBY(ChatColor.RED, '✸',
+			2400), EMERALD(ChatColor.DARK_GREEN, '✶', 2100), DIAMOND(ChatColor.AQUA, '❋', 1600), GOLD(ChatColor.GOLD,
+					'✦', 1500), SILVER(ChatColor.GRAY, '✷', 1200), EXPERT(ChatColor.DARK_BLUE, '✥', 900), ADVANCED(
+							ChatColor.YELLOW, '☲',
+							600), PRIMARY(ChatColor.GREEN, '═', 300), UNRANKED(ChatColor.WHITE, '-', 0);
 
 	private final ChatColor color;
 	private final char symbol;
@@ -44,13 +38,17 @@ public enum Rank {
 	public String getColoredName() {
 		return this.getColor() + this.getName();
 	}
-	
+
 	public String getColoredSymbol() {
 		return this.getColor() + String.valueOf(this.getSymbol());
 	}
 
 	public String getColoredSymbolName() {
 		return this.getColor() + String.valueOf(this.getSymbol()) + " " + this.getName();
+	}
+
+	public String getColoredNameSymbol() {
+		return this.getColor() + this.getName() + " " + String.valueOf(this.getSymbol());
 	}
 
 	public static Rank getRankByXP(int xp) {

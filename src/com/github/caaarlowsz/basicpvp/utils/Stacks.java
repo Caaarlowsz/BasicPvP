@@ -4,15 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.account.StatusAPI;
+import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.tag.TagAPI;
+import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 
 public final class Stacks {
 
@@ -171,6 +177,52 @@ public final class Stacks {
 			item.setItemMeta(mItem);
 		}
 
+		return item;
+	}
+
+	public static ItemStack applyPlayerPH(Player player, ItemStack itemStack) {
+		ItemStack item = Stacks.item(itemStack.getType(), itemStack.getAmount(), itemStack.getDurability());
+		ItemMeta mItemStack = itemStack.getItemMeta(), mItem = item.getItemMeta();
+		if (mItemStack.hasDisplayName())
+			mItem.setDisplayName(mItemStack.getDisplayName()
+					.replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
+					.replace("{player_coins}", StatusAPI.getMoedas(player))
+					.replace("{player_xp}", StatusAPI.getXP(player))
+					.replace("{player_killstreak}", StatusAPI.getKillStreak(player))
+					.replace("{player_kills}", StatusAPI.getAbates(player))
+					.replace("{player_deaths}", StatusAPI.getMortes(player))
+					.replace("{player_rank_icon} {player_rank}", StatusAPI.getRank(player).getColoredSymbolName())
+					.replace("{player_rank} {player_rank_icon}", StatusAPI.getRank(player).getColoredNameSymbol())
+					.replace("{player_rank}", StatusAPI.getRank(player).getColoredName())
+					.replace("{player_kit}", KitAPI.getKit(player).getName())
+					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
+					.replace("{server_players}/{server_slots}",
+							Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers())
+					.replace("{server_players}", "" + Bukkit.getOnlinePlayers().size())
+					.replace("{server_slots}", "" + Bukkit.getMaxPlayers()));
+		if (mItemStack.hasLore()) {
+			ArrayList<String> lore = new ArrayList<>();
+			mItemStack.getLore().forEach(line -> lore.add(line
+					.replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
+					.replace("{player_coins}", StatusAPI.getMoedas(player))
+					.replace("{player_xp}", StatusAPI.getXP(player))
+					.replace("{player_killstreak}", StatusAPI.getKillStreak(player))
+					.replace("{player_kills}", StatusAPI.getAbates(player))
+					.replace("{player_deaths}", StatusAPI.getMortes(player))
+					.replace("{player_rank_icon} {player_rank}", StatusAPI.getRank(player).getColoredSymbolName())
+					.replace("{player_rank} {player_rank_icon}", StatusAPI.getRank(player).getColoredNameSymbol())
+					.replace("{player_rank}", StatusAPI.getRank(player).getColoredName())
+					.replace("{player_kit}", KitAPI.getKit(player).getName())
+					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
+					.replace("{server_players}/{server_slots}",
+							Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers())
+					.replace("{server_players}", "" + Bukkit.getOnlinePlayers().size())
+					.replace("{server_slots}", "" + Bukkit.getMaxPlayers())));
+			mItem.setLore(lore);
+		}
+		if (mItemStack instanceof SkullMeta)
+			((SkullMeta) mItem).setOwner(player.getName());
+		item.setItemMeta(mItem);
 		return item;
 	}
 }

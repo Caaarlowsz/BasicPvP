@@ -48,8 +48,8 @@ public final class SidebarAPI {
 		for (Entry<Integer, String> entry : sidebar.getLines().entrySet()) {
 			String prefix = "", line = entry.getValue();
 
-			List<String> suffixes = Arrays.asList("{player_group}", "{player_coins}", "{player_killstreak}",
-					"{player_kills}", "{player_deaths}", "{player_rank_icon} {player_rank}",
+			List<String> suffixes = Arrays.asList("{player_group}", "{player_coins}", "{player_xp}",
+					"{player_killstreak}", "{player_kills}", "{player_deaths}", "{player_rank_icon} {player_rank}",
 					"{player_rank} {player_rank_icon}", "{player_rank}", "{player_kit}", "{player_warp}",
 					"{server_players}/{server_slots}", "{server_players}", "{server_slots}");
 			for (String suffix : suffixes)
@@ -88,6 +88,8 @@ public final class SidebarAPI {
 								team.setSuffix(TagAPI.getMaxTag(player).getColoredName());
 							if (map.getKey().equals("{player_coins}"))
 								team.setSuffix(StatusAPI.getMoedas(player));
+							if (map.getKey().equals("{player_xp}"))
+								team.setSuffix(StatusAPI.getXP(player));
 							if (map.getKey().equals("{player_killstreak}"))
 								team.setSuffix(StatusAPI.getKillStreak(player));
 							if (map.getKey().equals("{player_kills}"))

@@ -58,7 +58,7 @@ public final class MenuGUI implements Listener {
 			inv.setItem(i, glass);
 
 		inv.setItem(Stacks.getSlotConfigItem("inventarios.menu-geral.perfil"),
-				Stacks.getConfigItem("inventarios.menu-geral.perfil"));
+				Stacks.applyPlayerPH(player, Stacks.getConfigItem("inventarios.menu-geral.perfil")));
 
 		inv.setItem(Stacks.getSlotConfigItem("inventarios.menu-geral.loja-de-kits"),
 				Stacks.getConfigItem("inventarios.menu-geral.loja-de-kits"));

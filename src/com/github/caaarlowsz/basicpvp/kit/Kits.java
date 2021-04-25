@@ -17,7 +17,7 @@ import com.github.caaarlowsz.basicpvp.utils.Strings;
 public final class Kits {
 
 	private static final ArrayList<Kit> kits = new ArrayList<>();
-	private static final Kit NONE_KIT = new Kit("Nenhum",
+	private static final Kit NONE_KIT = new Kit("Nenhum", 0,
 			Stacks.item(Material.STAINED_GLASS_PANE, Strings.getCorPrincipal() + "Kit Nenhum", "§7Sem descrição.")),
 			DEFAULT_KIT = new PvPKit();
 

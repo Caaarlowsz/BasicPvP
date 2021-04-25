@@ -17,15 +17,21 @@ import com.github.caaarlowsz.basicpvp.utils.Strings;
 public class Kit {
 
 	private final String name;
+	private final int price;
 	private final ItemStack icon;
 
-	public Kit(String name, ItemStack icon) {
+	public Kit(String name, int price, ItemStack icon) {
 		this.name = name;
+		this.price = price;
 		this.icon = icon;
 	}
 
 	public String getName() {
 		return this.name;
+	}
+
+	public int getPrice() {
+		return this.price;
 	}
 
 	public ItemStack getIcon() {

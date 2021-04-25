@@ -18,7 +18,7 @@ import com.github.caaarlowsz.basicpvp.utils.Strings;
 public final class ArcherKit extends Kit {
 
 	public ArcherKit() {
-		super("Archer", Stacks.item(Material.BOW, Strings.getCorPrincipal() + "Kit Archer",
+		super("Archer", 500, Stacks.item(Material.BOW, Strings.getCorPrincipal() + "Kit Archer",
 				"§7Seja um atirador de longa distância,", "§7e mostre um estilo de combate diferente."));
 	}
 

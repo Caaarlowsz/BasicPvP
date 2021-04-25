@@ -19,7 +19,7 @@ import com.github.caaarlowsz.basicpvp.utils.Strings;
 public final class PvPKit extends Kit {
 
 	public PvPKit() {
-		super("PvP",
+		super("PvP", 0,
 				Stacks.item(
 						BasicKitPvP.isServerType(ServerType.FULLIRON) ? Material.DIAMOND_SWORD : Material.STONE_SWORD,
 						Arrays.asList(ItemFlag.HIDE_ATTRIBUTES), Strings.getCorPrincipal() + "Kit PvP",

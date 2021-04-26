@@ -42,20 +42,16 @@ public final class SeusKitsGUI implements Listener {
 	@EventHandler
 	private void onInventoryClick(InventoryClickEvent event) {
 		if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("Seus Kits")
-				&& event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()
-				&& event.getCurrentItem().getItemMeta().hasDisplayName()) {
-			String display = event.getCurrentItem().getItemMeta().getDisplayName();
+				&& event.getCurrentItem() != null) {
 			Player player = (Player) event.getWhoClicked();
 			event.setCancelled(true);
 
-			if (display.startsWith("§aKit ")) {
-				Kit kit = Kits.getByName(display.replace("§aKit ", ""));
-				if (kit != null) {
-					KitAPI.setKit(player, kit);
-					player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
-					player.sendTitle(new Title("§aKit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
-					player.closeInventory();
-				}
+			Kit kit = Kits.getByIcon(event.getCurrentItem());
+			if (kit != null) {
+				KitAPI.setKit(player, kit);
+				player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
+				player.sendTitle(new Title("§aKit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
+				player.closeInventory();
 			}
 		}
 	}

@@ -10,8 +10,7 @@ import com.github.caaarlowsz.basicpvp.warp.Warp;
 public final class UMvUMWarp extends Warp {
 
 	public UMvUMWarp() {
-		super("1v1",
-				Stacks.item(Material.BLAZE_ROD, "§aWarp 1v1", "§7Tenha duelos solo", "§7contra outros jogadores."));
+		super("1v1");
 	}
 
 	@Override

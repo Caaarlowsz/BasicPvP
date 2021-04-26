@@ -5,10 +5,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import com.github.caaarlowsz.basicpvp.utils.Stacks;
+
 public class Warp {
 
 	private final String name;
 	private final ItemStack icon;
+
+	public Warp(String name) {
+		this(name, Stacks.getConfigItem("icones.warps." + name.toLowerCase().replace(" ", "-")));
+	}
 
 	public Warp(String name, ItemStack icon) {
 		this.name = name;

@@ -16,6 +16,14 @@ public class Kit {
 	private final int price;
 	private final ItemStack icon;
 
+	public Kit(String name) {
+		this(name, BasicKitPvP.getInstance().getConfig().getInt("icones.kits." + name.toLowerCase() + ".preco"));
+	}
+
+	public Kit(String name, int price) {
+		this(name, price, Stacks.getConfigItem("icones.kits." + name.toLowerCase()));
+	}
+
 	public Kit(String name, int price, ItemStack icon) {
 		this.name = name;
 		this.price = price;

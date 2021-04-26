@@ -6,7 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.caaarlowsz.basicpvp.account.StatusFile;
-import com.github.caaarlowsz.basicpvp.cabeca.CabecasGUI;
+import com.github.caaarlowsz.basicpvp.cabeca.Cabecas;
 import com.github.caaarlowsz.basicpvp.commands.AdminCommand;
 import com.github.caaarlowsz.basicpvp.commands.ApplyCommand;
 import com.github.caaarlowsz.basicpvp.commands.BroadcastCommand;
@@ -60,7 +60,6 @@ public final class BasicKitPvP extends JavaPlugin {
 		StatusFile.createNewFile(this.getDataFolder().getPath());
 
 		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new CabecasGUI(), this);
 		pm.registerEvents(new MenuGUI(), this);
 
 		pm.registerEvents(new AdminListeners(), this);
@@ -88,6 +87,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.getCommand("tell").setExecutor(new TellCommand());
 
 		new Tags(this);
+		new Cabecas(this);
 		new Kits(this);
 		new Warps(this);
 

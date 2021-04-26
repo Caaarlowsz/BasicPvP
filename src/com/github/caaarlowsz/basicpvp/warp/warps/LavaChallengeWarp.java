@@ -1,10 +1,14 @@
 package com.github.caaarlowsz.basicpvp.warp.warps;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +18,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.PlayerInventory;
 import org.github.paperspigot.Title;
 
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
@@ -23,8 +28,7 @@ import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 public final class LavaChallengeWarp extends Warp implements Listener {
 
 	public LavaChallengeWarp() {
-		super("Lava Challenge", Stacks.item(Material.LAVA_BUCKET, "§aWarp Lava Challenge",
-				"§7Treine seu refil e seu recraft", "§7enquanto completa desafios."));
+		super("Lava Challenge");
 	}
 
 	@Override
@@ -44,28 +48,39 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 		player.updateInventory();
 	}
 
+	private List<String> getSignChallenge(String level) {
+		FileConfiguration config = BasicKitPvP.getInstance().getConfig();
+		ArrayList<String> lines = new ArrayList<>();
+		config.getStringList("placas.desafios." + level)
+				.forEach(line -> lines.add(ChatColor.translateAlternateColorCodes('&', line)
+						.replace("{nome}", Strings.getNome()).replace("{prefixo}", Strings.getPrefixo())
+						.replace("{website}", Strings.getWebsite()).replace("{loja}", Strings.getLoja())
+						.replace("{discord}", Strings.getDiscord()).replace("{nome}", Strings.getNome())));
+		return lines;
+	}
+
 	@EventHandler
 	private void onSignChange(SignChangeEvent event) {
 		if (event.getLine(0).equalsIgnoreCase("Facil")) {
-			event.setLine(0, "§a§lDESAFIO:");
-			event.setLine(1, "§aFácil");
-			event.setLine(2, "§7(Clique)");
-			event.setLine(3, "§a§lCOMPLETO!");
+			List<String> lines = getSignChallenge("facil");
+			for (int index = 0; index < 4; index++)
+				if (lines.size() > index - 1)
+					event.setLine(index, lines.get(index));
 		} else if (event.getLine(0).equalsIgnoreCase("Medio")) {
-			event.setLine(0, "§a§lDESAFIO:");
-			event.setLine(1, "§eMédio");
-			event.setLine(2, "§7(Clique)");
-			event.setLine(3, "§a§lCOMPLETO!");
+			List<String> lines = getSignChallenge("medio");
+			for (int index = 0; index < 4; index++)
+				if (lines.size() > index - 1)
+					event.setLine(index, lines.get(index));
 		} else if (event.getLine(0).equalsIgnoreCase("Dificil")) {
-			event.setLine(0, "§a§lDESAFIO:");
-			event.setLine(1, "§cDifícil");
-			event.setLine(2, "§7(Clique)");
-			event.setLine(3, "§a§lCOMPLETO!");
+			List<String> lines = getSignChallenge("dificil");
+			for (int index = 0; index < 4; index++)
+				if (lines.size() > index - 1)
+					event.setLine(index, lines.get(index));
 		} else if (event.getLine(0).equalsIgnoreCase("Extremo")) {
-			event.setLine(0, "§a§lDESAFIO:");
-			event.setLine(1, "§8Extremo");
-			event.setLine(2, "§7(Clique)");
-			event.setLine(3, "§a§lCOMPLETO!");
+			List<String> lines = getSignChallenge("extremo");
+			for (int index = 0; index < 4; index++)
+				if (lines.size() > index - 1)
+					event.setLine(index, lines.get(index));
 		}
 	}
 

@@ -67,18 +67,98 @@ itens:
     kits:
       material: 'CHEST'
       display: '&aSeus Kits'
-      slot: 3
+      slot: 4
     menu:
       material: 'NETHER_STAR'
       display: '&aMenu'
-      slot: 4
+      slot: 5
     warps:
       material: 'COMPASS'
       display: '&aWarps'
-      slot: 5
+      slot: 6
   arena: SIMULATOR
   fps: PRESET01
   1v1: FULLIRON
+icones:
+  kits:
+    pvp:
+      material: 'STONE_SWORD'
+      display: '&aKit PvP'
+      lore:
+      - '&7Mostre a verdadeira força da'
+      - '&7sua Espada com Afiação I.'
+      flags:
+        hide-attributes: true
+    archer:
+      preco: 375
+      material: 'BOW'
+      display: '&aKit Archer'
+      lore:
+      - '&7Seja um atirador de longa distância,'
+      - '&7e mostre um estilo de combate diferente.'
+  warps:
+    1v1:
+      material: 'BLAZE_ROD'
+      display: '&aWarp 1v1'
+      lore:
+      - '&7Tenha duelos solo contra'
+      - '&7outros jogadores.'
+    fps:
+      material: 'GLASS'
+      display: '&aWarp FPS'
+      lore:
+      - '&7Jogue em um local mais limpo'
+      - '&7e leve para otimizar seus FPS.'
+    lava-challenge:
+      material: 'LAVA_BUCKET'
+      display: '&aWarp Lava Challenge'
+      lore:
+      - '&7Treine seu refil e seu recraft'
+      - '&7enquanto completa desafios.'
+  cabecas:
+    bancada-de-trabalho:
+      material: 'WORKBENCH'
+      display: '&aBancada de Trabalho'
+      lore:
+      - '&7É usada para se fabricar itens,'
+      - '&7responsável por ser a base'
+      - '&7da evolução dos materiais.'
+    vidro:
+      material: 'GLASS'
+      display: '&aVidro'
+      lore:
+      - '&7Utilizado em decorações para'
+      - '&7se ver através de paredes e muros.'
+    estante:
+      material: 'BOOKSHELF'
+      display: '&aEstante'
+      lore:
+      - '&7Utilizada para fazer'
+      - '&7livrarias e bibliotecas.'
+    dinamite:
+      material: 'TNT'
+      display: '&aDinamite'
+      lore:
+      - '&7Utilizada em mineração'
+      - '&7e em trollagens.'
+    gerador-de-monstros:
+      material: 'MOB_SPAWNER'
+      display: '&aGerador de Monstros'
+      lore:
+      - '&7Utilizado para fazer farms'
+      - '&7e gerar monstros e animais.'
+    bloco-de-diamante:
+      material: 'DIAMOND_BLOCK'
+      display: '&aBloco de Diamante'
+      lore:
+      - '&7Não possui um uso,'
+      - '&7apenas para ostentação.'
+    lampada-de-redstone:
+      material: 'REDSTONE_LAMP_OFF'
+      display: '&aLâmpada de Redstone'
+      lore:
+      - '&7Utilizada em sistemas para'
+      - '&7identificar atividade.'
 inventarios:
   menu-geral:
     perfil:
@@ -125,3 +205,37 @@ inventarios:
       - '  &7Mínimo de &f50 gostei&7.'
       - '  &fIP do servidor na descrição.'
       slot: 17
+placas:
+  # HORIZONTAL, VERTICAL
+  recraft-align: 'HORIZONTAL'
+  recraft:
+  - ' '
+  - '&a&lRECRAFT'
+  - '&7(Clique)'
+  - ' '
+  sopas:
+  - ' '
+  - '&a&lSOPAS'
+  - '&7(Clique)'
+  - ' '
+  desafios:
+    facil:
+    - '&a&lDESAFIO:'
+    - '&aFácil'
+    - '&a&lCOMPLETO!'
+    - '&7(Clique)'
+    medio:
+    - '&a&lDESAFIO:'
+    - '&eMédio'
+    - '&a&lCOMPLETO!'
+    - '&7(Clique)'
+    dificil:
+    - '&a&lDESAFIO:'
+    - '&cDifícil'
+    - '&a&lCOMPLETO!'
+    - '&7(Clique)'
+    extremo:
+    - '&a&lDESAFIO:'
+    - '&8Extremo'
+    - '&a&lCOMPLETO!'
+    - '&7(Clique)'

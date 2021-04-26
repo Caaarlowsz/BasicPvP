@@ -14,7 +14,7 @@ public final class CabecaAPI {
 	}
 
 	public static Cabeca getCabeca(Player player) {
-		return cabecaMap.getOrDefault(player.getUniqueId(), Cabeca.NENHUMA);
+		return cabecaMap.getOrDefault(player.getUniqueId(), Cabecas.getNoneCabeca());
 	}
 
 	public static void updateCabeca(Player player) {

@@ -41,19 +41,16 @@ public final class WarpsGUI implements Listener {
 		if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("Warps")
 				&& event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()
 				&& event.getCurrentItem().getItemMeta().hasDisplayName()) {
-			String display = event.getCurrentItem().getItemMeta().getDisplayName();
 			Player player = (Player) event.getWhoClicked();
 			event.setCancelled(true);
 
-			if (display.startsWith("§aWarp ")) {
-				Warp warp = Warps.getByName(display.replace("§aWarp ", ""));
-				if (warp != null) {
-					WarpAPI.setWarp(player, warp);
-					player.sendMessage(
-							Strings.getPrefixo() + " §aVocê foi teleportado para a Warp " + warp.getName() + ".");
-					player.sendTitle(new Title("§aWarp " + warp.getName(), "§fTeleportado.", 5, 10, 5));
-					player.closeInventory();
-				}
+			Warp warp = Warps.getByIcon(event.getCurrentItem());
+			if (warp != null) {
+				WarpAPI.setWarp(player, warp);
+				player.sendMessage(
+						Strings.getPrefixo() + " §aVocê foi teleportado para a Warp " + warp.getName() + ".");
+				player.sendTitle(new Title("§aWarp " + warp.getName(), "§fTeleportado.", 5, 10, 5));
+				player.closeInventory();
 			}
 		}
 	}

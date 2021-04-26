@@ -3,7 +3,6 @@ package com.github.caaarlowsz.basicpvp.cabeca;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -48,7 +47,7 @@ public final class CabecasGUI implements Listener {
 					player.closeInventory();
 				} else if (display.startsWith("§a")) {
 					if (player.hasPermission("kitpvp.vip.cabecas")) {
-						CabecaAPI.setCabeca(player, Cabeca.getByName(ChatColor.stripColor(display)));
+						CabecaAPI.setCabeca(player, Cabecas.getByIcon(event.getCurrentItem()));
 						player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Cabeça: " + display);
 						player.sendTitle(new Title(display, "§fCabeça selecionada.", 5, 10, 5));
 					} else
@@ -72,10 +71,7 @@ public final class CabecasGUI implements Listener {
 		if (CabecaAPI.hasCabeca(player))
 			inv.setItem(22, Stacks.item(Material.REDSTONE, "§cRemover cabeça", "§7Remove o cosmético aplicado."));
 
-		for (Cabeca cabeca : Cabeca.values()) {
-			if (cabeca == Cabeca.NENHUMA)
-				continue;
-
+		for (Cabeca cabeca : Cabecas.getCabecas()) {
 			ItemStack icon = cabeca.getIcon().clone();
 			ItemMeta mIcon = icon.getItemMeta();
 			List<String> lore = mIcon.getLore();

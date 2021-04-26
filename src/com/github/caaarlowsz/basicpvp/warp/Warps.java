@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
@@ -37,6 +38,14 @@ public final class Warps {
 
 	public static Warp getByName(String name) {
 		return getWarps().stream().filter(warp -> warp.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+	}
+
+	public static Warp getByIcon(ItemStack icon) {
+		return getWarps().stream()
+				.filter(warp -> warp.getIcon().hasItemMeta() && icon.hasItemMeta()
+						&& warp.getIcon().getItemMeta().hasDisplayName() && icon.getItemMeta().hasDisplayName() && warp
+								.getIcon().getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
+				.findFirst().orElse(null);
 	}
 
 	public Warps(BasicKitPvP plugin) {

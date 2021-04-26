@@ -160,6 +160,12 @@ public final class Stacks {
 							.replace("{website}", Strings.getWebsite()).replace("{loja}", Strings.getLoja())
 							.replace("{discord}", Strings.getDiscord()).replace("{nome}", Strings.getNome())));
 
+		ArrayList<ItemFlag> flags = new ArrayList<>();
+		if (config.contains(path + ".flags")) {
+			if (config.getBoolean(path + ".flags.hide-attributes", false))
+				flags.add(ItemFlag.HIDE_ATTRIBUTES);
+		}
+
 		Material type = Material.STONE;
 		int amount = 1, durability = 0;
 
@@ -170,7 +176,7 @@ public final class Stacks {
 		if (split.length == 3)
 			durability = Integer.valueOf(split[2]);
 
-		ItemStack item = Stacks.item(type, amount, durability, display);
+		ItemStack item = Stacks.item(type, amount, durability, flags, display);
 		if (lore.size() > 0) {
 			ItemMeta mItem = item.getItemMeta();
 			mItem.setLore(lore);

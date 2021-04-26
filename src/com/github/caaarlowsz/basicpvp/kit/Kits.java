@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
@@ -33,6 +34,14 @@ public final class Kits {
 
 	public static Kit getByName(String name) {
 		return getKits().stream().filter(kit -> kit.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+	}
+
+	public static Kit getByIcon(ItemStack icon) {
+		return getKits().stream()
+				.filter(kit -> kit.getIcon().hasItemMeta() && icon.hasItemMeta()
+						&& kit.getIcon().getItemMeta().hasDisplayName() && icon.getItemMeta().hasDisplayName() && kit
+								.getIcon().getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
+				.findFirst().orElse(null);
 	}
 
 	public Kits(BasicKitPvP plugin) {

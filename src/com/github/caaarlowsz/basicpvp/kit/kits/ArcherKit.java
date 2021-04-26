@@ -17,8 +17,7 @@ import com.github.caaarlowsz.basicpvp.utils.Stacks;
 public final class ArcherKit extends Kit {
 
 	public ArcherKit() {
-		super("Archer", 500, Stacks.item(Material.BOW, "§aKit Archer", "§7Seja um atirador de longa distância,",
-				"§7e mostre um estilo de combate diferente."));
+		super("Archer", 500);
 	}
 
 	@Override

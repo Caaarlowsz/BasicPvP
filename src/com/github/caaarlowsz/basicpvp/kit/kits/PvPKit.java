@@ -1,8 +1,5 @@
 package com.github.caaarlowsz.basicpvp.kit.kits;
 
-import java.util.Arrays;
-
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -11,13 +8,11 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.caaarlowsz.basicpvp.kit.Kit;
-import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
 public final class PvPKit extends Kit {
 
 	public PvPKit() {
-		super("PvP", 0, Stacks.item(Material.STONE_SWORD, Arrays.asList(ItemFlag.HIDE_ATTRIBUTES), "§aKit PvP",
-				"§7Mostre a verdadeira força da", "§7sua Espada com Afiação I."));
+		super("PvP", 0);
 	}
 
 	@Override

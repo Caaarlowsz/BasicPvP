@@ -15,12 +15,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.github.paperspigot.Title;
 
+import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
 import com.github.caaarlowsz.basicpvp.kit.Kit;
-import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
+
+import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class LojaDeKitsGUI implements Listener {
 
@@ -35,12 +37,17 @@ public class LojaDeKitsGUI implements Listener {
 
 			if (display.equals("§7Voltar"))
 				MenuGUI.openGUI(player);
-			else if (display.startsWith("§aKit ")) {
-				Kit kit = Kits.getByName(display.replace("§aKit ", ""));
+			else {
+				Kit kit = Kits.getByIcon(event.getCurrentItem());
 				if (kit != null) {
-					KitAPI.setKit(player, kit);
-					player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou o Kit " + kit.getName() + ".");
-					player.sendTitle(new Title("§aKit " + kit.getName(), "§fSelecionado.", 5, 10, 5));
+					if (StatusFile.getMoedas(player) >= kit.getPrice()) {
+						PermissionsEx.getUser(player.getName())
+								.addPermission("kitpvp.kit." + kit.getName().toLowerCase());
+						player.sendTitle(new Title("§aKit " + kit.getName(), "§fComprado.", 15, 20, 15));
+						player.sendMessage(Strings.getPrefixo() + " §aVocê comprou o Kit " + kit.getName() + ".");
+					} else
+						player.sendMessage(Strings.getPrefixo()
+								+ " §cVocê não possui Moedas suficientes para comprar o Kit " + kit.getName() + ".");
 					player.closeInventory();
 				}
 			}

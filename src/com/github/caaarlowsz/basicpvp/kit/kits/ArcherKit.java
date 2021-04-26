@@ -17,7 +17,7 @@ import com.github.caaarlowsz.basicpvp.utils.Stacks;
 public final class ArcherKit extends Kit {
 
 	public ArcherKit() {
-		super("Archer", 500);
+		super("Archer");
 	}
 
 	@Override

@@ -69,7 +69,7 @@ public final class SeusKitsGUI implements Listener {
 		for (int i = 35; i < 45; i++)
 			inv.setItem(i, glass);
 
-		Kits.getKits().stream().filter(kit -> kit.getName().equals(Kits.getDefaultKit())
+		Kits.getKits().stream().filter(kit -> kit.getName().equals(Kits.getDefaultKit().getName())
 				|| player.hasPermission("kitpvp.kit." + kit.getName())).forEach(kit -> {
 					ItemStack icon = kit.getIcon().clone();
 					ItemMeta mIcon = icon.getItemMeta();

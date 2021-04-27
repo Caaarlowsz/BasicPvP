@@ -1,10 +1,16 @@
 package com.github.caaarlowsz.basicpvp.kit;
 
+import java.util.HashMap;
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.scheduler.BukkitTask;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
@@ -15,6 +21,8 @@ public class Kit {
 	private final String name;
 	private final int price;
 	private final ItemStack icon;
+	private final HashMap<UUID, Long> longMap;
+	private final HashMap<UUID, BukkitTask> taskMap;
 
 	public Kit(String name) {
 		this(name, BasicKitPvP.getInstance().getConfig().getInt("icones.kits." + name.toLowerCase() + ".preco"));
@@ -28,6 +36,8 @@ public class Kit {
 		this.name = name;
 		this.price = price;
 		this.icon = icon;
+		this.longMap = new HashMap<>();
+		this.taskMap = new HashMap<>();
 	}
 
 	public String getName() {
@@ -40,6 +50,38 @@ public class Kit {
 
 	public ItemStack getIcon() {
 		return this.icon;
+	}
+
+	public boolean hasCooldown(Player player) {
+		return this.longMap.containsKey(player.getUniqueId());
+	}
+
+	public long getCooldown(Player player) {
+		if (this.hasCooldown(player))
+			return (this.longMap.get(player.getUniqueId()) - System.currentTimeMillis()) / 1000L;
+		return 0L;
+	}
+
+	public String getRemaingSeconds(Player player) {
+		return this.getCooldown(player) + " segundo" + (this.getCooldown(player) == 1 ? "" : "s");
+	}
+
+	public void addCooldown(Player player, long seconds) {
+		this.longMap.put(player.getUniqueId(), System.currentTimeMillis() + (seconds * 1000L));
+		this.taskMap.put(player.getUniqueId(), Bukkit.getScheduler().runTaskLater(BasicKitPvP.getInstance(), () -> {
+			if (this.hasCooldown(player)) {
+				this.removeCooldown(player);
+				player.playSound(player.getLocation(), Sound.LEVEL_UP, 5F, 5F);
+				player.sendMessage(
+						Strings.getPrefixo() + " §aVocê já pode usar o Kit " + this.getName() + " novamente.");
+			}
+		}, seconds * 20L));
+	}
+
+	public void removeCooldown(Player player) {
+		this.longMap.remove(player.getUniqueId());
+		if (this.taskMap.containsKey(player.getUniqueId()))
+			this.taskMap.remove(player.getUniqueId()).cancel();
 	}
 
 	public void giveItems(Player player) {

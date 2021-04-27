@@ -36,7 +36,11 @@ public final class KitAPI {
 		CabecaAPI.updateCabeca(player);
 	}
 
-	public static void removeKit(Player player) {
-		kitMap.remove(player.getUniqueId());
+	public static Kit removeKit(Player player) {
+		Kit kit = Kits.getNoneKit();
+		if (hasKit(player))
+			kit = kitMap.remove(player.getUniqueId());
+		kit.removeCooldown(player);
+		return kit;
 	}
 }

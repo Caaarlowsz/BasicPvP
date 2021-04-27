@@ -1,5 +1,3 @@
-# SIMULATOR, FULLIRON
-modo: 'SIMULATOR'
 servidor:
   nome: '&aBasicPvP'
   prefixo: '&f[{nome}&f]'
@@ -96,6 +94,14 @@ icones:
       lore:
       - '&7Seja um atirador de longa distância,'
       - '&7e mostre um estilo de combate diferente.'
+    thor:
+      preco: 500
+      material: 'WOOD_AXE'
+      display: '&aKit Thor'
+      lore:
+      - '&7Receba os poderes do Deus do Raio.'
+      flags:
+        hide-attributes: true
   warps:
     1v1:
       material: 'BLAZE_ROD'

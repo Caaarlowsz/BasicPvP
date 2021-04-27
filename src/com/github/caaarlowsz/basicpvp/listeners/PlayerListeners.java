@@ -21,11 +21,13 @@ import com.github.caaarlowsz.basicpvp.apis.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tag;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 import com.github.caaarlowsz.basicpvp.warp.Warps;
+import com.github.caaarlowsz.basicpvp.warp.warps.UMvUMWarp;
 
 import net.minecraft.server.v1_8_R3.PacketPlayInClientCommand;
 import net.minecraft.server.v1_8_R3.PacketPlayInClientCommand.EnumClientCommand;
@@ -81,7 +83,7 @@ public final class PlayerListeners implements Listener {
 		event.setDeathMessage(null);
 
 		Player killer = player.getKiller();
-		if (!WarpAPI.getWarp(player).equals("1v1") && killer != null && killer != player) {
+		if (!(WarpAPI.getWarp(player) instanceof UMvUMWarp) && killer != null && killer != player) {
 			StatusFile.drawMoedas(player, 5);
 			StatusFile.drawXP(player, 1);
 			StatusFile.resetKillStreak(player);
@@ -125,6 +127,7 @@ public final class PlayerListeners implements Listener {
 		PlayerAPI.removeTellOff(player);
 		StaffAPI.removeBuild(player);
 		KitAPI.removeKit(player);
+		SidebarAPI.removeSidebar(player);
 		TagAPI.removeTag(player);
 		WarpAPI.removeWarp(player);
 	}

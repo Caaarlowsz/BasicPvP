@@ -76,7 +76,19 @@ itens:
       slot: 6
   arena: SIMULATOR
   fps: PRESET01
-  1v1: FULLIRON
+  1v1:
+    modo: FULLIRON
+    convidar:
+      material: 'BLAZE_ROD'
+      display: '&aConvidar para 1v1'
+      slot: 4
+    1v1-rapido:
+      material: 'INK_SACK,1,8'
+      display: '&a1v1 Rápido'
+      slot: 6
+    procurando-1v1-rapido:
+      material: 'INK_SACK,1,10'
+      display: '&aProcurando 1v1...'
 icones:
   kits:
     pvp:

@@ -1,17 +1,32 @@
 package com.github.caaarlowsz.basicpvp.warp.warps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.account.StatusFile;
+import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
+import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
+import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 
 public final class UMvUMWarp extends Warp implements Listener {
 
@@ -34,6 +49,18 @@ public final class UMvUMWarp extends Warp implements Listener {
 		inv.setItem(3, Stacks.item(Material.BLAZE_ROD, "§aConvidar para 1v1"));
 		inv.setItem(5, Stacks.item(Material.INK_SACK, 1, 8, "§a1v1 Rápido"));
 		player.updateInventory();
+	}
+
+	public ItemStack getInviteItem() {
+		return Stacks.getConfigItem("itens.1v1.convidar");
+	}
+
+	public ItemStack getFast1v1Item() {
+		return Stacks.getConfigItem("itens.1v1.1v1-rapido");
+	}
+
+	public ItemStack getFinding1v1Item() {
+		return Stacks.getConfigItem("itens.1v1.procurando-1v1-rapido");
 	}
 
 	public ArrayList<UUID> getInvites(Player player) {
@@ -91,5 +118,147 @@ public final class UMvUMWarp extends Warp implements Listener {
 
 	public void removeEnemy(Player player) {
 		this.enemyMap.remove(player.getUniqueId());
+	}
+
+	public void set1v1Combat(Player player, Player player2) {
+		this.setEnemy(player, player2);
+		this.setEnemy(player2, player);
+
+		Arrays.asList(player, player2).forEach(players -> {
+			this.clearInvites(players);
+			this.removeFastDuel(players);
+
+			players.setGameMode(GameMode.SURVIVAL);
+			players.setAllowFlight(false);
+			players.setFlying(false);
+			players.setHealthScale(20D);
+			players.setMaxHealth(20D);
+			players.setHealth(20D);
+
+			PlayerInventory inv = players.getInventory();
+			inv.setArmorContents(null);
+			inv.clear();
+
+			BasicKitPvP.getKitType("itens.1v1.modo").applyKit(players);
+
+			CabecaAPI.updateCabeca(players);
+			player.updateInventory();
+		});
+	}
+
+	@EventHandler
+	private void onPlayerInteract(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
+		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && event.hasItem()) {
+			ItemStack fast1v1 = this.getFast1v1Item(), finding1v1 = this.getFinding1v1Item();
+			if (event.getItem().isSimilar(fast1v1)) {
+				this.addFastDuel(player);
+				event.getItem().setType(finding1v1.getType());
+				event.getItem().setAmount(finding1v1.getAmount());
+				event.getItem().setDurability(finding1v1.getDurability());
+				if (finding1v1.hasItemMeta()) {
+					ItemMeta meta = event.getItem().getItemMeta(), mFinding1v1 = finding1v1.getItemMeta();
+					if (mFinding1v1.hasDisplayName())
+						meta.setDisplayName(mFinding1v1.getDisplayName());
+					if (mFinding1v1.hasLore())
+						meta.setLore(mFinding1v1.getLore());
+					event.getItem().setItemMeta(meta);
+				}
+				player.updateInventory();
+			} else if (event.getItem().isSimilar(finding1v1)) {
+				this.removeFastDuel(player);
+				event.getItem().setType(fast1v1.getType());
+				event.getItem().setAmount(fast1v1.getAmount());
+				event.getItem().setDurability(fast1v1.getDurability());
+				if (fast1v1.hasItemMeta()) {
+					ItemMeta meta = event.getItem().getItemMeta(), mFast1v1 = fast1v1.getItemMeta();
+					if (mFast1v1.hasDisplayName())
+						meta.setDisplayName(mFast1v1.getDisplayName());
+					if (mFast1v1.hasLore())
+						meta.setLore(mFast1v1.getLore());
+					event.getItem().setItemMeta(meta);
+				}
+				player.updateInventory();
+			}
+		}
+	}
+
+	@EventHandler
+	private void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+		Player player = event.getPlayer();
+		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && player.getItemInHand().isSimilar(this.getInviteItem())
+				&& event.getRightClicked() instanceof Player) {
+			Player righted = (Player) event.getRightClicked();
+			if (WarpAPI.getWarp(righted) instanceof UMvUMWarp) {
+				if (this.hasInvite(player, righted)) {
+					this.set1v1Combat(player, righted);
+					player.sendMessage(
+							Strings.getPrefixo() + " §aVocê aceitou o convite de " + righted.getName() + ".");
+					righted.sendMessage(Strings.getPrefixo() + " §a" + player.getName() + " aceitou seu convite.");
+				} else {
+					this.addInvite(righted, player);
+					player.sendMessage(
+							Strings.getPrefixo() + " §aVocê enviou um convite para " + righted.getName() + ".");
+					righted.sendMessage(
+							Strings.getPrefixo() + " §aVocê recebeu um convite de " + player.getName() + ".");
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	private void onPlayerDeath(PlayerDeathEvent event) {
+		Player player = event.getEntity();
+
+		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && this.hasEnemy(player) && this.getEnemy(player) != null) {
+			Player enemy = this.getEnemy(player);
+
+			StatusFile.addMoedas(enemy, 10);
+			StatusFile.addXP(enemy, 3);
+			StatusFile.addKillStreak(enemy);
+			StatusFile.addAbate(enemy);
+			WarpAPI.setWarp(enemy, this);
+			enemy.playSound(enemy.getLocation(), Sound.ARROW_HIT, 10F, 1F);
+			enemy.sendMessage("§6+10 Moedas");
+			enemy.sendMessage("§b+3 XP");
+			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
+
+			StatusFile.drawMoedas(player, 5);
+			StatusFile.drawXP(player, 1);
+			StatusFile.resetKillStreak(player);
+			StatusFile.addMorte(player);
+			player.sendMessage("§6-5 Moedas");
+			player.sendMessage("§b-1 XP");
+			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
+			player.sendMessage(Strings.getPrefixo() + " §cVocê perdeu o 1v1 contra " + enemy.getName() + ".");
+		}
+	}
+
+	@EventHandler
+	private void onPlayerQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+
+		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && this.hasEnemy(player) && this.getEnemy(player) != null) {
+			Player enemy = this.getEnemy(player);
+
+			StatusFile.addMoedas(enemy, 10);
+			StatusFile.addXP(enemy, 3);
+			StatusFile.addKillStreak(enemy);
+			StatusFile.addAbate(enemy);
+			WarpAPI.setWarp(enemy, this);
+			enemy.playSound(enemy.getLocation(), Sound.ARROW_HIT, 10F, 1F);
+			enemy.sendMessage("§6+10 Moedas");
+			enemy.sendMessage("§b+3 XP");
+			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
+
+			StatusFile.drawMoedas(player, 5);
+			StatusFile.drawXP(player, 1);
+			StatusFile.resetKillStreak(player);
+			StatusFile.addMorte(player);
+			player.sendMessage("§6-5 Moedas");
+			player.sendMessage("§b-1 XP");
+			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
+			player.sendMessage(Strings.getPrefixo() + " §cVocê perdeu o 1v1 contra " + enemy.getName() + ".");
+		}
 	}
 }

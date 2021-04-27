@@ -10,6 +10,7 @@ import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
+import com.github.caaarlowsz.basicpvp.warp.warps.UMvUMWarp;
 
 public final class WarpAPI {
 
@@ -36,7 +37,17 @@ public final class WarpAPI {
 		CabecaAPI.updateCabeca(player);
 	}
 
-	public static void removeWarp(Player player) {
-		warpMap.remove(player.getUniqueId());
+	public static Warp removeWarp(Player player) {
+		Warp warp = Warps.getNoneWarp();
+		if (warpMap.containsKey(player.getUniqueId()))
+			warp = warpMap.remove(player.getUniqueId());
+
+		if (warp instanceof UMvUMWarp) {
+			UMvUMWarp umvum = (UMvUMWarp) warp;
+			umvum.clearInvites(player);
+			umvum.removeFastDuel(player);
+			umvum.removeEnemy(player);
+		}
+		return warp;
 	}
 }

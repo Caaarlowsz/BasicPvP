@@ -3,6 +3,7 @@ package com.github.caaarlowsz.basicpvp.warp.warps;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -22,11 +23,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.account.StatusFile;
+import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
+import com.github.caaarlowsz.basicpvp.warp.WarpsFile;
 
 public final class UMvUMWarp extends Warp implements Listener {
 
@@ -46,8 +49,8 @@ public final class UMvUMWarp extends Warp implements Listener {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setItem(3, Stacks.item(Material.BLAZE_ROD, "§aConvidar para 1v1"));
-		inv.setItem(5, Stacks.item(Material.INK_SACK, 1, 8, "§a1v1 Rápido"));
+		inv.setItem(Stacks.getSlotConfigItem("itens.1v1.convidar"), this.getInviteItem());
+		inv.setItem(Stacks.getSlotConfigItem("itens.1v1.1v1-rapido"), this.getFast1v1Item());
 		player.updateInventory();
 	}
 
@@ -96,6 +99,14 @@ public final class UMvUMWarp extends Warp implements Listener {
 	public void addFastDuel(Player player) {
 		if (!this.hasFastDuel(player))
 			this.fastDuelList.add(player.getUniqueId());
+
+		if (this.fastDuelList.size() > 1) {
+			UUID uuid = this.fastDuelList.remove(new Random().nextInt(this.fastDuelList.size()));
+			Player enemy = Bukkit.getPlayer(uuid);
+
+			if (enemy != null)
+				this.set1v1Combat(player, enemy);
+		}
 	}
 
 	public void removeFastDuel(Player player) {
@@ -120,30 +131,48 @@ public final class UMvUMWarp extends Warp implements Listener {
 		this.enemyMap.remove(player.getUniqueId());
 	}
 
+	public void showPlayers(Player player) {
+		Bukkit.getOnlinePlayers().stream().filter(
+				players -> (!StaffAPI.hasAdmin(players) && !player.hasPermission("kitpvp.permission.viewadmins")))
+				.forEach(players -> player.showPlayer(players));
+	}
+
 	public void set1v1Combat(Player player, Player player2) {
-		this.setEnemy(player, player2);
-		this.setEnemy(player2, player);
+		if (WarpsFile.hasLocation("1v1.Pos1") && WarpsFile.hasLocation("1v1.Pos2")) {
+			this.setEnemy(player, player2);
+			player.teleport(WarpsFile.getLocation("1v1.Pos1"));
 
-		Arrays.asList(player, player2).forEach(players -> {
-			this.clearInvites(players);
-			this.removeFastDuel(players);
+			this.setEnemy(player2, player);
+			player2.teleport(WarpsFile.getLocation("1v1.Pos2"));
 
-			players.setGameMode(GameMode.SURVIVAL);
-			players.setAllowFlight(false);
-			players.setFlying(false);
-			players.setHealthScale(20D);
-			players.setMaxHealth(20D);
-			players.setHealth(20D);
+			Arrays.asList(player, player2).forEach(players -> {
+				this.clearInvites(players);
+				this.removeFastDuel(players);
 
-			PlayerInventory inv = players.getInventory();
-			inv.setArmorContents(null);
-			inv.clear();
+				players.setGameMode(GameMode.SURVIVAL);
+				players.setAllowFlight(false);
+				players.setFlying(false);
+				players.setHealthScale(20D);
+				players.setMaxHealth(20D);
+				players.setHealth(20D);
 
-			BasicKitPvP.getKitType("itens.1v1.modo").applyKit(players);
+				PlayerInventory inv = players.getInventory();
+				inv.setArmorContents(null);
+				inv.clear();
 
-			CabecaAPI.updateCabeca(players);
-			player.updateInventory();
-		});
+				BasicKitPvP.getKitType("itens.1v1.modo").applyKit(players);
+				for (int i = 0; i < 8; i++)
+					inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));
+
+				CabecaAPI.updateCabeca(players);
+				player.updateInventory();
+
+				Bukkit.getOnlinePlayers().forEach(onlines -> players.hidePlayer(onlines));
+			});
+
+			player.showPlayer(player2);
+			player2.showPlayer(player);
+		}
 	}
 
 	@EventHandler
@@ -190,7 +219,10 @@ public final class UMvUMWarp extends Warp implements Listener {
 				&& event.getRightClicked() instanceof Player) {
 			Player righted = (Player) event.getRightClicked();
 			if (WarpAPI.getWarp(righted) instanceof UMvUMWarp) {
-				if (this.hasInvite(player, righted)) {
+				if (this.hasInvite(righted, player))
+					player.sendMessage(
+							Strings.getPrefixo() + " §cVocê já enviou um convite para " + righted.getName() + ".");
+				else if (this.hasInvite(player, righted)) {
 					this.set1v1Combat(player, righted);
 					player.sendMessage(
 							Strings.getPrefixo() + " §aVocê aceitou o convite de " + righted.getName() + ".");
@@ -213,6 +245,7 @@ public final class UMvUMWarp extends Warp implements Listener {
 		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && this.hasEnemy(player) && this.getEnemy(player) != null) {
 			Player enemy = this.getEnemy(player);
 
+			this.showPlayers(enemy);
 			StatusFile.addMoedas(enemy, 10);
 			StatusFile.addXP(enemy, 3);
 			StatusFile.addKillStreak(enemy);
@@ -223,6 +256,7 @@ public final class UMvUMWarp extends Warp implements Listener {
 			enemy.sendMessage("§b+3 XP");
 			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
 
+			this.showPlayers(player);
 			StatusFile.drawMoedas(player, 5);
 			StatusFile.drawXP(player, 1);
 			StatusFile.resetKillStreak(player);
@@ -241,6 +275,7 @@ public final class UMvUMWarp extends Warp implements Listener {
 		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && this.hasEnemy(player) && this.getEnemy(player) != null) {
 			Player enemy = this.getEnemy(player);
 
+			this.showPlayers(enemy);
 			StatusFile.addMoedas(enemy, 10);
 			StatusFile.addXP(enemy, 3);
 			StatusFile.addKillStreak(enemy);
@@ -251,6 +286,7 @@ public final class UMvUMWarp extends Warp implements Listener {
 			enemy.sendMessage("§b+3 XP");
 			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
 
+			this.showPlayers(player);
 			StatusFile.drawMoedas(player, 5);
 			StatusFile.drawXP(player, 1);
 			StatusFile.resetKillStreak(player);

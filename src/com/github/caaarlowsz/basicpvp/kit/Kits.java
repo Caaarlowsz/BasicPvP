@@ -10,6 +10,7 @@ import org.bukkit.plugin.PluginManager;
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.SeusKitsGUI;
+import com.github.caaarlowsz.basicpvp.kit.kits.AnchorKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ArcherKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ThorKit;
@@ -52,12 +53,14 @@ public final class Kits {
 		pm.registerEvents(new LojaDeKitsGUI(), plugin);
 		pm.registerEvents(new SeusKitsGUI(), plugin);
 
+		pm.registerEvents(new AnchorKit(), plugin);
 		pm.registerEvents(new ThorKit(), plugin);
 
 		plugin.getCommand("kit").setExecutor(new KitCommand());
 
 		getKits().clear();
 		getKits().add(DEFAULT_KIT);
+		getKits().add(new AnchorKit());
 		getKits().add(new ArcherKit());
 		getKits().add(new ThorKit());
 	}

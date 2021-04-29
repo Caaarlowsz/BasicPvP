@@ -99,6 +99,14 @@ icones:
       - '&7sua Espada com Afiação I.'
       flags:
         hide-attributes: true
+    anchor:
+      preco: 450
+      material: 'ANVIL'
+      display: '&aKit Anchor'
+      lore:
+      - '&7Faça o PvP sem knockback'
+      - '&7ser bem mais assustador'
+      - '&7do que seu inimigo espera.'
     archer:
       preco: 375
       material: 'BOW'

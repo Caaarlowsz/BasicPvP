@@ -120,6 +120,13 @@ icones:
       display: '&aKit Camel'
       lore:
       - '&7Seja mais forte no bioma de Deserto.'
+    fisherman:
+      preco: 750
+      material: 'FISHING_ROD'
+      display: '&aKit Fisherman'
+      lore:
+      - '&7A pescaria é uma arte com'
+      - '&7habilidades misteriosas.'
     snail:
       preco: 600
       material: 'STRING'

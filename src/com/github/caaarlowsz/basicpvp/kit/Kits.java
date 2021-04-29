@@ -13,6 +13,7 @@ import com.github.caaarlowsz.basicpvp.kit.guis.SeusKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.kits.AnchorKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ArcherKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.CamelKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.FishermanKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.SnailKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ThorKit;
@@ -58,6 +59,7 @@ public final class Kits {
 
 		pm.registerEvents(new AnchorKit(), plugin);
 		pm.registerEvents(new CamelKit(), plugin);
+		pm.registerEvents(new FishermanKit(), plugin);
 		pm.registerEvents(new SnailKit(), plugin);
 		pm.registerEvents(new ThorKit(), plugin);
 		pm.registerEvents(new ViperKit(), plugin);
@@ -69,6 +71,7 @@ public final class Kits {
 		getKits().add(new AnchorKit());
 		getKits().add(new ArcherKit());
 		getKits().add(new CamelKit());
+		getKits().add(new FishermanKit());
 		getKits().add(new SnailKit());
 		getKits().add(new ThorKit());
 		getKits().add(new ViperKit());

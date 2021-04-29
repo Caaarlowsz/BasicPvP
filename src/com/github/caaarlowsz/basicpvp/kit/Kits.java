@@ -14,6 +14,7 @@ import com.github.caaarlowsz.basicpvp.kit.kits.AnchorKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ArcherKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.CamelKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.SnailKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ThorKit;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
@@ -56,6 +57,7 @@ public final class Kits {
 
 		pm.registerEvents(new AnchorKit(), plugin);
 		pm.registerEvents(new CamelKit(), plugin);
+		pm.registerEvents(new SnailKit(), plugin);
 		pm.registerEvents(new ThorKit(), plugin);
 
 		plugin.getCommand("kit").setExecutor(new KitCommand());
@@ -65,6 +67,7 @@ public final class Kits {
 		getKits().add(new AnchorKit());
 		getKits().add(new ArcherKit());
 		getKits().add(new CamelKit());
+		getKits().add(new SnailKit());
 		getKits().add(new ThorKit());
 	}
 }

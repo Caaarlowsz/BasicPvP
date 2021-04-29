@@ -120,6 +120,13 @@ icones:
       display: '&aKit Camel'
       lore:
       - '&7Seja mais forte no bioma de Deserto.'
+    snail:
+      preco: 600
+      material: 'STRING'
+      display: '&aKit Snail'
+      lore:
+      - '&7Faça com que seus inimigos'
+      - '&7fiquem lentos.'
     thor:
       preco: 500
       material: 'WOOD_AXE'

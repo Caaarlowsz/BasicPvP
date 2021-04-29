@@ -135,6 +135,13 @@ icones:
       - '&7Receba os poderes do Deus do Raio.'
       flags:
         hide-attributes: true
+    viper:
+      preco: 600
+      material: 'SPIDER_EYE'
+      display: '&aKit Viper'
+      lore:
+      - '&7Faça com que seus inimigos'
+      - '&7fiquem envenenados.'
   warps:
     1v1:
       material: 'BLAZE_ROD'

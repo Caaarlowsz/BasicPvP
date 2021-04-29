@@ -16,6 +16,7 @@ import com.github.caaarlowsz.basicpvp.kit.kits.CamelKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.SnailKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ThorKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.ViperKit;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
 public final class Kits {
@@ -59,6 +60,7 @@ public final class Kits {
 		pm.registerEvents(new CamelKit(), plugin);
 		pm.registerEvents(new SnailKit(), plugin);
 		pm.registerEvents(new ThorKit(), plugin);
+		pm.registerEvents(new ViperKit(), plugin);
 
 		plugin.getCommand("kit").setExecutor(new KitCommand());
 
@@ -69,5 +71,6 @@ public final class Kits {
 		getKits().add(new CamelKit());
 		getKits().add(new SnailKit());
 		getKits().add(new ThorKit());
+		getKits().add(new ViperKit());
 	}
 }

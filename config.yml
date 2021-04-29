@@ -114,6 +114,12 @@ icones:
       lore:
       - '&7Seja um atirador de longa distância,'
       - '&7e mostre um estilo de combate diferente.'
+    camel:
+      preco: 350
+      material: 'SAND'
+      display: '&aKit Camel'
+      lore:
+      - '&7Seja mais forte no bioma de Deserto.'
     thor:
       preco: 500
       material: 'WOOD_AXE'

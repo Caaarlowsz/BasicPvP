@@ -74,6 +74,10 @@ public final class Strings {
 		return color(config.getString("itens.geral.espada", "&aEspada")).replace("{nome}", getNome());
 	}
 
+	public static String getMachado() {
+		return color(config.getString("itens.geral.machado", "&aMachado")).replace("{nome}", getNome());
+	}
+
 	public static String getBussola() {
 		return color(config.getString("itens.geral.bussola", "&aBússola")).replace("{nome}", getNome());
 	}

@@ -57,6 +57,7 @@ itens:
     calca: '&aCalça'
     botas: '&aBotas'
     espada: '&aEspada'
+    machado: '&aMachado'
     bussola: '&aBússola'
     pote: '&aPote'
     cogumelo-vermelho: '&aCogumelo'
@@ -146,6 +147,15 @@ icones:
       display: '&aKit Thor'
       lore:
       - '&7Receba os poderes do Deus do Raio.'
+      flags:
+        hide-attributes: true
+    viking:
+      preco: 1000
+      material: 'STONE_AXE'
+      display: '&aKit Viking'
+      lore:
+      - '&7Mostre que um Machado é bem'
+      - '&7mais poderoso que uma Espada.'
       flags:
         hide-attributes: true
     viper:

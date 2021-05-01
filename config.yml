@@ -128,6 +128,13 @@ icones:
       lore:
       - '&7A pescaria é uma arte com'
       - '&7habilidades misteriosas.'
+    hulk:
+      preco: 400
+      material: 'DISPENSER'
+      display: '&aKit Hulk'
+      lore:
+      - '&7Segure seus oponentes e faça com'
+      - '&7que a pressão no combate aumente.'
     magma:
       preco: 1100
       material: 'FIREBALL'

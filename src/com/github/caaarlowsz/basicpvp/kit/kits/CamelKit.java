@@ -23,7 +23,7 @@ public final class CamelKit extends Kit implements Listener {
 		Player player = event.getPlayer();
 		if (KitAPI.getKit(player) instanceof CamelKit && WorldGuardAPI.hasPvP(player)
 				&& event.getTo().getBlock().getRelative(BlockFace.DOWN).getType().name().contains("SAND")) {
-			player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 0), true);
+			player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 0), true);
 			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 0), true);
 		}
 	}

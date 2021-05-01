@@ -134,6 +134,12 @@ icones:
       lore:
       - '&7Faça com que seus inimigos'
       - '&7fiquem lentos.'
+    switcher:
+      preco: 850
+      material: 'SNOW_BALL'
+      display: '&aKit Switcher'
+      lore:
+      - '&7Troque de lugar com outras pessoas.'
     thor:
       preco: 500
       material: 'WOOD_AXE'

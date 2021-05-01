@@ -142,6 +142,13 @@ icones:
       lore:
       - '&7Tenha 30% de chance de colocar'
       - '&7fogo nos seus oponentes.'
+    monk:
+      preco: 1000
+      material: 'BLAZE_ROD'
+      display: '&aKit Monk'
+      lore:
+      - '&7Embaralhe o inventário dos seus'
+      - '&7inimigos e os deixe confusos.'
     poseidon:
       preco: 900
       material: 'WATER_BUCKET'

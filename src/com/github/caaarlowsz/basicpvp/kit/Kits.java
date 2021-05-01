@@ -16,6 +16,7 @@ import com.github.caaarlowsz.basicpvp.kit.kits.CamelKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.FishermanKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.HulkKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.MagmaKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.MonkKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PoseidonKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.SnailKit;
@@ -67,6 +68,7 @@ public final class Kits {
 		pm.registerEvents(new FishermanKit(), plugin);
 		pm.registerEvents(new HulkKit(), plugin);
 		pm.registerEvents(new MagmaKit(), plugin);
+		pm.registerEvents(new MonkKit(), plugin);
 		pm.registerEvents(new PoseidonKit(), plugin);
 		pm.registerEvents(new SnailKit(), plugin);
 		pm.registerEvents(new SwitcherKit(), plugin);
@@ -84,6 +86,7 @@ public final class Kits {
 		getKits().add(new FishermanKit());
 		getKits().add(new HulkKit());
 		getKits().add(new MagmaKit());
+		getKits().add(new MonkKit());
 		getKits().add(new PoseidonKit());
 		getKits().add(new SnailKit());
 		getKits().add(new SwitcherKit());

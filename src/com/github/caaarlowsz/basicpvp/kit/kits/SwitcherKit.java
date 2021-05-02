@@ -33,7 +33,7 @@ public final class SwitcherKit extends Kit implements Listener {
 
 	@EventHandler
 	private void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-		if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
+		if (event.getEntity() instanceof Player && event.getDamager() instanceof Snowball) {
 			Player player = (Player) event.getEntity();
 			Snowball snowball = (Snowball) event.getDamager();
 			if (snowball.getShooter() instanceof Player) {

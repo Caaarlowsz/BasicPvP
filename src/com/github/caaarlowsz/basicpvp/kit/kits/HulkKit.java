@@ -1,11 +1,16 @@
 package com.github.caaarlowsz.basicpvp.kit.kits;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.util.Vector;
 
+import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.apis.WorldGuardAPI;
 import com.github.caaarlowsz.basicpvp.kit.Kit;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
@@ -15,6 +20,25 @@ public final class HulkKit extends Kit implements Listener {
 
 	public HulkKit() {
 		super("Hulk");
+	}
+
+	@EventHandler
+	private void onPlayerInteract(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
+		if (KitAPI.getKit(player) instanceof HulkKit && WorldGuardAPI.hasPvP(player) && !event.hasItem()
+				&& !event.hasBlock() && player.getPassenger() != null && player.getPassenger() instanceof Player) {
+			Player passenger = (Player) player.getPassenger();
+			Vector vector = player.getEyeLocation().getDirection();
+			float pitch = player.getLocation().getPitch();
+
+			if (pitch > 0)
+				vector.setY(vector.getY() * 2);
+			else
+				vector.multiply(2);
+
+			player.eject();
+			Bukkit.getScheduler().runTaskLater(BasicKitPvP.getInstance(), () -> passenger.setVelocity(vector), 1L);
+		}
 	}
 
 	@EventHandler
@@ -33,6 +57,15 @@ public final class HulkKit extends Kit implements Listener {
 				}
 			} else
 				player.sendMessage(Strings.getPrefixo() + " §cAguarde " + this.getRemaingSeconds(player) + ".");
+		}
+	}
+
+	@EventHandler
+	private void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+		if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
+			Player player = (Player) event.getEntity(), damager = (Player) event.getDamager();
+			if (KitAPI.getKit(damager) instanceof HulkKit && damager.getPassenger().getName().equals(player.getName()))
+				event.setCancelled(true);
 		}
 	}
 }

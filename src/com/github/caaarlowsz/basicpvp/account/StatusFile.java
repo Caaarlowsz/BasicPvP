@@ -63,12 +63,12 @@ public final class StatusFile {
 	}
 
 	public static int getKillStreak(Player player) {
-		return config.getInt("status." + player.getName() + ".abatestreak", 0);
+		return config.getInt("status." + player.getName() + ".killstreak", 0);
 	}
 
 	public static void setKillStreak(Player player, int value) {
 		try {
-			config.set("status." + player.getName() + ".abatestreak", value);
+			config.set("status." + player.getName() + ".killstreak", value);
 			config.save(file);
 		} catch (IOException ex) {
 			ex.printStackTrace();

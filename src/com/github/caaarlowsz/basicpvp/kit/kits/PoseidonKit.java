@@ -22,7 +22,8 @@ public final class PoseidonKit extends Kit implements Listener {
 		Player player = event.getPlayer();
 		if (KitAPI.getKit(player) instanceof PoseidonKit && WorldGuardAPI.hasPvP(player)
 				&& event.getTo().getBlock().getType().name().contains("WATER")) {
-			player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0), true);
+			player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 0), true);
+			player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 100, 0), true);
 			player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 1), true);
 			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1), true);
 		}

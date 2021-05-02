@@ -23,7 +23,7 @@ commands:
   cage:
     description: Use este comando para prender jogadores.
     usage: /<command> (Nickname)
-    aliases: [jaula, prender]
+    aliases: [jaula, prender, jail]
   chat:
     description: Use este comando para manipular o Chat do Servidor.
     usage: /<command> (ON, OFF)

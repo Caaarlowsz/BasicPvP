@@ -21,13 +21,13 @@ public final class CageCommand implements CommandExecutor {
 					Player target = Bukkit.getPlayer(args[0]);
 					if (target != null) {
 						Location loc = target.getLocation();
-						loc.add(0, 13, 0).getBlock().setType(Material.BEDROCK);
-						loc.add(0, 11, 1).getBlock().setType(Material.BEDROCK);
-						loc.add(1, 11, 0).getBlock().setType(Material.BEDROCK);
-						loc.add(0, 11, -1).getBlock().setType(Material.BEDROCK);
-						loc.add(-1, 11, 0).getBlock().setType(Material.BEDROCK);
-						loc.add(0, 10, 0).getBlock().setType(Material.BEDROCK);
-						target.teleport(loc.add(0, 11, -0.05));
+						loc.clone().add(0, 13, 0).getBlock().setType(Material.BEDROCK);
+						loc.clone().add(0, 11, 1).getBlock().setType(Material.BEDROCK);
+						loc.clone().add(1, 11, 0).getBlock().setType(Material.BEDROCK);
+						loc.clone().add(0, 11, -1).getBlock().setType(Material.BEDROCK);
+						loc.clone().add(-1, 11, 0).getBlock().setType(Material.BEDROCK);
+						loc.clone().add(0, 10, 0).getBlock().setType(Material.BEDROCK);
+						target.teleport(loc.clone().add(0, 11, 0));
 						player.sendMessage(Strings.getPrefixo() + " §aVocê prendeu " + target.getName() + ".");
 					} else
 						player.sendMessage(Strings.getPrefixo() + " §cO seu alvo não foi encontrado.");

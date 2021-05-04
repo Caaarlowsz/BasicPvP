@@ -135,6 +135,14 @@ icones:
       lore:
       - '&7Segure seus oponentes e faça com'
       - '&7que a pressão no combate aumente.'
+    kangaroo:
+      preco: 1000
+      material: 'FIREWORK'
+      display: '&aKit Kangaroo'
+      lore:
+      - '&7Aumente sua mobilidade'
+      - '&7facilmente e destrua todos que'
+      - '&7entrarem no seu caminho.'
     magma:
       preco: 600
       material: 'FIREBALL'

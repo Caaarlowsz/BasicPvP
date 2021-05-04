@@ -136,14 +136,14 @@ icones:
       - '&7Segure seus oponentes e faça com'
       - '&7que a pressão no combate aumente.'
     magma:
-      preco: 1100
+      preco: 600
       material: 'FIREBALL'
       display: '&aKit Magma'
       lore:
       - '&7Tenha 30% de chance de colocar'
       - '&7fogo nos seus oponentes.'
     monk:
-      preco: 1000
+      preco: 850
       material: 'BLAZE_ROD'
       display: '&aKit Monk'
       lore:
@@ -171,7 +171,7 @@ icones:
       lore:
       - '&7Troque de lugar com outras pessoas.'
     thor:
-      preco: 500
+      preco: 750
       material: 'WOOD_AXE'
       display: '&aKit Thor'
       lore:

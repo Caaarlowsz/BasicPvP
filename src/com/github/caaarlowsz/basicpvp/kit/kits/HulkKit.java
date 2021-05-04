@@ -26,15 +26,15 @@ public final class HulkKit extends Kit implements Listener {
 	private void onPlayerInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		if (KitAPI.getKit(player) instanceof HulkKit && WorldGuardAPI.hasPvP(player) && !event.hasItem()
-				&& !event.hasBlock() && player.getPassenger() != null && player.getPassenger() instanceof Player) {
+				&& player.getPassenger() != null && player.getPassenger() instanceof Player) {
 			Player passenger = (Player) player.getPassenger();
 			Vector vector = player.getEyeLocation().getDirection();
 			float pitch = player.getLocation().getPitch();
 
 			if (pitch > 0)
-				vector.setY(vector.getY() * 2);
+				vector.setY(vector.getY() * 1.5);
 			else
-				vector.multiply(2);
+				vector.multiply(1.5);
 
 			player.eject();
 			Bukkit.getScheduler().runTaskLater(BasicKitPvP.getInstance(), () -> passenger.setVelocity(vector), 1L);
@@ -50,7 +50,7 @@ public final class HulkKit extends Kit implements Listener {
 			Player righted = (Player) event.getRightClicked();
 			if (!this.hasCooldown(player)) {
 				if (righted.getPassenger() == null && WorldGuardAPI.hasPvP(righted)) {
-					this.addCooldown(player, 6);
+					this.addCooldown(player, 25);
 					player.setPassenger(righted);
 					player.sendMessage(Strings.getPrefixo() + " §aVocê pegou " + righted.getName() + ".");
 					righted.sendMessage(Strings.getPrefixo() + " §eVocê foi pego por " + player.getName() + ".");
@@ -64,7 +64,8 @@ public final class HulkKit extends Kit implements Listener {
 	private void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
 		if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
 			Player player = (Player) event.getEntity(), damager = (Player) event.getDamager();
-			if (KitAPI.getKit(damager) instanceof HulkKit && damager.getPassenger().getName().equals(player.getName()))
+			if (KitAPI.getKit(damager) instanceof HulkKit && damager.getPassenger() != null
+					&& damager.getPassenger().getName().equals(player.getName()))
 				event.setCancelled(true);
 		}
 	}

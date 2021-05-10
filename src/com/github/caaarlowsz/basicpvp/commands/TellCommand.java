@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.github.caaarlowsz.basicpvp.apis.PlayerAPI;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class TellCommand implements CommandExecutor {

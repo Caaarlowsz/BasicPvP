@@ -1,4 +1,4 @@
-package com.github.caaarlowsz.basicpvp.apis;
+package com.github.caaarlowsz.basicpvp.player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

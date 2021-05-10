@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.github.paperspigot.Title;
 
-import com.github.caaarlowsz.basicpvp.apis.PlayerAPI;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class ReportCommand implements CommandExecutor {

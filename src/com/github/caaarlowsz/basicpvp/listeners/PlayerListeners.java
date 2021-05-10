@@ -16,10 +16,10 @@ import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
-import com.github.caaarlowsz.basicpvp.apis.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.player.StatusFile;
 import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tag;

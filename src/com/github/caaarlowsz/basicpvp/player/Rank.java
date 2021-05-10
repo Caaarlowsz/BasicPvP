@@ -1,4 +1,4 @@
-package com.github.caaarlowsz.basicpvp.account;
+package com.github.caaarlowsz.basicpvp.player;
 
 import org.bukkit.ChatColor;
 

@@ -1,7 +1,6 @@
 package com.github.caaarlowsz.basicpvp.warp.warps;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
@@ -22,9 +21,9 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
-import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
+import com.github.caaarlowsz.basicpvp.player.StatusFile;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
@@ -48,6 +47,10 @@ public final class UMvUMWarp extends Warp implements Listener {
 	public void giveItems(Player player) {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
+
+		this.clearInvites(player);
+		this.removeFastDuel(player);
+		this.removeEnemy(player);
 
 		inv.setItem(Stacks.getSlotConfigItem("itens.1v1.convidar"), this.getInviteItem());
 		inv.setItem(Stacks.getSlotConfigItem("itens.1v1.1v1-rapido"), this.getFast1v1Item());
@@ -97,16 +100,14 @@ public final class UMvUMWarp extends Warp implements Listener {
 	}
 
 	public void addFastDuel(Player player) {
-		if (!this.hasFastDuel(player))
-			this.fastDuelList.add(player.getUniqueId());
-
-		if (this.fastDuelList.size() > 1) {
-			UUID uuid = this.fastDuelList.remove(new Random().nextInt(this.fastDuelList.size()));
+		if (this.fastDuelList.size() > 0) {
+			UUID uuid = this.fastDuelList.get(new Random().nextInt(this.fastDuelList.size()));
 			Player enemy = Bukkit.getPlayer(uuid);
-
 			if (enemy != null)
-				this.set1v1Combat(player, enemy);
-		}
+				this.set1v1Combat(enemy, player);
+			this.fastDuelList.remove(uuid);
+		} else if (!this.hasFastDuel(player))
+			this.fastDuelList.add(player.getUniqueId());
 	}
 
 	public void removeFastDuel(Player player) {
@@ -137,40 +138,41 @@ public final class UMvUMWarp extends Warp implements Listener {
 				.forEach(players -> player.showPlayer(players));
 	}
 
+	private void giveKit(Player player) {
+		this.clearInvites(player);
+		this.removeFastDuel(player);
+
+		player.setGameMode(GameMode.SURVIVAL);
+		player.setAllowFlight(false);
+		player.setFlying(false);
+		player.setHealthScale(20D);
+		player.setMaxHealth(20D);
+		player.setHealth(20D);
+
+		PlayerInventory inv = player.getInventory();
+		inv.setArmorContents(null);
+		inv.clear();
+
+		BasicKitPvP.getKitType("itens.1v1.modo").applyKit(player);
+		for (int i = 0; i < 8; i++)
+			inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));
+
+		CabecaAPI.updateCabeca(player);
+		player.updateInventory();
+
+		Bukkit.getOnlinePlayers().forEach(players -> player.hidePlayer(players));
+	}
+
 	public void set1v1Combat(Player player, Player player2) {
 		if (WarpsFile.hasLocation("1v1.Pos1") && WarpsFile.hasLocation("1v1.Pos2")) {
 			this.setEnemy(player, player2);
+			this.giveKit(player);
 			player.teleport(WarpsFile.getLocation("1v1.Pos1"));
+			player.showPlayer(player2);
 
 			this.setEnemy(player2, player);
+			this.giveKit(player2);
 			player2.teleport(WarpsFile.getLocation("1v1.Pos2"));
-
-			Arrays.asList(player, player2).forEach(players -> {
-				this.clearInvites(players);
-				this.removeFastDuel(players);
-
-				players.setGameMode(GameMode.SURVIVAL);
-				players.setAllowFlight(false);
-				players.setFlying(false);
-				players.setHealthScale(20D);
-				players.setMaxHealth(20D);
-				players.setHealth(20D);
-
-				PlayerInventory inv = players.getInventory();
-				inv.setArmorContents(null);
-				inv.clear();
-
-				BasicKitPvP.getKitType("itens.1v1.modo").applyKit(players);
-				for (int i = 0; i < 8; i++)
-					inv.addItem(Stacks.item(Material.MUSHROOM_SOUP));
-
-				CabecaAPI.updateCabeca(players);
-				player.updateInventory();
-
-				Bukkit.getOnlinePlayers().forEach(onlines -> players.hidePlayer(onlines));
-			});
-
-			player.showPlayer(player2);
 			player2.showPlayer(player);
 		}
 	}

@@ -5,7 +5,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.github.caaarlowsz.basicpvp.account.StatusFile;
 import com.github.caaarlowsz.basicpvp.cabeca.Cabecas;
 import com.github.caaarlowsz.basicpvp.commands.AdminCommand;
 import com.github.caaarlowsz.basicpvp.commands.ApplyCommand;
@@ -31,6 +30,7 @@ import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
 import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
 import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
 import com.github.caaarlowsz.basicpvp.listeners.WorldListeners;
+import com.github.caaarlowsz.basicpvp.player.StatusFile;
 import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tags;
 import com.github.caaarlowsz.basicpvp.utils.KitType;

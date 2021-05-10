@@ -19,7 +19,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
-import com.github.caaarlowsz.basicpvp.account.StatusFile;
+import com.github.caaarlowsz.basicpvp.player.StatusFile;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;

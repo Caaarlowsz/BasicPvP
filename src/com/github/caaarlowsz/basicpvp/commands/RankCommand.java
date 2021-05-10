@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import com.github.caaarlowsz.basicpvp.account.Rank;
+import com.github.caaarlowsz.basicpvp.player.Rank;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class RankCommand implements CommandExecutor {

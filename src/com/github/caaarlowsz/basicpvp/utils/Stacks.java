@@ -15,8 +15,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
-import com.github.caaarlowsz.basicpvp.account.StatusAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.player.StatusAPI;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 

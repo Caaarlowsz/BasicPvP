@@ -1,4 +1,4 @@
-package com.github.caaarlowsz.basicpvp.listeners;
+package com.github.caaarlowsz.basicpvp.player;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -19,8 +19,6 @@ import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.apis.TabAPI;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
-import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
-import com.github.caaarlowsz.basicpvp.player.StatusFile;
 import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tag;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
@@ -51,6 +49,8 @@ public final class PlayerListeners implements Listener {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
 		player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+
+		PlayerAPI.getStatus().createAccount(player);
 
 		ChatAPI.removeAntiFlood(player);
 		WarpAPI.setWarp(player, Warps.getDefaultWarp());
@@ -84,19 +84,19 @@ public final class PlayerListeners implements Listener {
 
 		Player killer = player.getKiller();
 		if (!(WarpAPI.getWarp(player) instanceof UMvUMWarp) && killer != null && killer != player) {
-			StatusFile.drawMoedas(player, 5);
-			StatusFile.drawXP(player, 1);
-			StatusFile.resetKillStreak(player);
-			StatusFile.addMorte(player);
+			PlayerAPI.getStatus().drawMoedas(player, 5);
+			PlayerAPI.getStatus().drawXP(player, 1);
+			PlayerAPI.getStatus().resetKillStreak(player);
+			PlayerAPI.getStatus().addMorte(player);
 			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
 			player.sendMessage("§b-1 XP");
 			player.sendMessage("§6-5 Moedas");
 			player.sendMessage(Strings.getPrefixo() + " §cVocê foi morto por " + killer.getName() + ".");
 
-			StatusFile.addMoedas(killer, 10);
-			StatusFile.addXP(killer, 3);
-			StatusFile.addKillStreak(killer);
-			StatusFile.addAbate(killer);
+			PlayerAPI.getStatus().addMoedas(killer, 10);
+			PlayerAPI.getStatus().addXP(killer, 3);
+			PlayerAPI.getStatus().addKillStreak(killer);
+			PlayerAPI.getStatus().addAbate(killer);
 			killer.playSound(killer.getLocation(), Sound.ARROW_HIT, 10F, 1F);
 			killer.sendMessage("§b+3 XP");
 			killer.sendMessage("§6+10 Moedas");

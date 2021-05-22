@@ -84,22 +84,32 @@ public final class PlayerListeners implements Listener {
 
 		Player killer = player.getKiller();
 		if (!(WarpAPI.getWarp(player) instanceof UMvUMWarp) && killer != null && killer != player) {
-			PlayerAPI.getStatus().drawMoedas(player, 5);
-			PlayerAPI.getStatus().drawXP(player, 1);
 			PlayerAPI.getStatus().resetKillStreak(player);
 			PlayerAPI.getStatus().addMorte(player);
 			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
-			player.sendMessage("§b-1 XP");
-			player.sendMessage("§6-5 Moedas");
+
+			int pMoedas = Strings.getMorrerMoedas(), pXP = Strings.getMorrerXP();
+			PlayerAPI.getStatus().drawMoedas(player, pMoedas);
+			if (Strings.sendMoedasMessage() && pMoedas > 0)
+				player.sendMessage("§6-" + pMoedas + " Moedas");
+
+			PlayerAPI.getStatus().drawXP(player, pXP);
+			if (Strings.sendXPMessage() && pXP > 0)
+				player.sendMessage("§b-" + pXP + " XP");
 			player.sendMessage(Strings.getPrefixo() + " §cVocê foi morto por " + killer.getName() + ".");
 
-			PlayerAPI.getStatus().addMoedas(killer, 10);
-			PlayerAPI.getStatus().addXP(killer, 3);
 			PlayerAPI.getStatus().addKillStreak(killer);
 			PlayerAPI.getStatus().addAbate(killer);
 			killer.playSound(killer.getLocation(), Sound.ARROW_HIT, 10F, 1F);
-			killer.sendMessage("§b+3 XP");
-			killer.sendMessage("§6+10 Moedas");
+
+			int kMoedas = Strings.getMatarMoedas(), kXP = Strings.getMatarXP();
+			PlayerAPI.getStatus().addMoedas(killer, kMoedas);
+			if (Strings.sendMoedasMessage() && kMoedas > 0)
+				killer.sendMessage("§6+" + kMoedas + " Moedas");
+
+			PlayerAPI.getStatus().addXP(killer, kXP);
+			if (Strings.sendXPMessage() && kXP > 0)
+				killer.sendMessage("§b+" + kXP + " XP");
 			killer.sendMessage(Strings.getPrefixo() + " §aVocê matou " + player.getName() + ".");
 		}
 

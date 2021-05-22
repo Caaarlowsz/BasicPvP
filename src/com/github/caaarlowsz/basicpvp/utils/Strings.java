@@ -119,4 +119,78 @@ public final class Strings {
 	public static Sidebar getSidebarWarps() {
 		return getSidebar("warps");
 	}
+
+	public static int getMatarMoedas() {
+		return config.getInt("premios.facil.moedas");
+	}
+
+	public static int getMatarXP() {
+		return config.getInt("premios.facil.xp");
+	}
+
+	public static int getMorrerMoedas() {
+		int moedas = config.getInt("premios.facil.moedas");
+		return moedas >= 0 ? moedas : (moedas * -1);
+	}
+
+	public static int getMorrerXP() {
+		int xp = config.getInt("premios.facil.xp");
+		return xp >= 0 ? xp : (xp * -1);
+	}
+
+	public static int getDesafioFacilMoedas() {
+		return config.getInt("premios.facil.moedas");
+	}
+
+	public static int getDesafioFacilXP() {
+		return config.getInt("premios.facil.xp");
+	}
+
+	public static int getDesafioMedioMoedas() {
+		return config.getInt("premios.medio.moedas");
+	}
+
+	public static int getDesafioMedioXP() {
+		return config.getInt("premios.medio.xp");
+	}
+
+	public static int getDesafioDificilMoedas() {
+		return config.getInt("premios.dificil.moedas");
+	}
+
+	public static int getDesafioDificilXP() {
+		return config.getInt("premios.dificil.xp");
+	}
+
+	public static int getDesafioExtremoMoedas() {
+		return config.getInt("premios.extremo.moedas");
+	}
+
+	public static int getDesafioExtremoXP() {
+		return config.getInt("premios.extremo.xp");
+	}
+
+	public static boolean sendXPMessage() {
+		return config.getBoolean("opcoes.mensagens.enviar-mensagem-de-xp", true);
+	}
+
+	public static boolean sendMoedasMessage() {
+		return config.getBoolean("opcoes.mensagens.enviar-mensagem-de-xp", true);
+	}
+
+	public static boolean announceDesafioFacil() {
+		return config.getBoolean("opcoes.desafios.anunciar-facil", false);
+	}
+
+	public static boolean announceDesafioMedio() {
+		return config.getBoolean("opcoes.desafios.anunciar-medio", false);
+	}
+
+	public static boolean announceDesafioDificil() {
+		return config.getBoolean("opcoes.desafios.anunciar-dificil", false);
+	}
+
+	public static boolean announceDesafioExtremo() {
+		return config.getBoolean("opcoes.desafios.anunciar-extremo", false);
+	}
 }

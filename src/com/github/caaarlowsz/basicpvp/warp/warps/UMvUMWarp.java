@@ -23,7 +23,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.cabeca.CabecaAPI;
-import com.github.caaarlowsz.basicpvp.player.StatusFile;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
@@ -247,26 +247,36 @@ public final class UMvUMWarp extends Warp implements Listener {
 		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && this.hasEnemy(player) && this.getEnemy(player) != null) {
 			Player enemy = this.getEnemy(player);
 
+			this.showPlayers(player);
+			PlayerAPI.getStatus().resetKillStreak(player);
+			PlayerAPI.getStatus().addMorte(player);
+			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
+
+			int pMoedas = Strings.getMorrerMoedas(), pXP = Strings.getMorrerXP();
+			PlayerAPI.getStatus().drawMoedas(player, pMoedas);
+			if (Strings.sendMoedasMessage() && pMoedas > 0)
+				player.sendMessage("§6-" + pMoedas + " Moedas");
+
+			PlayerAPI.getStatus().drawXP(player, pXP);
+			if (Strings.sendXPMessage() && pXP > 0)
+				player.sendMessage("§b-" + pXP + " XP");
+			player.sendMessage(Strings.getPrefixo() + " §cVocê perdeu o 1v1 contra " + enemy.getName() + ".");
+
 			this.showPlayers(enemy);
-			StatusFile.addMoedas(enemy, 10);
-			StatusFile.addXP(enemy, 3);
-			StatusFile.addKillStreak(enemy);
-			StatusFile.addAbate(enemy);
+			PlayerAPI.getStatus().addKillStreak(enemy);
+			PlayerAPI.getStatus().addAbate(enemy);
 			WarpAPI.setWarp(enemy, this);
 			enemy.playSound(enemy.getLocation(), Sound.ARROW_HIT, 10F, 1F);
-			enemy.sendMessage("§6+10 Moedas");
-			enemy.sendMessage("§b+3 XP");
-			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
 
-			this.showPlayers(player);
-			StatusFile.drawMoedas(player, 5);
-			StatusFile.drawXP(player, 1);
-			StatusFile.resetKillStreak(player);
-			StatusFile.addMorte(player);
-			player.sendMessage("§6-5 Moedas");
-			player.sendMessage("§b-1 XP");
-			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
-			player.sendMessage(Strings.getPrefixo() + " §cVocê perdeu o 1v1 contra " + enemy.getName() + ".");
+			int eMoedas = Strings.getMatarMoedas(), eXP = Strings.getMatarXP();
+			PlayerAPI.getStatus().addMoedas(enemy, eMoedas);
+			if (Strings.sendMoedasMessage() && eMoedas > 0)
+				enemy.sendMessage("§6+" + eMoedas + " Moedas");
+
+			PlayerAPI.getStatus().addXP(enemy, eXP);
+			if (Strings.sendXPMessage() && eXP > 0)
+				enemy.sendMessage("§b+" + eXP + " XP");
+			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
 		}
 	}
 
@@ -277,26 +287,36 @@ public final class UMvUMWarp extends Warp implements Listener {
 		if (WarpAPI.getWarp(player) instanceof UMvUMWarp && this.hasEnemy(player) && this.getEnemy(player) != null) {
 			Player enemy = this.getEnemy(player);
 
+			this.showPlayers(player);
+			PlayerAPI.getStatus().resetKillStreak(player);
+			PlayerAPI.getStatus().addMorte(player);
+			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
+
+			int pMoedas = Strings.getMorrerMoedas(), pXP = Strings.getMorrerXP();
+			PlayerAPI.getStatus().drawMoedas(player, pMoedas);
+			if (Strings.sendMoedasMessage() && pMoedas > 0)
+				player.sendMessage("§6-" + pMoedas + " Moedas");
+
+			PlayerAPI.getStatus().drawXP(player, pXP);
+			if (Strings.sendXPMessage() && pXP > 0)
+				player.sendMessage("§b-" + pXP + " XP");
+			player.sendMessage(Strings.getPrefixo() + " §cVocê perdeu o 1v1 contra " + enemy.getName() + ".");
+
 			this.showPlayers(enemy);
-			StatusFile.addMoedas(enemy, 10);
-			StatusFile.addXP(enemy, 3);
-			StatusFile.addKillStreak(enemy);
-			StatusFile.addAbate(enemy);
+			PlayerAPI.getStatus().addKillStreak(enemy);
+			PlayerAPI.getStatus().addAbate(enemy);
 			WarpAPI.setWarp(enemy, this);
 			enemy.playSound(enemy.getLocation(), Sound.ARROW_HIT, 10F, 1F);
-			enemy.sendMessage("§6+10 Moedas");
-			enemy.sendMessage("§b+3 XP");
-			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
 
-			this.showPlayers(player);
-			StatusFile.drawMoedas(player, 5);
-			StatusFile.drawXP(player, 1);
-			StatusFile.resetKillStreak(player);
-			StatusFile.addMorte(player);
-			player.sendMessage("§6-5 Moedas");
-			player.sendMessage("§b-1 XP");
-			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
-			player.sendMessage(Strings.getPrefixo() + " §cVocê perdeu o 1v1 contra " + enemy.getName() + ".");
+			int eMoedas = Strings.getMatarMoedas(), eXP = Strings.getMatarXP();
+			PlayerAPI.getStatus().addMoedas(enemy, eMoedas);
+			if (Strings.sendMoedasMessage() && eMoedas > 0)
+				enemy.sendMessage("§6+" + eMoedas + " Moedas");
+
+			PlayerAPI.getStatus().addXP(enemy, eXP);
+			if (Strings.sendXPMessage() && eXP > 0)
+				enemy.sendMessage("§b+" + eXP + " XP");
+			enemy.sendMessage(Strings.getPrefixo() + " §aVocê venceu o 1v1 contra " + player.getName() + ".");
 		}
 	}
 }

@@ -1,7 +1,5 @@
 package com.github.caaarlowsz.basicpvp.kit.guis;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,7 +10,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.kit.Kit;
@@ -69,17 +66,10 @@ public final class SeusKitsGUI implements Listener {
 		for (int i = 35; i < 45; i++)
 			inv.setItem(i, glass);
 
-		Kits.getKits().stream().filter(kit -> kit.getName().equals(Kits.getDefaultKit().getName())
-				|| player.hasPermission("kitpvp.kit." + kit.getName())).forEach(kit -> {
-					ItemStack icon = kit.getIcon().clone();
-					ItemMeta mIcon = icon.getItemMeta();
-					List<String> lore = mIcon.getLore();
-					lore.add(" ");
-					lore.add("§eClique para selecionar");
-					mIcon.setLore(lore);
-					icon.setItemMeta(mIcon);
-					inv.addItem(icon);
-				});
+		Kits.getKits().stream()
+				.filter(kit -> kit.getName().equals(Kits.getDefaultKit().getName())
+						|| player.hasPermission("kitpvp.kit." + kit.getName()))
+				.forEach(kit -> inv.addItem(Stacks.applyModel("modelos.kit.selecionar", kit.getIcon().clone())));
 
 		inv.remove(glass);
 		player.openInventory(inv);

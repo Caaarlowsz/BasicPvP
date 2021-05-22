@@ -1,7 +1,5 @@
 package com.github.caaarlowsz.basicpvp.warp;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,7 +10,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
@@ -64,16 +61,7 @@ public final class WarpsGUI implements Listener {
 		for (int i = 17; i < 27; i++)
 			inv.setItem(i, glass);
 
-		Warps.getWarps().forEach(warp -> {
-			ItemStack icon = warp.getIcon().clone();
-			ItemMeta mIcon = icon.getItemMeta();
-			List<String> lore = mIcon.getLore();
-			lore.add(" ");
-			lore.add("§eClique para teleportar");
-			mIcon.setLore(lore);
-			icon.setItemMeta(mIcon);
-			inv.addItem(icon);
-		});
+		Warps.getWarps().forEach(warp -> inv.addItem(Stacks.applyModel("modelos.warp", warp.getIcon().clone())));
 
 		inv.remove(glass);
 		player.openInventory(inv);

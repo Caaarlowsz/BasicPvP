@@ -2,7 +2,7 @@ package com.github.caaarlowsz.basicpvp.kit.guis;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -12,13 +12,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
 import com.github.caaarlowsz.basicpvp.kit.Kit;
 import com.github.caaarlowsz.basicpvp.kit.Kits;
-import com.github.caaarlowsz.basicpvp.player.StatusFile;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
@@ -40,7 +39,7 @@ public class LojaDeKitsGUI implements Listener {
 			else {
 				Kit kit = Kits.getByIcon(event.getCurrentItem());
 				if (kit != null) {
-					if (StatusFile.getMoedas(player) >= kit.getPrice()) {
+					if (PlayerAPI.getStatus().getMoedas(player) >= kit.getPrice()) {
 						PermissionsEx.getUser(player.getName())
 								.addPermission("kitpvp.kit." + kit.getName().toLowerCase());
 						player.sendTitle(new Title("§aKit " + kit.getName(), "§fComprado.", 15, 20, 15));
@@ -73,19 +72,13 @@ public class LojaDeKitsGUI implements Listener {
 		Kits.getKits().stream()
 				.filter(kit -> kit.getPrice() > 0 && !player.hasPermission("kitpvp.kit." + kit.getName()))
 				.forEach(kit -> kits.add(kit));
-		if (kits.size() > 0) {
+		if (kits.size() > 0)
 			kits.forEach(kit -> {
-				ItemStack icon = kit.getIcon().clone();
-				ItemMeta mIcon = icon.getItemMeta();
-				List<String> lore = mIcon.getLore();
-				lore.add(" ");
-				lore.add("§7Preço: §f" + new DecimalFormat().format(kit.getPrice()).replace(",", ".") + " Moedas§7.");
-				lore.add("§eClique para comprar");
-				mIcon.setLore(lore);
-				icon.setItemMeta(mIcon);
-				inv.addItem(icon);
+				HashMap<String, String> ph = new HashMap<>();
+				ph.put("{price}", new DecimalFormat().format(kit.getPrice()).replace(",", "."));
+				inv.addItem(Stacks.applyModel("modelos.kit.comprar", kit.getIcon().clone(), ph));
 			});
-		} else
+		else
 			inv.setItem(22, Stacks.item(Material.STAINED_GLASS_PANE, 1, 14, "§cVocê já possui todos os Kits!"));
 
 		inv.remove(glass);

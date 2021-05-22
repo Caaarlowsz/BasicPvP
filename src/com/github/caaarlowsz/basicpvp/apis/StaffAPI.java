@@ -47,7 +47,8 @@ public final class StaffAPI {
 		inv.clear();
 
 		ItemStack sword = Stacks.item(Material.DIAMOND_SWORD, true,
-				Arrays.asList(ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ATTRIBUTES), "§aEspada de Diamante");
+				Arrays.asList(ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS),
+				"§aEspada de Diamante");
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 		inv.setItem(0, sword);
 

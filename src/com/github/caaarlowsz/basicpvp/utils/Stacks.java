@@ -2,7 +2,9 @@ package com.github.caaarlowsz.basicpvp.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,7 +18,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
-import com.github.caaarlowsz.basicpvp.player.StatusAPI;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 
@@ -192,14 +194,14 @@ public final class Stacks {
 		if (mItemStack.hasDisplayName())
 			mItem.setDisplayName(mItemStack.getDisplayName()
 					.replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
-					.replace("{player_coins}", StatusAPI.getMoedas(player))
-					.replace("{player_xp}", StatusAPI.getXP(player))
-					.replace("{player_killstreak}", StatusAPI.getKillStreak(player))
-					.replace("{player_kills}", StatusAPI.getAbates(player))
-					.replace("{player_deaths}", StatusAPI.getMortes(player))
-					.replace("{player_rank_icon} {player_rank}", StatusAPI.getRank(player).getColoredSymbolName())
-					.replace("{player_rank} {player_rank_icon}", StatusAPI.getRank(player).getColoredNameSymbol())
-					.replace("{player_rank}", StatusAPI.getRank(player).getColoredName())
+					.replace("{player_coins}", PlayerAPI.getMoedas(player))
+					.replace("{player_xp}", PlayerAPI.getXP(player))
+					.replace("{player_killstreak}", PlayerAPI.getKillStreak(player))
+					.replace("{player_kills}", PlayerAPI.getAbates(player))
+					.replace("{player_deaths}", PlayerAPI.getMortes(player))
+					.replace("{player_rank_icon} {player_rank}", PlayerAPI.getRank(player).getColoredSymbolName())
+					.replace("{player_rank} {player_rank_icon}", PlayerAPI.getRank(player).getColoredNameSymbol())
+					.replace("{player_rank}", PlayerAPI.getRank(player).getColoredName())
 					.replace("{player_kit}", KitAPI.getKit(player).getName())
 					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
 					.replace("{server_players}/{server_slots}",
@@ -210,14 +212,14 @@ public final class Stacks {
 			ArrayList<String> lore = new ArrayList<>();
 			mItemStack.getLore().forEach(line -> lore.add(line
 					.replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
-					.replace("{player_coins}", StatusAPI.getMoedas(player))
-					.replace("{player_xp}", StatusAPI.getXP(player))
-					.replace("{player_killstreak}", StatusAPI.getKillStreak(player))
-					.replace("{player_kills}", StatusAPI.getAbates(player))
-					.replace("{player_deaths}", StatusAPI.getMortes(player))
-					.replace("{player_rank_icon} {player_rank}", StatusAPI.getRank(player).getColoredSymbolName())
-					.replace("{player_rank} {player_rank_icon}", StatusAPI.getRank(player).getColoredNameSymbol())
-					.replace("{player_rank}", StatusAPI.getRank(player).getColoredName())
+					.replace("{player_coins}", PlayerAPI.getMoedas(player))
+					.replace("{player_xp}", PlayerAPI.getXP(player))
+					.replace("{player_killstreak}", PlayerAPI.getKillStreak(player))
+					.replace("{player_kills}", PlayerAPI.getAbates(player))
+					.replace("{player_deaths}", PlayerAPI.getMortes(player))
+					.replace("{player_rank_icon} {player_rank}", PlayerAPI.getRank(player).getColoredSymbolName())
+					.replace("{player_rank} {player_rank_icon}", PlayerAPI.getRank(player).getColoredNameSymbol())
+					.replace("{player_rank}", PlayerAPI.getRank(player).getColoredName())
 					.replace("{player_kit}", KitAPI.getKit(player).getName())
 					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
 					.replace("{server_players}/{server_slots}",
@@ -229,6 +231,50 @@ public final class Stacks {
 		if (mItemStack instanceof SkullMeta)
 			((SkullMeta) mItem).setOwner(player.getName());
 		item.setItemMeta(mItem);
+		return item;
+	}
+
+	public static ItemStack applyModel(String path, ItemStack item) {
+		return applyModel(path, item, new HashMap<>());
+	}
+
+	public static ItemStack applyModel(String path, ItemStack item, HashMap<String, String> placeholders) {
+		FileConfiguration config = BasicKitPvP.getInstance().getConfig();
+		String displayName = "{name}";
+		List<String> lore = new ArrayList<>();
+
+		ItemMeta meta = item.getItemMeta();
+		if (meta.hasDisplayName())
+			displayName = meta.getDisplayName();
+		if (meta.hasLore())
+			lore = meta.getLore();
+
+		String display = ChatColor.translateAlternateColorCodes('&', config.getString(path + ".display"))
+				.replace("{name}", displayName);
+		for (Entry<String, String> entry : placeholders.entrySet())
+			display = display.replace(entry.getKey(), entry.getValue());
+		meta.setDisplayName(display);
+
+		int index = 0;
+		ArrayList<String> description = new ArrayList<>();
+		for (String line : config.getStringList(path + ".lore")) {
+			if (line.contains("{description}")) {
+				for (String l : lore) {
+					for (Entry<String, String> entry : placeholders.entrySet())
+						l = l.replace(entry.getKey(), entry.getValue());
+					description.add(index, l);
+					index++;
+				}
+			} else {
+				for (Entry<String, String> entry : placeholders.entrySet())
+					line = line.replace(entry.getKey(), entry.getValue());
+				description.add(ChatColor.translateAlternateColorCodes('&', line));
+				index++;
+			}
+		}
+		meta.setLore(description);
+
+		item.setItemMeta(meta);
 		return item;
 	}
 }

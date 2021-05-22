@@ -19,7 +19,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
-import com.github.caaarlowsz.basicpvp.player.StatusFile;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
@@ -98,45 +98,76 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 					&& sign.getLine(2).equals(facil.get(2)) && sign.getLine(3).equals(facil.get(3))) {
 				WarpAPI.setWarp(player, this);
 
-				StatusFile.addMoedas(player, 5);
-				player.sendMessage("§6+5 Moedas");
+				if (Strings.announceDesafioFacil())
+					Bukkit.broadcastMessage(
+							Strings.getPrefixo() + " §a" + player.getName() + " completou o desafio §lFÁCIL§a.");
+
+				int moedas = Strings.getDesafioFacilMoedas(), xp = Strings.getDesafioFacilXP();
+				PlayerAPI.getStatus().addMoedas(player, moedas);
+				if (Strings.sendMoedasMessage() && moedas > 0)
+					player.sendMessage("§6+" + moedas + " Moedas");
+				PlayerAPI.getStatus().addXP(player, xp);
+				if (Strings.sendXPMessage() && xp > 0)
+					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Fácil.");
 				player.sendTitle(new Title("§aFácil", "§fDesafio completo!", 15, 20, 15));
 			} else if (sign.getLine(0).equals(medio.get(0)) && sign.getLine(1).equals(medio.get(1))
 					&& sign.getLine(2).equals(medio.get(2)) && sign.getLine(3).equals(medio.get(3))) {
 				WarpAPI.setWarp(player, this);
 
-				StatusFile.addMoedas(player, 10);
-				player.sendMessage("§6+10 Moedas");
-				StatusFile.addXP(player, 1);
-				player.sendMessage("§b+1 XP");
+				if (Strings.announceDesafioMedio())
+					Bukkit.broadcastMessage(
+							Strings.getPrefixo() + " §a" + player.getName() + " completou o desafio §lMÉDIO§a.");
+
+				int moedas = Strings.getDesafioMedioMoedas(), xp = Strings.getDesafioMedioXP();
+				PlayerAPI.getStatus().addMoedas(player, moedas);
+				if (Strings.sendMoedasMessage() && moedas > 0)
+					player.sendMessage("§6+" + moedas + " Moedas");
+				PlayerAPI.getStatus().addXP(player, xp);
+				if (Strings.sendXPMessage() && xp > 0)
+					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Médio.");
 				player.sendTitle(new Title("§aMédio", "§fDesafio completo!", 15, 20, 15));
 			} else if (sign.getLine(0).equals(dificil.get(0)) && sign.getLine(1).equals(dificil.get(1))
 					&& sign.getLine(2).equals(dificil.get(2)) && sign.getLine(3).equals(dificil.get(3))) {
 				WarpAPI.setWarp(player, this);
 
-				StatusFile.addMoedas(player, 15);
-				player.sendMessage("§6+15 Moedas");
-				StatusFile.addXP(player, 3);
-				player.sendMessage("§b+3 XP");
+				if (Strings.announceDesafioDificil()) {
+					Bukkit.broadcastMessage(" ");
+					Bukkit.broadcastMessage(
+							Strings.getPrefixo() + " §a" + player.getName() + " completou o desafio §lDIFÍCIL§a.");
+					Bukkit.broadcastMessage(" ");
+				}
+
+				int moedas = Strings.getDesafioDificilMoedas(), xp = Strings.getDesafioDificilXP();
+				PlayerAPI.getStatus().addMoedas(player, moedas);
+				if (Strings.sendMoedasMessage() && moedas > 0)
+					player.sendMessage("§6+" + moedas + " Moedas");
+				PlayerAPI.getStatus().addXP(player, xp);
+				if (Strings.sendXPMessage() && xp > 0)
+					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Difícil.");
 				player.sendTitle(new Title("§aDifícil", "§fDesafio completo!", 15, 20, 15));
 			} else if (sign.getLine(0).equals(extremo.get(0)) && sign.getLine(1).equals(extremo.get(1))
 					&& sign.getLine(2).equals(extremo.get(2)) && sign.getLine(3).equals(extremo.get(3))) {
 				WarpAPI.setWarp(player, this);
 
-				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(
-						Strings.getPrefixo() + " §a" + player.getName() + " completou o desafio §lEXTREMO§a.");
-				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(" ");
+				if (Strings.announceDesafioExtremo()) {
+					Bukkit.broadcastMessage(" ");
+					Bukkit.broadcastMessage(" ");
+					Bukkit.broadcastMessage(
+							Strings.getPrefixo() + " §a" + player.getName() + " completou o desafio §lEXTREMO§a.");
+					Bukkit.broadcastMessage(" ");
+					Bukkit.broadcastMessage(" ");
+				}
 
-				StatusFile.addMoedas(player, 25);
-				player.sendMessage("§6+25 Moedas");
-				StatusFile.addXP(player, 5);
-				player.sendMessage("§b+5 XP");
+				int moedas = Strings.getDesafioExtremoMoedas(), xp = Strings.getDesafioExtremoXP();
+				PlayerAPI.getStatus().addMoedas(player, moedas);
+				if (Strings.sendMoedasMessage() && moedas > 0)
+					player.sendMessage("§6+" + moedas + " Moedas");
+				PlayerAPI.getStatus().addXP(player, xp);
+				if (Strings.sendXPMessage() && xp > 0)
+					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Extremo.");
 				player.sendTitle(new Title("§aExtremo", "§fDesafio completo!", 15, 20, 15));
 			}

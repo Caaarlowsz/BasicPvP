@@ -1,7 +1,5 @@
 package com.github.caaarlowsz.basicpvp.cabeca;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,7 +10,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.guis.MenuGUI;
@@ -40,10 +37,9 @@ public final class CabecasGUI implements Listener {
 				if (display.equals("§7Voltar"))
 					MenuGUI.openGUI(player);
 				else if (display.equals("§cRemover cabeça")) {
-					Cabeca cabeca = CabecaAPI.getCabeca(player);
 					CabecaAPI.removeCabeca(player);
-					player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a Cabeça: " + cabeca.getName());
-					player.sendTitle(new Title("§a" + cabeca.getName(), "§fCabeça removida.", 5, 10, 5));
+					player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a sua Cabeça.");
+					player.sendTitle(new Title("§a" + display, "§fCabeça removida.", 5, 10, 5));
 					player.closeInventory();
 				} else if (display.startsWith("§a")) {
 					if (player.hasPermission("kitpvp.vip.cabecas")) {
@@ -71,19 +67,9 @@ public final class CabecasGUI implements Listener {
 		if (CabecaAPI.hasCabeca(player))
 			inv.setItem(22, Stacks.item(Material.REDSTONE, "§cRemover cabeça", "§7Remove o cosmético aplicado."));
 
-		for (Cabeca cabeca : Cabecas.getCabecas()) {
-			ItemStack icon = cabeca.getIcon().clone();
-			ItemMeta mIcon = icon.getItemMeta();
-			List<String> lore = mIcon.getLore();
-			lore.add(" ");
-			if (player.hasPermission("kitpvp.vip.cabecas"))
-				lore.add("§eClique para selecionar");
-			else
-				lore.add("§cSem permissão para selecionar");
-			mIcon.setLore(lore);
-			icon.setItemMeta(mIcon);
-			inv.addItem(icon);
-		}
+		for (Cabeca cabeca : Cabecas.getCabecas())
+			inv.addItem(Stacks.applyModel(player.hasPermission("kitpvp.vip.cabecas") ? "modelos.cabeca.selecionar"
+					: "modelos.cabeca.sem-permissao", cabeca.getIcon().clone()));
 
 		inv.remove(glass);
 		player.openInventory(inv);

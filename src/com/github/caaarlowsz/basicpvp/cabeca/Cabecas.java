@@ -35,13 +35,8 @@ public final class Cabecas {
 
 	public Cabecas(BasicKitPvP plugin) {
 		getCabecas().clear();
-		getCabecas().add(new Cabeca("Bancada de Trabalho"));
-		getCabecas().add(new Cabeca("Vidro"));
-		getCabecas().add(new Cabeca("Estante"));
-		getCabecas().add(new Cabeca("Dinamite"));
-		getCabecas().add(new Cabeca("Gerador de Monstros"));
-		getCabecas().add(new Cabeca("Bloco de Diamante"));
-		getCabecas().add(new Cabeca("Lampada de Redstone"));
+		plugin.getConfig().getConfigurationSection("icones.cabecas").getKeys(false)
+				.forEach(name -> getCabecas().add(new Cabeca(name)));
 
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new CabecasGUI(), plugin);

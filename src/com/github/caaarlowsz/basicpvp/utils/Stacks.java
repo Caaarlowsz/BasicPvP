@@ -19,6 +19,8 @@ import org.bukkit.inventory.meta.SkullMeta;
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
+import com.github.caaarlowsz.basicpvp.player.Rank;
+import com.github.caaarlowsz.basicpvp.player.Status;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 
@@ -189,43 +191,46 @@ public final class Stacks {
 	}
 
 	public static ItemStack applyPlayerPH(Player player, ItemStack itemStack) {
+		Status status = PlayerAPI.getStatus(player);
+		Rank rank = status.getRank();
+
 		ItemStack item = Stacks.item(itemStack.getType(), itemStack.getAmount(), itemStack.getDurability());
 		ItemMeta mItemStack = itemStack.getItemMeta(), mItem = item.getItemMeta();
 		if (mItemStack.hasDisplayName())
-			mItem.setDisplayName(mItemStack.getDisplayName()
-					.replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
-					.replace("{player_coins}", PlayerAPI.getMoedas(player))
-					.replace("{player_xp}", PlayerAPI.getXP(player))
-					.replace("{player_killstreak}", PlayerAPI.getKillStreak(player))
-					.replace("{player_kills}", PlayerAPI.getAbates(player))
-					.replace("{player_deaths}", PlayerAPI.getMortes(player))
-					.replace("{player_rank_icon} {player_rank}", PlayerAPI.getRank(player).getColoredSymbolName())
-					.replace("{player_rank} {player_rank_icon}", PlayerAPI.getRank(player).getColoredNameSymbol())
-					.replace("{player_rank}", PlayerAPI.getRank(player).getColoredName())
-					.replace("{player_kit}", KitAPI.getKit(player).getName())
-					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
-					.replace("{server_players}/{server_slots}",
-							Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers())
-					.replace("{server_players}", "" + Bukkit.getOnlinePlayers().size())
-					.replace("{server_slots}", "" + Bukkit.getMaxPlayers()));
+			mItem.setDisplayName(
+					mItemStack.getDisplayName().replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
+							.replace("{player_coins}", status.getFormattedMoedas())
+							.replace("{player_xp}", status.getFormattedXP())
+							.replace("{player_killstreak}", status.getFormattedKillStreak())
+							.replace("{player_kills}", status.getFormattedAbates())
+							.replace("{player_deaths}", status.getFormattedMortes())
+							.replace("{player_rank_icon} {player_rank}", rank.getColoredSymbolName())
+							.replace("{player_rank} {player_rank_icon}", rank.getColoredNameSymbol())
+							.replace("{player_rank}", rank.getColoredName())
+							.replace("{player_kit}", KitAPI.getKit(player).getName())
+							.replace("{player_warp}", WarpAPI.getWarp(player).getName())
+							.replace("{server_players}/{server_slots}",
+									Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers())
+							.replace("{server_players}", "" + Bukkit.getOnlinePlayers().size())
+							.replace("{server_slots}", "" + Bukkit.getMaxPlayers()));
 		if (mItemStack.hasLore()) {
 			ArrayList<String> lore = new ArrayList<>();
-			mItemStack.getLore().forEach(line -> lore.add(line
-					.replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
-					.replace("{player_coins}", PlayerAPI.getMoedas(player))
-					.replace("{player_xp}", PlayerAPI.getXP(player))
-					.replace("{player_killstreak}", PlayerAPI.getKillStreak(player))
-					.replace("{player_kills}", PlayerAPI.getAbates(player))
-					.replace("{player_deaths}", PlayerAPI.getMortes(player))
-					.replace("{player_rank_icon} {player_rank}", PlayerAPI.getRank(player).getColoredSymbolName())
-					.replace("{player_rank} {player_rank_icon}", PlayerAPI.getRank(player).getColoredNameSymbol())
-					.replace("{player_rank}", PlayerAPI.getRank(player).getColoredName())
-					.replace("{player_kit}", KitAPI.getKit(player).getName())
-					.replace("{player_warp}", WarpAPI.getWarp(player).getName())
-					.replace("{server_players}/{server_slots}",
-							Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers())
-					.replace("{server_players}", "" + Bukkit.getOnlinePlayers().size())
-					.replace("{server_slots}", "" + Bukkit.getMaxPlayers())));
+			mItemStack.getLore()
+					.forEach(line -> lore.add(line.replace("{player_group}", TagAPI.getMaxTag(player).getColoredName())
+							.replace("{player_coins}", status.getFormattedMoedas())
+							.replace("{player_xp}", status.getFormattedXP())
+							.replace("{player_killstreak}", status.getFormattedKillStreak())
+							.replace("{player_kills}", status.getFormattedAbates())
+							.replace("{player_deaths}", status.getFormattedMortes())
+							.replace("{player_rank_icon} {player_rank}", rank.getColoredSymbolName())
+							.replace("{player_rank} {player_rank_icon}", rank.getColoredNameSymbol())
+							.replace("{player_rank}", rank.getColoredName())
+							.replace("{player_kit}", KitAPI.getKit(player).getName())
+							.replace("{player_warp}", WarpAPI.getWarp(player).getName())
+							.replace("{server_players}/{server_slots}",
+									Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers())
+							.replace("{server_players}", "" + Bukkit.getOnlinePlayers().size())
+							.replace("{server_slots}", "" + Bukkit.getMaxPlayers())));
 			mItem.setLore(lore);
 		}
 		if (mItemStack instanceof SkullMeta)

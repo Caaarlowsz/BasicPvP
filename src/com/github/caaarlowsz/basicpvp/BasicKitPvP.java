@@ -27,10 +27,10 @@ import com.github.caaarlowsz.basicpvp.kit.Kits;
 import com.github.caaarlowsz.basicpvp.listeners.AdminListeners;
 import com.github.caaarlowsz.basicpvp.listeners.ChatListeners;
 import com.github.caaarlowsz.basicpvp.listeners.JumpBlockListeners;
-import com.github.caaarlowsz.basicpvp.listeners.PlayerListeners;
 import com.github.caaarlowsz.basicpvp.listeners.SignListeners;
 import com.github.caaarlowsz.basicpvp.listeners.WorldListeners;
-import com.github.caaarlowsz.basicpvp.player.StatusFile;
+import com.github.caaarlowsz.basicpvp.player.PlayerListeners;
+import com.github.caaarlowsz.basicpvp.player.StatusData;
 import com.github.caaarlowsz.basicpvp.sidebar.SidebarAPI;
 import com.github.caaarlowsz.basicpvp.tag.Tags;
 import com.github.caaarlowsz.basicpvp.utils.KitType;
@@ -56,8 +56,7 @@ public final class BasicKitPvP extends JavaPlugin {
 	public void onEnable() {
 		super.onEnable();
 		this.saveDefaultConfig();
-
-		StatusFile.createNewFile(this.getDataFolder().getPath());
+		StatusData.createDatabase();
 
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new MenuGUI(), this);

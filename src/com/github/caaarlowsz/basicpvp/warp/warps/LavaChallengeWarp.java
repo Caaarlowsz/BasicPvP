@@ -20,6 +20,7 @@ import org.github.paperspigot.Title;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
+import com.github.caaarlowsz.basicpvp.player.Status;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 import com.github.caaarlowsz.basicpvp.warp.Warp;
@@ -91,6 +92,7 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 				&& event.getClickedBlock().getType().name().contains("SIGN")
 				&& event.getAction().name().contains("RIGHT")) {
 			Sign sign = (Sign) event.getClickedBlock().getState();
+			Status status = PlayerAPI.getStatus(player);
 			List<String> facil = this.getSignChallenge("facil"), medio = this.getSignChallenge("medio"),
 					dificil = this.getSignChallenge("dificil"), extremo = this.getSignChallenge("extremo");
 
@@ -103,10 +105,10 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 							Strings.getPrefixo() + " §a" + player.getName() + " completou o desafio §lFÁCIL§a.");
 
 				int moedas = Strings.getDesafioFacilMoedas(), xp = Strings.getDesafioFacilXP();
-				PlayerAPI.getStatus().addMoedas(player, moedas);
+				status.addMoedas(moedas);
 				if (Strings.sendMoedasMessage() && moedas > 0)
 					player.sendMessage("§6+" + moedas + " Moedas");
-				PlayerAPI.getStatus().addXP(player, xp);
+				status.addXP(xp);
 				if (Strings.sendXPMessage() && xp > 0)
 					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Fácil.");
@@ -120,10 +122,10 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 							Strings.getPrefixo() + " §a" + player.getName() + " completou o desafio §lMÉDIO§a.");
 
 				int moedas = Strings.getDesafioMedioMoedas(), xp = Strings.getDesafioMedioXP();
-				PlayerAPI.getStatus().addMoedas(player, moedas);
+				status.addMoedas(moedas);
 				if (Strings.sendMoedasMessage() && moedas > 0)
 					player.sendMessage("§6+" + moedas + " Moedas");
-				PlayerAPI.getStatus().addXP(player, xp);
+				status.addXP(xp);
 				if (Strings.sendXPMessage() && xp > 0)
 					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Médio.");
@@ -140,10 +142,10 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 				}
 
 				int moedas = Strings.getDesafioDificilMoedas(), xp = Strings.getDesafioDificilXP();
-				PlayerAPI.getStatus().addMoedas(player, moedas);
+				status.addMoedas(moedas);
 				if (Strings.sendMoedasMessage() && moedas > 0)
 					player.sendMessage("§6+" + moedas + " Moedas");
-				PlayerAPI.getStatus().addXP(player, xp);
+				status.addXP(xp);
 				if (Strings.sendXPMessage() && xp > 0)
 					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Difícil.");
@@ -162,10 +164,10 @@ public final class LavaChallengeWarp extends Warp implements Listener {
 				}
 
 				int moedas = Strings.getDesafioExtremoMoedas(), xp = Strings.getDesafioExtremoXP();
-				PlayerAPI.getStatus().addMoedas(player, moedas);
+				status.addMoedas(moedas);
 				if (Strings.sendMoedasMessage() && moedas > 0)
 					player.sendMessage("§6+" + moedas + " Moedas");
-				PlayerAPI.getStatus().addXP(player, xp);
+				status.addXP(xp);
 				if (Strings.sendXPMessage() && xp > 0)
 					player.sendMessage("§b+" + xp + " XP");
 				player.sendMessage(Strings.getPrefixo() + " §aVocê completou o desafio Extremo.");

@@ -50,7 +50,9 @@ public final class PlayerListeners implements Listener {
 		event.setJoinMessage(null);
 		player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 
-		PlayerAPI.getStatus().createAccount(player);
+		if (!StatusData.hasAccount(player.getName()))
+			StatusData.createAccount(player.getName());
+		PlayerAPI.setStatus(player, StatusData.loadAccount(player.getName()));
 
 		ChatAPI.removeAntiFlood(player);
 		WarpAPI.setWarp(player, Warps.getDefaultWarp());
@@ -84,30 +86,32 @@ public final class PlayerListeners implements Listener {
 
 		Player killer = player.getKiller();
 		if (!(WarpAPI.getWarp(player) instanceof UMvUMWarp) && killer != null && killer != player) {
-			PlayerAPI.getStatus().resetKillStreak(player);
-			PlayerAPI.getStatus().addMorte(player);
+			Status pStatus = PlayerAPI.getStatus(player);
+			pStatus.resetKillStreak();
+			pStatus.addMorte();
 			player.playSound(player.getLocation(), Sound.ANVIL_USE, 10F, 1F);
 
 			int pMoedas = Strings.getMorrerMoedas(), pXP = Strings.getMorrerXP();
-			PlayerAPI.getStatus().drawMoedas(player, pMoedas);
+			pStatus.drawMoedas(pMoedas);
 			if (Strings.sendMoedasMessage() && pMoedas > 0)
 				player.sendMessage("§6-" + pMoedas + " Moedas");
 
-			PlayerAPI.getStatus().drawXP(player, pXP);
+			pStatus.drawXP(pXP);
 			if (Strings.sendXPMessage() && pXP > 0)
 				player.sendMessage("§b-" + pXP + " XP");
 			player.sendMessage(Strings.getPrefixo() + " §cVocê foi morto por " + killer.getName() + ".");
 
-			PlayerAPI.getStatus().addKillStreak(killer);
-			PlayerAPI.getStatus().addAbate(killer);
+			Status kStatus = PlayerAPI.getStatus(killer);
+			kStatus.addKillStreak();
+			kStatus.addAbate();
 			killer.playSound(killer.getLocation(), Sound.ARROW_HIT, 10F, 1F);
 
 			int kMoedas = Strings.getMatarMoedas(), kXP = Strings.getMatarXP();
-			PlayerAPI.getStatus().addMoedas(killer, kMoedas);
+			kStatus.addMoedas(kMoedas);
 			if (Strings.sendMoedasMessage() && kMoedas > 0)
 				killer.sendMessage("§6+" + kMoedas + " Moedas");
 
-			PlayerAPI.getStatus().addXP(killer, kXP);
+			kStatus.addXP(kXP);
 			if (Strings.sendXPMessage() && kXP > 0)
 				killer.sendMessage("§b+" + kXP + " XP");
 			killer.sendMessage(Strings.getPrefixo() + " §aVocê matou " + player.getName() + ".");
@@ -134,10 +138,12 @@ public final class PlayerListeners implements Listener {
 		event.setQuitMessage(null);
 
 		ChatAPI.removeAntiFlood(player);
-		PlayerAPI.removeTellOff(player);
-		StaffAPI.removeBuild(player);
 		KitAPI.removeKit(player);
+		PlayerAPI.removeTellOff(player);
+		PlayerAPI.removeStatus(player);
 		SidebarAPI.removeSidebar(player);
+		StaffAPI.removeAdmin(player);
+		StaffAPI.removeBuild(player);
 		TagAPI.removeTag(player);
 		WarpAPI.removeWarp(player);
 	}

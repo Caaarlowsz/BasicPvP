@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 public class MySQL {
 
 	private String host, port, database, user, password;
-	public Connection connection;
+	private Connection connection;
 
 	public MySQL(String host, String database, String user, String password) {
 		this(host, "3306", database, user, password);
@@ -25,29 +25,40 @@ public class MySQL {
 		this.password = password;
 	}
 
-	public void connect() {
+	public boolean hasConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
-			Bukkit.getConsoleSender().sendMessage("§c[MYSQL] Driver do MySQL não encontrado: " + ex.getMessage());
-		}
-
-		try {
-			this.connection = DriverManager.getConnection(
-					"jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database, this.user, this.password);
+			return this.connection != null && !this.connection.isClosed();
 		} catch (SQLException ex) {
-			Bukkit.getConsoleSender()
-					.sendMessage("§c[MYSQL] Erro ao conectar com o Banco de Dados: " + ex.getMessage());
+		}
+		return false;
+	}
+
+	public void connect() {
+		if (!this.hasConnection()) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
+				Bukkit.getConsoleSender().sendMessage("§c[MYSQL] Driver do MySQL não encontrado: " + ex.getMessage());
+			}
+
+			try {
+				this.connection = DriverManager.getConnection(
+						"jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database, this.user, this.password);
+			} catch (SQLException ex) {
+				Bukkit.getConsoleSender()
+						.sendMessage("§c[MYSQL] Erro ao conectar com o Banco de Dados: " + ex.getMessage());
+			}
 		}
 	}
 
 	public void disconnect() {
-		try {
-			if (connection != null && !connection.isClosed())
+		if (this.hasConnection()) {
+			try {
 				connection.close();
-		} catch (SQLException ex) {
-			Bukkit.getConsoleSender()
-					.sendMessage("§c[MYSQL] Erro ao desconectar do Banco de Dados: " + ex.getMessage());
+			} catch (SQLException ex) {
+				Bukkit.getConsoleSender()
+						.sendMessage("§c[MYSQL] Erro ao desconectar do Banco de Dados: " + ex.getMessage());
+			}
 		}
 	}
 
@@ -60,6 +71,7 @@ public class MySQL {
 	}
 
 	public void update(String update) {
+		this.connect();
 		try {
 			Statement statement = this.connection.createStatement();
 			statement.executeUpdate(update);
@@ -68,17 +80,46 @@ public class MySQL {
 			Bukkit.getConsoleSender()
 					.sendMessage("§c[MYSQL] Erro ao executar update no Banco de Dados: " + ex.getMessage());
 		}
+		this.disconnect();
 	}
 
 	public ResultSet query(String query) {
 		try {
-			Statement statement = this.connection.createStatement();
-			return statement.executeQuery(query);
+			this.connect();
+			ResultSet set = this.connection.createStatement().executeQuery(query);
+			this.disconnect();
+			if (set != null)
+				return set;
 		} catch (SQLException ex) {
-			Bukkit.getConsoleSender()
-					.sendMessage("§c[MYSQL] Erro ao executar query no Banco de Dados: " + ex.getMessage());
 		}
-
 		return null;
+	}
+
+	public boolean exists(String query) {
+		try {
+			this.connect();
+			ResultSet set = this.connection.createStatement().executeQuery(query);
+			boolean next = false;
+			if (set != null)
+				next = set.next();
+			this.disconnect();
+			return next;
+		} catch (SQLException ex) {
+		}
+		return false;
+	}
+
+	public int queryInt(String query, String field) {
+		try {
+			this.connect();
+			ResultSet set = this.connection.createStatement().executeQuery(query);
+			if (set != null && set.next()) {
+				int i = set.getInt(field);
+				this.disconnect();
+				return i;
+			}
+		} catch (SQLException ex) {
+		}
+		return 0;
 	}
 }

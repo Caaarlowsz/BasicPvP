@@ -39,9 +39,10 @@ public class LojaDeKitsGUI implements Listener {
 			else {
 				Kit kit = Kits.getByIcon(event.getCurrentItem());
 				if (kit != null) {
-					if (PlayerAPI.getStatus().getMoedas(player) >= kit.getPrice()) {
+					if (PlayerAPI.getStatus(player).getMoedas() >= kit.getPrice()) {
 						PermissionsEx.getUser(player.getName())
 								.addPermission("kitpvp.kit." + kit.getName().toLowerCase());
+						PlayerAPI.getStatus(player).drawMoedas(kit.getPrice());
 						player.sendTitle(new Title("§aKit " + kit.getName(), "§fComprado.", 15, 20, 15));
 						player.sendMessage(Strings.getPrefixo() + " §aVocê comprou o Kit " + kit.getName() + ".");
 					} else

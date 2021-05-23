@@ -14,7 +14,8 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
-import com.github.caaarlowsz.basicpvp.player.StatusAPI;
+import com.github.caaarlowsz.basicpvp.player.PlayerAPI;
+import com.github.caaarlowsz.basicpvp.player.Status;
 import com.github.caaarlowsz.basicpvp.tag.TagAPI;
 import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 
@@ -78,6 +79,7 @@ public final class SidebarAPI {
 	}
 
 	public static void updateSidebar(Player player) {
+		Status status = PlayerAPI.getStatus(player);
 		HashMap<String, String> suffixes = getSidebar(player).getSuffixes();
 		player.getScoreboard().getTeams().stream().filter(team -> team.getName().startsWith("sidebar-"))
 				.forEach(team -> team.getEntries().forEach(entry -> {
@@ -87,21 +89,21 @@ public final class SidebarAPI {
 							if (map.getKey().equals("{player_group}"))
 								team.setSuffix(TagAPI.getMaxTag(player).getColoredName());
 							if (map.getKey().equals("{player_coins}"))
-								team.setSuffix(StatusAPI.getMoedas(player));
+								team.setSuffix(status.getFormattedMoedas());
 							if (map.getKey().equals("{player_xp}"))
-								team.setSuffix(StatusAPI.getXP(player));
+								team.setSuffix(status.getFormattedXP());
 							if (map.getKey().equals("{player_killstreak}"))
-								team.setSuffix(StatusAPI.getKillStreak(player));
+								team.setSuffix(status.getFormattedKillStreak());
 							if (map.getKey().equals("{player_kills}"))
-								team.setSuffix(StatusAPI.getAbates(player));
+								team.setSuffix(status.getFormattedAbates());
 							if (map.getKey().equals("{player_deaths}"))
-								team.setSuffix(StatusAPI.getMortes(player));
+								team.setSuffix(status.getFormattedMortes());
 							if (map.getKey().equals("{player_rank_icon} {player_rank}"))
-								team.setSuffix(StatusAPI.getRank(player).getColoredSymbolName());
+								team.setSuffix(status.getRank().getColoredSymbolName());
 							if (map.getKey().equals("{player_rank} {player_rank_icon}"))
-								team.setSuffix(StatusAPI.getRank(player).getColoredNameSymbol());
+								team.setSuffix(status.getRank().getColoredNameSymbol());
 							if (map.getKey().equals("{player_rank}"))
-								team.setSuffix(StatusAPI.getRank(player).getColoredName());
+								team.setSuffix(status.getRank().getColoredName());
 							if (map.getKey().equals("{player_kit}"))
 								team.setSuffix(KitAPI.getKit(player).getName());
 							if (map.getKey().equals("{player_warp}"))

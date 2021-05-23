@@ -1,6 +1,5 @@
 package com.github.caaarlowsz.basicpvp.player;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -11,6 +10,8 @@ public final class PlayerAPI {
 
 	private static final ArrayList<UUID> tellOff = new ArrayList<>();
 	private static final HashMap<UUID, Long> useReport = new HashMap<>();
+
+	private static final HashMap<UUID, Status> statusMap = new HashMap<>();
 
 	public static boolean hasTellOff(Player player) {
 		return tellOff.contains(player.getUniqueId());
@@ -42,28 +43,20 @@ public final class PlayerAPI {
 	public static void removeUseReport(Player player) {
 		useReport.remove(player.getUniqueId());
 	}
-	
-	public static String getMoedas(Player player) {
-		return new DecimalFormat().format(StatusFile.getMoedas(player)).replace(",", ".");
+
+	public static boolean hasStatus(Player player) {
+		return statusMap.containsKey(player.getUniqueId());
 	}
 
-	public static Rank getRank(Player player) {
-		return Rank.getRankByXP(StatusFile.getXP(player));
+	public static Status getStatus(Player player) {
+		return statusMap.getOrDefault(player.getUniqueId(), null);
 	}
 
-	public static String getXP(Player player) {
-		return new DecimalFormat().format(StatusFile.getXP(player)).replace(",", ".");
+	public static void setStatus(Player player, Status status) {
+		statusMap.put(player.getUniqueId(), status);
 	}
 
-	public static String getKillStreak(Player player) {
-		return new DecimalFormat().format(StatusFile.getKillStreak(player)).replace(",", ".");
-	}
-
-	public static String getAbates(Player player) {
-		return new DecimalFormat().format(StatusFile.getAbates(player)).replace(",", ".");
-	}
-
-	public static String getMortes(Player player) {
-		return new DecimalFormat().format(StatusFile.getMortes(player)).replace(",", ".");
+	public static void removeStatus(Player player) {
+		statusMap.remove(player.getUniqueId());
 	}
 }

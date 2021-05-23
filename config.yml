@@ -9,7 +9,6 @@ aplicacoes:
   trialmod: '{website}/trialmod'
 permissoes:
 mensagens:
-  cor-principal: '&a'
   motd: '{prefixo} &aEstamos esperando por você!'
   whitelist-motd: '{prefixo} &cServidor em manutenção.'
 sidebar:
@@ -265,6 +264,40 @@ icones:
       lore:
       - '&7Utilizada em sistemas para'
       - '&7identificar atividade.'
+modelos:
+  kit:
+    selecionar:
+      display: '{name}'
+      lore:
+      - '{description}'
+      - ' '
+      - '&eClique para selecionar'
+    comprar:
+      display: '{name}'
+      lore:
+      - '{description}'
+      - ' '
+      - '&7Preço: &f{price} Moedas&7.'
+      - '&eClique para comprar'
+  warp:
+    display: '{name}'
+    lore:
+    - '{description}'
+    - ' '
+    - '&eClique para teleportar'
+  cabeca:
+    selecionar:
+      display: '{name}'
+      lore:
+      - '&7{description}'
+      - ' '
+      - '&eClique para selecionar'
+    sem-permissao:
+      display: '{name}'
+      lore:
+      - '&7{description}'
+      - ' '
+      - '&cSem permissão para selecionar'
 inventarios:
   menu-geral:
     perfil:
@@ -345,3 +378,31 @@ placas:
     - '&8Extremo'
     - '&a&lCOMPLETO!'
     - '&7(Clique)'
+premios:
+  matar:
+    moedas: 10
+    xp: 3
+  morrer:
+    moedas: -5
+    xp: -1
+  facil:
+    moedas: 5
+    xp: 0
+  medio:
+    moedas: 10
+    xp: 1
+  dificil:
+    moedas: 15
+    xp: 3
+  extremo:
+    moedas: 25
+    xp: 5
+opcoes:
+  mensagens:
+    enviar-mensagem-de-xp: true
+    enviar-mensagem-de-moedas: true
+  desafios:
+    anunciar-facil: false
+    anunciar-medio: false
+    anunciar-dificil: false
+    anunciar-extremo: true

@@ -1,13 +1,10 @@
 package com.github.caaarlowsz.basicpvp.kit.kits;
 
-import java.util.Arrays;
-
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -16,7 +13,6 @@ import com.github.caaarlowsz.basicpvp.apis.WorldGuardAPI;
 import com.github.caaarlowsz.basicpvp.kit.Kit;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
-import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class ReaperKit extends Kit implements Listener {
 
@@ -29,8 +25,7 @@ public final class ReaperKit extends Kit implements Listener {
 		PlayerInventory inv = player.getInventory();
 		super.giveItems(player);
 
-		inv.setItem(0, Stacks.item(Material.STONE_AXE, true,
-				Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getMachado()));
+		inv.setItem(1, Stacks.item(Material.WOOD_HOE, true, "§aFoice", "§7Kit " + this.getName()));
 	}
 
 	@EventHandler

@@ -29,12 +29,10 @@ public final class VikingKit extends Kit implements Listener {
 		super.giveItems(player);
 
 		KitType kitType = BasicKitPvP.getKitType("itens.arena");
-		if (kitType == KitType.FULLIRON)
-			inv.setItem(0, Stacks.item(Material.DIAMOND_AXE, true,
-					Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getMachado()));
-		else
-			inv.setItem(0, Stacks.item(Material.STONE_AXE, true,
-					Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getMachado()));
+		inv.setItem(0,
+				Stacks.item(kitType == KitType.FULLIRON ? Material.DIAMOND_AXE : Material.STONE_AXE, true,
+						Arrays.asList(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE), Strings.getMachado(),
+						"§7Kit " + this.getName()));
 	}
 
 	@EventHandler

@@ -16,7 +16,7 @@ public final class ChatListeners implements Listener {
 	@EventHandler
 	private void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
 		Player player = event.getPlayer();
-		String format = player.getDisplayName() + " §8» §7", message = event.getMessage();
+		String format = player.getDisplayName() + " §8» §7", message = event.getMessage().replace("%", "%%");
 		if (player.hasPermission("kitpvp.vip.chatdestaque"))
 			format += "§f";
 		if (player.hasPermission("kitpvp.vip.chatcolor"))

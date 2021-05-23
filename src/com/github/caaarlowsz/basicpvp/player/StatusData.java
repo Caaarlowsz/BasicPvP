@@ -3,6 +3,7 @@ package com.github.caaarlowsz.basicpvp.player;
 import java.io.File;
 import java.io.IOException;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
@@ -10,15 +11,19 @@ import com.github.caaarlowsz.basicpvp.utils.MySQL;
 
 public class StatusData {
 
-	private static boolean useMySQL = true;
+	private static FileConfiguration configyml = BasicKitPvP.getInstance().getConfig();
+	private static boolean useMySQL = configyml.getBoolean("servidor.databases.status.use-mysql");
 	private static MySQL mysql;
 	private static File file;
 	private static YamlConfiguration config;
 
 	public static void createDatabase() {
 		if (useMySQL) {
-			mysql = new MySQL("database.haskhosting.com", "3306", "s337_commons-test", "u337_ZzA1Cnnv3O",
-					"6g.DH6ut6^6^fVkGdhqBHz5+");
+			mysql = new MySQL(configyml.getString("servidor.databases.status.host"),
+					configyml.getInt("servidor.databases.status.port"),
+					configyml.getString("servidor.databases.status.database"),
+					configyml.getString("servidor.databases.status.user"),
+					configyml.getString("servidor.databases.status.password"));
 			mysql.createTable("JOGADORES", "`NICKNAME` varchar(16)", "`MOEDAS` int(10)", "`XP` int(10)",
 					"`KILLSTREAK` int(10)", "`ABATES` int(10)", "`MORTES` int(10)");
 		} else {

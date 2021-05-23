@@ -10,14 +10,15 @@ import org.bukkit.Bukkit;
 
 public class MySQL {
 
-	private String host, port, database, user, password;
+	private String host, database, user, password;
+	private int port;
 	private Connection connection;
 
 	public MySQL(String host, String database, String user, String password) {
-		this(host, "3306", database, user, password);
+		this(host, 3306, database, user, password);
 	}
 
-	public MySQL(String host, String port, String database, String user, String password) {
+	public MySQL(String host, int port, String database, String user, String password) {
 		this.host = host;
 		this.port = port;
 		this.database = database;

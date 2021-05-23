@@ -1,6 +1,14 @@
 servidor:
   nome: '&aBasicPvP'
   prefixo: '&f[{nome}&f]'
+  databases:
+    status:
+      use-mysql: false
+      host: ''
+      port: '3306'
+      database: ''
+      user: ''
+      password: ''
 informacoes:
   website: 'www.basicpvp.com.br'
   loja: '{website}/loja'

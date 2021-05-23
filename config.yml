@@ -172,6 +172,13 @@ icones:
       - '&7Entre na água e fique mais'
       - '&7forte e use sua força marítima'
       - '&7para vencer seus oponentes.'
+    reaper:
+      preco: 600
+      material: 'WOOD_HOE'
+      display: '&aKit Reaper'
+      lore:
+      - '&7Deixe seus inimigos em'
+      - '&7estado de decomposição.'
     snail:
       preco: 600
       material: 'STRING'

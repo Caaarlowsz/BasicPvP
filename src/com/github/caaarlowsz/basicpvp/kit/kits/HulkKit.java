@@ -31,10 +31,10 @@ public final class HulkKit extends Kit implements Listener {
 			Vector vector = player.getEyeLocation().getDirection();
 			float pitch = player.getLocation().getPitch();
 
-			if (pitch > 0)
+			if (pitch > -10)
 				vector.setY(vector.getY() * 1.5);
 			else
-				vector.multiply(1.5);
+				vector.multiply(1);
 
 			player.eject();
 			Bukkit.getScheduler().runTaskLater(BasicKitPvP.getInstance(), () -> passenger.setVelocity(vector), 1L);

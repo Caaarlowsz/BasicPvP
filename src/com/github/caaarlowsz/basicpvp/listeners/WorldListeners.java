@@ -25,6 +25,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
+import com.github.caaarlowsz.basicpvp.kit.KitAPI;
+import com.github.caaarlowsz.basicpvp.kit.kits.QuickdropperKit;
+import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class WorldListeners implements Listener {
@@ -46,10 +49,16 @@ public final class WorldListeners implements Listener {
 				player.setHealth(player.getHealth() < (player.getMaxHealth() - 7D) ? (player.getHealth() + 7D)
 						: player.getMaxHealth());
 
-				event.getItem().setType(Material.BOWL);
-				ItemMeta mItem = event.getItem().getItemMeta();
-				mItem.setDisplayName(Strings.getPote());
-				event.getItem().setItemMeta(mItem);
+				if (KitAPI.getKit(player) instanceof QuickdropperKit) {
+					event.getItem().setType(Material.AIR);
+					player.getWorld().dropItemNaturally(player.getEyeLocation(), Stacks.item(Material.BOWL));
+				} else {
+					event.getItem().setType(Material.BOWL);
+					ItemMeta mItem = event.getItem().getItemMeta();
+					mItem.setDisplayName(Strings.getPote());
+					event.getItem().setItemMeta(mItem);
+				}
+				player.updateInventory();
 			}
 		}
 	}

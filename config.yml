@@ -186,6 +186,13 @@ icones:
       - '&7Entre na água e fique mais'
       - '&7forte e use sua força marítima'
       - '&7para vencer seus oponentes.'
+    quickdropper:
+      preco: 300
+      material: 'BOWL'
+      display: '&aKit QuickDropper'
+      lore:
+      - '&7Faça com que seus potes sejam'
+      - '&7dropados automaticamente.'
     reaper:
       preco: 600
       material: 'WOOD_HOE'

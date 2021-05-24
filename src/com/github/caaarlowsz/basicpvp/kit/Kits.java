@@ -22,6 +22,7 @@ import com.github.caaarlowsz.basicpvp.kit.kits.MonkKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.NeoKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PoseidonKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.QuickdropperKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ReaperKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ScoutKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.SnailKit;
@@ -102,6 +103,7 @@ public final class Kits {
 		getKits().add(new MonkKit());
 		getKits().add(new NeoKit());
 		getKits().add(new PoseidonKit());
+		getKits().add(new QuickdropperKit());
 		getKits().add(new ReaperKit());
 		getKits().add(new ScoutKit());
 		getKits().add(new SnailKit());

@@ -42,8 +42,8 @@ public final class ScoutKit extends Kit implements Listener {
 				&& event.getItem().getType() == Material.POTION && event.getItem().getDurability() == 8194
 				&& event.getAction().name().contains("RIGHT")) {
 			if (!this.hasCooldown(player)) {
-				this.addCooldown(player, 20);
-				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1));
+				this.addCooldown(player, 25);
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 1));
 				player.sendMessage(Strings.getPrefixo() + " §aVocê recebeu o efeito de Velocidade II.");
 			} else
 				player.sendMessage(Strings.getPrefixo() + " §cAguarde " + this.getRemaingSeconds(player) + ".");

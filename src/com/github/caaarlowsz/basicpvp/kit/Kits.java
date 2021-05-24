@@ -11,6 +11,7 @@ import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.kit.guis.LojaDeKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.guis.SeusKitsGUI;
 import com.github.caaarlowsz.basicpvp.kit.kits.AnchorKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.AntiStomperKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ArcherKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.CamelKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.FishermanKit;
@@ -89,6 +90,7 @@ public final class Kits {
 		getKits().clear();
 		getKits().add(DEFAULT_KIT);
 		getKits().add(new AnchorKit());
+		getKits().add(new AntiStomperKit());
 		getKits().add(new ArcherKit());
 		getKits().add(new CamelKit());
 		getKits().add(new FishermanKit());

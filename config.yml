@@ -115,6 +115,13 @@ icones:
       - '&7Faça o PvP sem knockback'
       - '&7ser bem mais assustador'
       - '&7do que seu inimigo espera.'
+    antistomper:
+      preco: 600
+      material: 'DIAMOND_HELMET'
+      display: '&aKit AntiStomper'
+      lore:
+      - '&7Seja imune as habilidades'
+      - '&7do Kit Stomper.'
     archer:
       preco: 375
       material: 'BOW'

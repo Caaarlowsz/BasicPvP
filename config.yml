@@ -182,9 +182,9 @@ icones:
     scout:
       preco: 1000
       material: 'POTION,1,8194'
-      display: '&aKitr Scout'
+      display: '&aKit Scout'
       lore:
-      - '&Se torne mais rápido'
+      - '&7Se torne mais rápido'
       - '&7que seus adverários.'
       flags:
         hide-attributes: true
@@ -210,6 +210,16 @@ icones:
       - '&7Receba os poderes do Deus do Raio.'
       flags:
         hide-attributes: true
+    urgal:
+      preco: 1000
+      material: 'POTION,1,8201'
+      display: '&aKit Urgal'
+      lore:
+      - '&7Aumente a sua força'
+      - '&7de uma forma absurda.'
+      flags:
+        hide-attributes: true
+        hide-potion-effects: true
     viking:
       preco: 1000
       material: 'STONE_AXE'

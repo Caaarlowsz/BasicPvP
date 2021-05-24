@@ -171,6 +171,13 @@ icones:
       lore:
       - '&7Embaralhe o inventário dos seus'
       - '&7inimigos e os deixe confusos.'
+    neo:
+      preco: 850
+      material: 'ARROW'
+      display: '&aKit Neo'
+      lore:
+      - '&7Se torne imune a todo e'
+      - '&7qualquer tipo de projétil.'
     poseidon:
       preco: 900
       material: 'WATER_BUCKET'

@@ -168,6 +168,8 @@ public final class Stacks {
 		if (config.contains(path + ".flags")) {
 			if (config.getBoolean(path + ".flags.hide-attributes", false))
 				flags.add(ItemFlag.HIDE_ATTRIBUTES);
+			if (config.getBoolean(path + ".flags.hide-potion-effects", false))
+				flags.add(ItemFlag.HIDE_POTION_EFFECTS);
 		}
 
 		Material type = Material.STONE;

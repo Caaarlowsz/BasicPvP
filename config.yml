@@ -179,6 +179,16 @@ icones:
       lore:
       - '&7Deixe seus inimigos em'
       - '&7estado de decomposição.'
+    scout:
+      preco: 1000
+      material: 'POTION,1,8194'
+      display: '&aKitr Scout'
+      lore:
+      - '&Se torne mais rápido'
+      - '&7que seus adverários.'
+      flags:
+        hide-attributes: true
+        hide-potion-effects: true
     snail:
       preco: 600
       material: 'STRING'

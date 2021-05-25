@@ -73,15 +73,17 @@ public class MySQL {
 
 	public void update(String update) {
 		this.connect();
-		try {
-			Statement statement = this.connection.createStatement();
-			statement.executeUpdate(update);
-			statement.close();
-		} catch (SQLException ex) {
-			Bukkit.getConsoleSender()
-					.sendMessage("§c[MYSQL] Erro ao executar update no Banco de Dados: " + ex.getMessage());
+		if (this.hasConnection()) {
+			try {
+				Statement statement = this.connection.createStatement();
+				statement.executeUpdate(update);
+				statement.close();
+			} catch (SQLException ex) {
+				Bukkit.getConsoleSender()
+						.sendMessage("§c[MYSQL] Erro ao executar update no Banco de Dados: " + ex.getMessage());
+			}
+			this.disconnect();
 		}
-		this.disconnect();
 	}
 
 	public ResultSet query(String query) {

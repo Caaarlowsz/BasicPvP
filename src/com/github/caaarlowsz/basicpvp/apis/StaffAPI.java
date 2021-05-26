@@ -35,6 +35,7 @@ public final class StaffAPI {
 		Bukkit.getOnlinePlayers().stream().filter(players -> !player.hasPermission("kitpvp.permission.viewadmins"))
 				.forEach(players -> players.hidePlayer(player));
 
+		player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
 		player.setGameMode(GameMode.CREATIVE);
 		player.setAllowFlight(true);
 		player.setFlying(true);

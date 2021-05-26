@@ -38,15 +38,17 @@ public final class UrgalKit extends Kit implements Listener {
 	@EventHandler
 	private void onPlayerInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
-		if (KitAPI.getKit(player) instanceof UrgalKit && WorldGuardAPI.hasPvP(player) && event.hasItem()
-				&& event.getItem().getType() == Material.POTION && event.getItem().getDurability() == 8201
-				&& event.getAction().name().contains("RIGHT")) {
-			if (!this.hasCooldown(player)) {
-				this.addCooldown(player, 30);
-				player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0));
-				player.sendMessage(Strings.getPrefixo() + " §aVocê recebeu o efeito de Força I.");
-			} else
-				player.sendMessage(Strings.getPrefixo() + " §cAguarde " + this.getRemaingSeconds(player) + ".");
+		if (KitAPI.getKit(player) instanceof UrgalKit && event.hasItem() && event.getItem().getType() == Material.POTION
+				&& event.getItem().getDurability() == 8201 && event.getAction().name().contains("RIGHT")) {
+			event.setCancelled(true);
+			if (WorldGuardAPI.hasPvP(player)) {
+				if (!this.hasCooldown(player)) {
+					this.addCooldown(player, 30);
+					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0));
+					player.sendMessage(Strings.getPrefixo() + " §aVocê recebeu o efeito de Força I.");
+				} else
+					player.sendMessage(Strings.getPrefixo() + " §cAguarde " + this.getRemaingSeconds(player) + ".");
+			}
 		}
 	}
 }

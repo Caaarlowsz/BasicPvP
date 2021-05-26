@@ -166,10 +166,10 @@ public final class Stacks {
 
 		ArrayList<ItemFlag> flags = new ArrayList<>();
 		if (config.contains(path + ".flags")) {
-			if (config.getBoolean(path + ".flags.hide-attributes", false))
-				flags.add(ItemFlag.HIDE_ATTRIBUTES);
 			if (config.getBoolean(path + ".flags.hide-potion-effects", false))
 				flags.add(ItemFlag.HIDE_POTION_EFFECTS);
+			if (config.getBoolean(path + ".flags.hide-attributes", false))
+				flags.add(ItemFlag.HIDE_ATTRIBUTES);
 		}
 
 		Material type = Material.STONE;

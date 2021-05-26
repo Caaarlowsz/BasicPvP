@@ -89,10 +89,12 @@ public class MySQL {
 	public ResultSet query(String query) {
 		try {
 			this.connect();
-			ResultSet set = this.connection.createStatement().executeQuery(query);
-			this.disconnect();
-			if (set != null)
-				return set;
+			if (this.hasConnection()) {
+				ResultSet set = this.connection.createStatement().executeQuery(query);
+				this.disconnect();
+				if (set != null)
+					return set;
+			}
 		} catch (SQLException ex) {
 		}
 		return null;
@@ -101,12 +103,14 @@ public class MySQL {
 	public boolean exists(String query) {
 		try {
 			this.connect();
-			ResultSet set = this.connection.createStatement().executeQuery(query);
-			boolean next = false;
-			if (set != null)
-				next = set.next();
-			this.disconnect();
-			return next;
+			if (this.hasConnection()) {
+				ResultSet set = this.connection.createStatement().executeQuery(query);
+				boolean next = false;
+				if (set != null)
+					next = set.next();
+				this.disconnect();
+				return next;
+			}
 		} catch (SQLException ex) {
 		}
 		return false;
@@ -115,11 +119,13 @@ public class MySQL {
 	public int queryInt(String query, String field) {
 		try {
 			this.connect();
-			ResultSet set = this.connection.createStatement().executeQuery(query);
-			if (set != null && set.next()) {
-				int i = set.getInt(field);
-				this.disconnect();
-				return i;
+			if (this.hasConnection()) {
+				ResultSet set = this.connection.createStatement().executeQuery(query);
+				if (set != null && set.next()) {
+					int i = set.getInt(field);
+					this.disconnect();
+					return i;
+				}
 			}
 		} catch (SQLException ex) {
 		}

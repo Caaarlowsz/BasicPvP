@@ -30,6 +30,7 @@ public class Warp {
 	}
 
 	public void giveItems(Player player) {
+		player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
 		player.setGameMode(GameMode.SURVIVAL);
 		player.setAllowFlight(false);
 		player.setFlying(false);

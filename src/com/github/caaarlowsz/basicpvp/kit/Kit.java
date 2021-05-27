@@ -53,11 +53,11 @@ public class Kit {
 	}
 
 	public boolean hasCooldown(Player player) {
-		return this.longMap.containsKey(player.getUniqueId());
+		return this.getCooldown(player) > 0;
 	}
 
 	public long getCooldown(Player player) {
-		if (this.hasCooldown(player))
+		if (this.longMap.containsKey(player.getUniqueId()))
 			return (this.longMap.get(player.getUniqueId()) - System.currentTimeMillis()) / 1000L;
 		return 0L;
 	}

@@ -178,6 +178,13 @@ icones:
       lore:
       - '&7Se torne imune a todo e'
       - '&7qualquer tipo de projétil.'
+    phantom:
+      preco: 850
+      material: 'FEATHER'
+      display: '&aKit Phantom'
+      lore:
+      - '&7Use suas habilidades para'
+      - '&7voar para onde quiser.'
     poseidon:
       preco: 900
       material: 'WATER_BUCKET'

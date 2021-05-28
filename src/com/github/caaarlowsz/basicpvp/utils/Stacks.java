@@ -8,12 +8,14 @@ import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
@@ -86,7 +88,7 @@ public final class Stacks {
 		ItemStack item = new ItemStack(type, amount, (short) durability);
 		ItemMeta mItem = item.getItemMeta();
 		mItem.spigot().setUnbreakable(unbreakable);
-		mItem.addItemFlags(flags.toArray(new ItemFlag[] {}));
+		flags.forEach(flag -> mItem.addItemFlags(flag));
 		item.setItemMeta(mItem);
 		return item;
 	}
@@ -132,6 +134,41 @@ public final class Stacks {
 		ItemStack item = item(type, amount, durability, unbreakable, flags);
 		ItemMeta mItem = item.getItemMeta();
 		mItem.setDisplayName(displayName);
+		mItem.setLore(Arrays.asList(lore));
+		mItem.addItemFlags(flags.toArray(new ItemFlag[] {}));
+		item.setItemMeta(mItem);
+		return item;
+	}
+
+	public static ItemStack armor(Material type, Color color) {
+		return armor(type, 1, color);
+	}
+
+	public static ItemStack armor(Material type, int amount, Color color) {
+		return armor(type, amount, 0, color);
+	}
+
+	public static ItemStack armor(Material type, int amount, int durability, Color color) {
+		ItemStack item = item(type, amount, durability);
+		LeatherArmorMeta mItem = (LeatherArmorMeta) item.getItemMeta();
+		mItem.setColor(color);
+		item.setItemMeta(mItem);
+		return item;
+	}
+
+	public static ItemStack armor(Material type, Color color, String display, String... lore) {
+		return armor(type, 1, color, display, lore);
+	}
+
+	public static ItemStack armor(Material type, int amount, Color color, String display, String... lore) {
+		return armor(type, amount, 0, color, display, lore);
+	}
+
+	public static ItemStack armor(Material type, int amount, int durability, Color color, String display,
+			String... lore) {
+		ItemStack item = armor(type, amount, durability, color);
+		ItemMeta mItem = item.getItemMeta();
+		mItem.setDisplayName(display);
 		mItem.setLore(Arrays.asList(lore));
 		item.setItemMeta(mItem);
 		return item;

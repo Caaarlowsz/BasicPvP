@@ -1,5 +1,7 @@
 package com.github.caaarlowsz.basicpvp.kit.guis;
 
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -54,16 +56,13 @@ public final class SeusKitsGUI implements Listener {
 	}
 
 	public static void openGUI(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 45, "Seus Kits");
+		Inventory inv = Bukkit.createInventory(null, 54, "Seus Kits");
 
 		ItemStack glass = Stacks.item(Material.THIN_GLASS, " ");
 		for (int i = 0; i < 10; i++)
 			inv.setItem(i, glass);
-		inv.setItem(17, glass);
-		inv.setItem(18, glass);
-		inv.setItem(26, glass);
-		inv.setItem(27, glass);
-		for (int i = 35; i < 45; i++)
+		Arrays.asList(17, 18, 26, 27, 35, 36).forEach(i -> inv.setItem(i, glass));
+		for (int i = 44; i < 54; i++)
 			inv.setItem(i, glass);
 
 		Kits.getKits().stream()

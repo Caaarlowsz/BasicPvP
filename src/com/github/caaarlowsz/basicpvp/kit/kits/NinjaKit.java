@@ -36,7 +36,7 @@ public final class NinjaKit extends Kit implements Listener {
 
 	@EventHandler
 	private void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
-		if (!event.isSneaking())
+		if (event.isSneaking())
 			return;
 		Player player = event.getPlayer();
 

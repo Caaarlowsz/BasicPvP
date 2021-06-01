@@ -20,6 +20,7 @@ import com.github.caaarlowsz.basicpvp.kit.kits.KangarooKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.MagmaKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.MonkKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.NeoKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.NinjaKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PhantomKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PoseidonKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.PvPKit;
@@ -79,6 +80,7 @@ public final class Kits {
 		pm.registerEvents(new MagmaKit(), plugin);
 		pm.registerEvents(new MonkKit(), plugin);
 		pm.registerEvents(new NeoKit(), plugin);
+		pm.registerEvents(new NinjaKit(), plugin);
 		pm.registerEvents(new PhantomKit(), plugin);
 		pm.registerEvents(new PoseidonKit(), plugin);
 		pm.registerEvents(new ReaperKit(), plugin);
@@ -104,6 +106,7 @@ public final class Kits {
 		getKits().add(new MagmaKit());
 		getKits().add(new MonkKit());
 		getKits().add(new NeoKit());
+		getKits().add(new NinjaKit());
 		getKits().add(new PhantomKit());
 		getKits().add(new PoseidonKit());
 		getKits().add(new QuickdropperKit());

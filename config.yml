@@ -178,6 +178,13 @@ icones:
       lore:
       - '&7Se torne imune a todo e'
       - '&7qualquer tipo de projétil.'
+    ninja:
+      preco: 1000
+      material: 'EMERALD'
+      display: '&aKit Ninja'
+      lore:
+      - '&7Se teleporte para atrás'
+      - '&7dos último jogador que atacar.'
     phantom:
       preco: 850
       material: 'FEATHER'

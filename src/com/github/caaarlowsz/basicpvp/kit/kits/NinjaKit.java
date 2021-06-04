@@ -46,9 +46,13 @@ public final class NinjaKit extends Kit implements Listener {
 					Player target = Bukkit.getPlayer(ninjaMap.get(player.getUniqueId()));
 					if (target != null) {
 						if (KitAPI.hasKit(target) && WorldGuardAPI.hasPvP(target)) {
-							this.addCooldown(player, 10);
-							player.teleport(target.getLocation());
-							player.sendMessage(Strings.getPrefixo() + " §aTeleportado!");
+							if (player.getLocation().distance(target.getLocation()) <= 50) {
+								this.addCooldown(player, 10);
+								player.teleport(target.getLocation());
+								player.sendMessage(Strings.getPrefixo() + " §aTeleportado!");
+							} else
+								player.sendMessage(
+										Strings.getDesafioExtremoMoedas() + " §cO seu alvo está muito distance.");
 						} else
 							player.sendMessage(Strings.getPrefixo() + " §cNão foi possível teleportar até seu alvo.");
 					} else {

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -49,6 +50,7 @@ public final class NinjaKit extends Kit implements Listener {
 							if (player.getLocation().distance(target.getLocation()) <= 50) {
 								this.addCooldown(player, 10);
 								player.teleport(target.getLocation());
+								player.playSound(player.getLocation(), Sound.WITHER_SHOOT, 1F, 1F);
 								player.sendMessage(Strings.getPrefixo() + " §aTeleportado!");
 							} else
 								player.sendMessage(

@@ -1,4 +1,4 @@
-package com.github.caaarlowsz.basicpvp.commands;
+package com.github.caaarlowsz.basicpvp.warp.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

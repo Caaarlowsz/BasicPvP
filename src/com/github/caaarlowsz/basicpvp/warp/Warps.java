@@ -9,6 +9,7 @@ import org.bukkit.plugin.PluginManager;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
 import com.github.caaarlowsz.basicpvp.utils.Stacks;
+import com.github.caaarlowsz.basicpvp.warp.commands.FlyCommand;
 import com.github.caaarlowsz.basicpvp.warp.commands.SetCommand;
 import com.github.caaarlowsz.basicpvp.warp.commands.SpawnCommand;
 import com.github.caaarlowsz.basicpvp.warp.commands.WarpCommand;
@@ -62,6 +63,7 @@ public final class Warps {
 		pm.registerEvents(new UMvUMWarp(), plugin);
 		pm.registerEvents(new LavaChallengeWarp(), plugin);
 
+		plugin.getCommand("fly").setExecutor(new FlyCommand());
 		plugin.getCommand("set").setExecutor(new SetCommand());
 		plugin.getCommand("spawn").setExecutor(new SpawnCommand());
 		plugin.getCommand("warp").setExecutor(new WarpCommand());

@@ -45,7 +45,7 @@ public final class NinjaKit extends Kit implements Listener {
 				if (ninjaMap.containsKey(player.getUniqueId())) {
 					Player target = Bukkit.getPlayer(ninjaMap.get(player.getUniqueId()));
 					if (target != null) {
-						if (KitAPI.hasKit(target) && !WorldGuardAPI.hasPvP(target)) {
+						if (KitAPI.hasKit(target) && WorldGuardAPI.hasPvP(target)) {
 							this.addCooldown(player, 10);
 							player.teleport(target.getLocation());
 							player.sendMessage(Strings.getPrefixo() + " §aTeleportado!");

@@ -101,6 +101,7 @@ icones:
   kits:
     pvp:
       material: 'STONE_SWORD'
+      glow: true
       display: '&aKit PvP'
       lore:
       - '&7Mostre a verdadeira força da'
@@ -231,6 +232,14 @@ icones:
       lore:
       - '&7Faça com que seus inimigos'
       - '&7fiquem lentos.'
+    stomper:
+      preco: 1500
+      material: 'IRON_BOOTS'
+      display: 'Stomper'
+      lore:
+      - '&7Esmague seus amigos e inimigos,'
+      - '&7mas lembre-se: ser silencioso'
+      - '&7é o segredo da vitória.'
     switcher:
       preco: 850
       material: 'SNOW_BALL'

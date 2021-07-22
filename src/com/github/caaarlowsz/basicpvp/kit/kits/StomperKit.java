@@ -1,6 +1,5 @@
 package com.github.caaarlowsz.basicpvp.kit.kits;
 
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -11,14 +10,12 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import com.github.caaarlowsz.basicpvp.kit.Kit;
 import com.github.caaarlowsz.basicpvp.kit.KitAPI;
-import com.github.caaarlowsz.basicpvp.utils.Stacks;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class StomperKit extends Kit implements Listener {
 
 	public StomperKit() {
-		super("Stomper", 1500, Stacks.item(Material.IRON_BOOTS, "§aKit Stomper", "§7Esmague seus amigos e inimigos,",
-				"§7mas lembre-se: ser silencioso", "§7é o segredo da vitória."));
+		super("Stomper");
 	}
 
 	@EventHandler

@@ -11,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -220,6 +221,9 @@ public final class Stacks {
 			durability = Integer.valueOf(split[2]);
 
 		ItemStack item = Stacks.item(type, amount, durability, flags, display);
+		if (config.contains(path + ".glow") && config.getBoolean(path + ".glow", false))
+			item.addUnsafeEnchantment(new EnchantmentWrapper(-1), 1);
+
 		if (lore.size() > 0) {
 			ItemMeta mItem = item.getItemMeta();
 			mItem.setLore(lore);

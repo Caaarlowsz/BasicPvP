@@ -28,6 +28,7 @@ import com.github.caaarlowsz.basicpvp.kit.kits.QuickdropperKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ReaperKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ScoutKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.SnailKit;
+import com.github.caaarlowsz.basicpvp.kit.kits.StomperKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.SwitcherKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.ThorKit;
 import com.github.caaarlowsz.basicpvp.kit.kits.UrgalKit;
@@ -87,6 +88,7 @@ public final class Kits {
 		pm.registerEvents(new ScoutKit(), plugin);
 		pm.registerEvents(new SnailKit(), plugin);
 		pm.registerEvents(new SwitcherKit(), plugin);
+		pm.registerEvents(new StomperKit(), plugin);
 		pm.registerEvents(new ThorKit(), plugin);
 		pm.registerEvents(new UrgalKit(), plugin);
 		pm.registerEvents(new VikingKit(), plugin);
@@ -113,6 +115,7 @@ public final class Kits {
 		getKits().add(new ReaperKit());
 		getKits().add(new ScoutKit());
 		getKits().add(new SnailKit());
+		getKits().add(new StomperKit());
 		getKits().add(new SwitcherKit());
 		getKits().add(new ThorKit());
 		getKits().add(new UrgalKit());

@@ -42,11 +42,15 @@ public final class Warps {
 	}
 
 	public static Warp getByIcon(ItemStack icon) {
-		return getWarps().stream()
-				.filter(warp -> warp.getIcon().hasItemMeta() && icon.hasItemMeta()
-						&& warp.getIcon().getItemMeta().hasDisplayName() && icon.getItemMeta().hasDisplayName() && warp
-								.getIcon().getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
-				.findFirst().orElse(null);
+		for (Warp warp : getWarps()) {
+			ItemStack item = Stacks.applyModel("modelos.warp", warp.getIcon().clone());
+
+			if (item.hasItemMeta() && icon.hasItemMeta() && item.getItemMeta().hasDisplayName()
+					&& icon.getItemMeta().hasDisplayName()
+					&& item.getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
+				return warp;
+		}
+		return null;
 	}
 
 	public Warps(BasicKitPvP plugin) {

@@ -59,11 +59,20 @@ public final class Kits {
 	}
 
 	public static Kit getByIcon(ItemStack icon) {
-		return getKits().stream()
-				.filter(kit -> kit.getIcon().hasItemMeta() && icon.hasItemMeta()
-						&& kit.getIcon().getItemMeta().hasDisplayName() && icon.getItemMeta().hasDisplayName() && kit
-								.getIcon().getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
-				.findFirst().orElse(null);
+		for (Kit kit : getKits()) {
+			ItemStack select = Stacks.applyModel("modelos.kit.selecionar", kit.getIcon().clone());
+			if (select.hasItemMeta() && icon.hasItemMeta() && select.getItemMeta().hasDisplayName()
+					&& icon.getItemMeta().hasDisplayName()
+					&& select.getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
+				return kit;
+
+			ItemStack buy = Stacks.applyModel("modelos.kit.comprar", kit.getIcon().clone());
+			if (buy.hasItemMeta() && icon.hasItemMeta() && buy.getItemMeta().hasDisplayName()
+					&& icon.getItemMeta().hasDisplayName()
+					&& buy.getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
+				return kit;
+		}
+		return null;
 	}
 
 	public Kits(BasicKitPvP plugin) {

@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
 import com.github.caaarlowsz.basicpvp.BasicKitPvP;
+import com.github.caaarlowsz.basicpvp.utils.Stacks;
 
 public final class Cabecas {
 
@@ -26,11 +27,21 @@ public final class Cabecas {
 	}
 
 	public static Cabeca getByIcon(ItemStack icon) {
-		return getCabecas().stream()
-				.filter(cabeca -> cabeca.getIcon().hasItemMeta() && icon.hasItemMeta()
-						&& cabeca.getIcon().getItemMeta().hasDisplayName() && icon.getItemMeta().hasDisplayName()
-						&& cabeca.getIcon().getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
-				.findFirst().orElse(null);
+		for (Cabeca cabeca : getCabecas()) {
+			ItemStack select = Stacks.applyModel("modelos.cabeca.selecionar", cabeca.getIcon().clone());
+
+			if (select.hasItemMeta() && icon.hasItemMeta() && select.getItemMeta().hasDisplayName()
+					&& icon.getItemMeta().hasDisplayName()
+					&& select.getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
+				return cabeca;
+
+			ItemStack withoutPermission = Stacks.applyModel("modelos.cabeca.sem-permissao", cabeca.getIcon().clone());
+			if (withoutPermission.hasItemMeta() && icon.hasItemMeta()
+					&& withoutPermission.getItemMeta().hasDisplayName() && icon.getItemMeta().hasDisplayName()
+					&& withoutPermission.getItemMeta().getDisplayName().equals(icon.getItemMeta().getDisplayName()))
+				return cabeca;
+		}
+		return null;
 	}
 
 	public Cabecas(BasicKitPvP plugin) {

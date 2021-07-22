@@ -62,6 +62,7 @@ public final class Warps {
 
 		pm.registerEvents(new UMvUMWarp(), plugin);
 		pm.registerEvents(new LavaChallengeWarp(), plugin);
+		pm.registerEvents(new SpawnWarp(), plugin);
 
 		plugin.getCommand("fly").setExecutor(new FlyCommand());
 		plugin.getCommand("set").setExecutor(new SetCommand());

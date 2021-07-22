@@ -41,13 +41,17 @@ public final class CabecasGUI implements Listener {
 					player.sendMessage(Strings.getPrefixo() + " §aVocê removeu a sua Cabeça.");
 					player.sendTitle(new Title("§a" + display, "§fCabeça removida.", 5, 10, 5));
 					player.closeInventory();
-				} else if (display.startsWith("§a")) {
-					if (player.hasPermission("kitpvp.vip.cabecas")) {
-						CabecaAPI.setCabeca(player, Cabecas.getByIcon(event.getCurrentItem()));
-						player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Cabeça: " + display);
-						player.sendTitle(new Title(display, "§fCabeça selecionada.", 5, 10, 5));
-					} else
-						player.sendMessage(Strings.getPrefixo() + " §cVocê não possui Permissão para usar Cabeças.");
+				} else {
+					Cabeca cabeca = Cabecas.getByIcon(event.getCurrentItem());
+					if (cabeca != null) {
+						if (player.hasPermission("kitpvp.vip.cabecas")) {
+							CabecaAPI.setCabeca(player, cabeca);
+							player.sendMessage(Strings.getPrefixo() + " §aVocê selecionou a Cabeça: " + display);
+							player.sendTitle(new Title(display, "§fCabeça selecionada.", 5, 10, 5));
+						} else
+							player.sendMessage(
+									Strings.getPrefixo() + " §cVocê não possui Permissão para usar Cabeças.");
+					}
 					player.closeInventory();
 				}
 			}

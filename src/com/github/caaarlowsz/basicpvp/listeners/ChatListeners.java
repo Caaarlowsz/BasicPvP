@@ -9,6 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import com.github.caaarlowsz.basicpvp.apis.ChatAPI;
+import com.github.caaarlowsz.basicpvp.apis.StaffAPI;
 import com.github.caaarlowsz.basicpvp.utils.Strings;
 
 public final class ChatListeners implements Listener {
@@ -22,6 +23,14 @@ public final class ChatListeners implements Listener {
 		if (player.hasPermission("kitpvp.vip.chatcolor"))
 			message = ChatColor.translateAlternateColorCodes('&', message);
 
+		event.setFormat(format + message);
+
+		if (StaffAPI.hasStaffChat(player)) {
+			event.setCancelled(true);
+			StaffAPI.sendToStaffChat(player, message);
+			return;
+		}
+
 		if (!ChatAPI.getChat() && !player.hasPermission("kitpvp.vip.speakchatoff")) {
 			event.setCancelled(true);
 			player.sendMessage(Strings.getPrefixo() + " §cO Chat do Servidor está desligado.");
@@ -33,8 +42,6 @@ public final class ChatListeners implements Listener {
 			player.sendMessage(Strings.getPrefixo() + " §cAguarde para digitar novamente.");
 		} else if (!player.hasPermission("kitpvp.permission.flood"))
 			ChatAPI.addAntiFlood(player, player.hasPermission("kitpvp.vip.reducedflood") ? 3 : 5);
-
-		event.setFormat(format + message);
 	}
 
 	@EventHandler

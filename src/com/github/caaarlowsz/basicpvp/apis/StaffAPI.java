@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -20,7 +21,8 @@ import com.github.caaarlowsz.basicpvp.warp.WarpAPI;
 
 public final class StaffAPI {
 
-	private static final ArrayList<UUID> admin = new ArrayList<>(), build = new ArrayList<>();
+	private static final ArrayList<UUID> admin = new ArrayList<>(), build = new ArrayList<>(),
+			staffChat = new ArrayList<>(), silentStaffChat = new ArrayList<>();
 
 	public static boolean hasAdmin(Player player) {
 		return admin.contains(player.getUniqueId());
@@ -81,5 +83,48 @@ public final class StaffAPI {
 
 	public static void removeBuild(Player player) {
 		build.remove(player.getUniqueId());
+	}
+
+	public static boolean hasStaffChat(Player player) {
+		return staffChat.contains(player.getUniqueId());
+	}
+
+	public static void addStaffChat(Player player) {
+		if (!hasStaffChat(player))
+			staffChat.add(player.getUniqueId());
+	}
+
+	public static void removeStaffChat(Player player) {
+		staffChat.remove(player.getUniqueId());
+	}
+
+	public static boolean hasSilentStaffChat(Player player) {
+		return silentStaffChat.contains(player.getUniqueId());
+	}
+
+	public static void addSilentStaffChat(Player player) {
+		if (!hasSilentStaffChat(player))
+			silentStaffChat.add(player.getUniqueId());
+	}
+
+	public static void removeSilentStaffChat(Player player) {
+		silentStaffChat.remove(player.getUniqueId());
+	}
+
+	public static void sendToStaffChat(Player player, String message) {
+		String format = "§e§l[STAFF-CHAT] §r" + player.getDisplayName() + " §8» §e";
+		if (player.hasPermission("kitpvp.staff.chatcolor"))
+			message = ChatColor.translateAlternateColorCodes('&', message);
+
+		if (message.split(" ").length == 1) {
+			Player target = Bukkit.getPlayer(message.split(" ")[0]);
+			if (target != null && target.hasPermission("kitpvp.command.staffchat") && hasSilentStaffChat(target))
+				target.sendMessage(format + message);
+		}
+
+		Bukkit.getConsoleSender().sendMessage(format + message);
+		for (Player players : Bukkit.getOnlinePlayers())
+			if (!hasSilentStaffChat(players) && players.hasPermission("kitpvp.command.staffchat"))
+				players.sendMessage(format + message);
 	}
 }

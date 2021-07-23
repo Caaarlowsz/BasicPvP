@@ -58,6 +58,10 @@ commands:
     description: Use este comando para denunciar jogadores.
     usage: /<command> (Nickname) (Motivo)
     aliases: [reportar, denunciar, rep, r]
+  staffchat:
+    description: Use este comando para usar o bate-papo da equipe.
+    usage: /<command> (Mensagem)
+    aliases: [sc, schat]
   set:
     description: Use este comando para definir locais.
     usage: /<command> (Nome do Local)

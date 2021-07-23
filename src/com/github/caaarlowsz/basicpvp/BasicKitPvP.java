@@ -18,6 +18,7 @@ import com.github.caaarlowsz.basicpvp.commands.InventorySeeCommand;
 import com.github.caaarlowsz.basicpvp.commands.PingCommand;
 import com.github.caaarlowsz.basicpvp.commands.RankCommand;
 import com.github.caaarlowsz.basicpvp.commands.ReportCommand;
+import com.github.caaarlowsz.basicpvp.commands.StaffChatCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportCommand;
 import com.github.caaarlowsz.basicpvp.commands.TeleportHereCommand;
 import com.github.caaarlowsz.basicpvp.commands.TellCommand;
@@ -79,6 +80,7 @@ public final class BasicKitPvP extends JavaPlugin {
 		this.getCommand("ping").setExecutor(new PingCommand());
 		this.getCommand("rank").setExecutor(new RankCommand());
 		this.getCommand("report").setExecutor(new ReportCommand());
+		this.getCommand("staffchat").setExecutor(new StaffChatCommand());
 		this.getCommand("teleport").setExecutor(new TeleportCommand());
 		this.getCommand("teleporthere").setExecutor(new TeleportHereCommand());
 		this.getCommand("tell").setExecutor(new TellCommand());

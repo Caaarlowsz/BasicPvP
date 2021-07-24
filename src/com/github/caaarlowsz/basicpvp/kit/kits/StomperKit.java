@@ -27,7 +27,7 @@ public final class StomperKit extends Kit implements Listener {
 					if (entities instanceof Player) {
 						Player players = (Player) entities;
 						if (!(KitAPI.getKit(players) instanceof AntiStomperKit)) {
-							players.damage(players.isSneaking() ? event.getDamage() : 4D);
+							players.damage(players.isSneaking() ? 4D : event.getDamage(), player);
 							players.playSound(players.getLocation(), Sound.ANVIL_LAND, 1F, 1F);
 							players.sendMessage(
 									Strings.getPrefixo() + " §eVocê foi pisoteado por " + player.getName() + ".");
